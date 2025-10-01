@@ -143,3 +143,60 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 });
+
+// Project filtering functionality
+document.addEventListener('DOMContentLoaded', function() {
+    const filterChips = document.querySelectorAll('.filter-chip');
+    const projectCards = document.querySelectorAll('.project-card');
+    
+    // Check URL for category parameter, default to 'featured'
+    const urlParams = new URLSearchParams(window.location.search);
+    const initialCategory = urlParams.get('category') || 'featured';
+    
+    if (filterChips.length > 0) {
+        // Find and activate the corresponding filter chip
+        const targetChip = Array.from(filterChips).find(chip => 
+            chip.getAttribute('data-category') === initialCategory
+        );
+        
+        if (targetChip) {
+            // Remove active class from all chips
+            filterChips.forEach(chip => chip.classList.remove('active'));
+            // Add active class to target chip
+            targetChip.classList.add('active');
+            // Filter projects
+            filterProjects(initialCategory);
+        } else {
+            // If category not found, default to featured
+            filterProjects('featured');
+        }
+    }
+    
+    filterChips.forEach(chip => {
+        chip.addEventListener('click', function() {
+            const category = this.getAttribute('data-category');
+            
+            // Update active state
+            filterChips.forEach(c => c.classList.remove('active'));
+            this.classList.add('active');
+            
+            // Filter projects
+            filterProjects(category);
+            
+            // Update URL without page reload
+            const newUrl = `${window.location.pathname}?category=${category}`;
+            window.history.pushState({}, '', newUrl);
+        });
+    });
+    
+    function filterProjects(category) {
+        projectCards.forEach(card => {
+            const cardCategories = card.getAttribute('data-categories') || '';
+            if (cardCategories.includes(category)) {
+                card.classList.remove('hidden');
+            } else {
+                card.classList.add('hidden');
+            }
+        });
+    }
+});
