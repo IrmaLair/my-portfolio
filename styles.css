@@ -75,9 +75,6 @@ p {
     width: 100vw;
     height: 100vh;
     background-color: #e6d7c2;
-    background-image: url('./assets/sand-texture-overlay.png');
-    background-blend-mode: overlay;
-    background-size: cover;
     display: flex;
     justify-content: center;
     align-items: center;
