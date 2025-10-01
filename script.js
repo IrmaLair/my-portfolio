@@ -1,17 +1,62 @@
-// Splash Screen functionality
+// Splash Screen functionality - shows only once per session
 document.addEventListener('DOMContentLoaded', function() {
     const splash = document.getElementById('splash');
     
     if (splash) {
-        // Hide splash screen after 3 seconds
-        setTimeout(function() {
-            splash.classList.add('fade-out');
+        // Check if splash has already been shown in this session
+        const splashShown = sessionStorage.getItem('splashShown');
+        
+        if (splashShown) {
+            // If splash was already shown, hide it immediately
+            splash.style.display = 'none';
+        } else {
+            // Show splash screen for first time in session
+            // Mark as shown in sessionStorage
+            sessionStorage.setItem('splashShown', 'true');
             
-            // Remove splash screen from DOM after fade animation
-            setTimeout(function() {
-                splash.style.display = 'none';
-            }, 1000);
-        }, 3000);
+            // Preload critical assets from all pages
+            const assetsToPreload = [
+                './assets/sand-texture-overlay.png',
+                './assets/wood-texture-overlay.png',
+                './assets/Logo.svg',
+                './assets/cat-sleep-sticker.png',
+                './assets/Vine1.svg',
+                './assets/Vine2.svg',
+                './assets/about me.png',
+                './assets/cat-sticker.png',
+                './assets/shell-star.svg'
+            ];
+            
+            // Preload images
+            let loadedCount = 0;
+            const totalAssets = assetsToPreload.length;
+            
+            assetsToPreload.forEach(src => {
+                const img = new Image();
+                img.onload = img.onerror = () => {
+                    loadedCount++;
+                    if (loadedCount === totalAssets) {
+                        // All assets loaded or attempted to load
+                        hideSplash();
+                    }
+                };
+                img.src = src;
+            });
+            
+            // Fallback: hide splash after 4 seconds regardless of loading status
+            setTimeout(hideSplash, 4000);
+            
+            function hideSplash() {
+                if (splash.style.display !== 'none') {
+                    splash.classList.add('fade-out');
+                    
+                    // Remove splash screen from DOM after fade animation
+                    setTimeout(function() {
+                        splash.style.display = 'none';
+                    }, 1000);
+                }
+            }
+        }
     }
 });
 
