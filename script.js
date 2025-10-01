@@ -185,3 +185,128 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 });
+
+// Gallery auto-scroll functionality
+document.addEventListener('DOMContentLoaded', function() {
+    // Wait a bit more for all images to load
+    setTimeout(() => {
+        const galleryScroll = document.querySelector('.gallery-scroll');
+        
+        if (galleryScroll) {
+            console.log('Gallery found, initializing auto-scroll');
+            
+            let userInteracted = false;
+            let manualScrollPaused = false;
+            let hoverPaused = false;
+            let scrollDirection = 1; // 1 for right, -1 for left
+            let autoScrollInterval;
+            let pauseTimeout;
+            const scrollSpeed = 2;
+            const intervalDelay = 30;
+            const pauseDuration = 1500; // 1.5 seconds pause after manual scroll
+            
+            function startAutoScroll() {
+                if (userInteracted || manualScrollPaused || hoverPaused) return;
+                
+                const maxScroll = galleryScroll.scrollWidth - galleryScroll.clientWidth;
+                
+                if (maxScroll <= 0) {
+                    console.log('No scrolling needed - content fits in container');
+                    return;
+                }
+                
+                console.log('Starting back-and-forth auto-scroll');
+                
+                autoScrollInterval = setInterval(() => {
+                    if (userInteracted || manualScrollPaused || hoverPaused) {
+                        clearInterval(autoScrollInterval);
+                        return;
+                    }
+                    
+                    const currentScroll = galleryScroll.scrollLeft;
+                    
+                    // Check if we need to change direction
+                    if (scrollDirection === 1 && currentScroll >= maxScroll - 5) {
+                        // Reached the end, scroll back left
+                        scrollDirection = -1;
+                        console.log('Reached end, scrolling back left');
+                    } else if (scrollDirection === -1 && currentScroll <= 5) {
+                        // Reached the beginning, scroll right
+                        scrollDirection = 1;
+                        console.log('Reached beginning, scrolling right');
+                    }
+                    
+                    // Scroll in current direction
+                    galleryScroll.scrollLeft += scrollSpeed * scrollDirection;
+                }, intervalDelay);
+            }
+            
+            function pauseAutoScroll() {
+                console.log('Auto-scroll paused for manual gallery interaction');
+                manualScrollPaused = true;
+                if (autoScrollInterval) {
+                    clearInterval(autoScrollInterval);
+                }
+                
+                // Clear any existing timeout
+                if (pauseTimeout) {
+                    clearTimeout(pauseTimeout);
+                }
+                
+                // Resume after pause duration
+                pauseTimeout = setTimeout(() => {
+                    if (!userInteracted && !hoverPaused) {
+                        console.log('Resuming auto-scroll after manual pause');
+                        manualScrollPaused = false;
+                        startAutoScroll();
+                    }
+                }, pauseDuration);
+            }
+            
+            // Pause auto-scroll when mouse hovers over gallery
+            galleryScroll.addEventListener('mouseenter', () => {
+                console.log('Mouse entered gallery - pausing auto-scroll');
+                hoverPaused = true;
+                if (autoScrollInterval) {
+                    clearInterval(autoScrollInterval);
+                }
+            });
+            
+            // Resume auto-scroll when mouse leaves gallery
+            galleryScroll.addEventListener('mouseleave', () => {
+                console.log('Mouse left gallery - resuming auto-scroll');
+                hoverPaused = false;
+                if (!userInteracted && !manualScrollPaused) {
+                    startAutoScroll();
+                }
+            });
+            
+            // Detect manual interaction with gallery scroll area
+            galleryScroll.addEventListener('mousedown', () => {
+                if (!userInteracted && !manualScrollPaused) {
+                    pauseAutoScroll();
+                }
+            });
+            
+            galleryScroll.addEventListener('wheel', (e) => {
+                if (!userInteracted && !manualScrollPaused) {
+                    pauseAutoScroll();
+                }
+            });
+            
+            galleryScroll.addEventListener('touchstart', () => {
+                if (!userInteracted && !manualScrollPaused) {
+                    pauseAutoScroll();
+                }
+            });
+            
+            // Start auto-scroll after images have had time to load
+            setTimeout(() => {
+                console.log('About to start auto-scroll');
+                startAutoScroll();
+            }, 2000);
+        } else {
+            console.log('Gallery not found');
+        }
+    }, 1500);
+});
