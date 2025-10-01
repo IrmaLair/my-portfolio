@@ -3,17 +3,12 @@ document.addEventListener('DOMContentLoaded', function() {
     const splash = document.getElementById('splash');
     const sandOverlay = document.getElementById('sand-overlay');
     
-    // Sand overlay logic - only show after first visit
-    if (sandOverlay) {
-        const firstVisit = !localStorage.getItem('hasVisitedHomepage');
-        
-        if (firstVisit) {
-            // First visit - mark as visited but don't show sand overlay
-            localStorage.setItem('hasVisitedHomepage', 'true');
-        } else {
-            // Not first visit - show sand overlay
-            sandOverlay.classList.add('show');
-        }
+    // Check if this is truly a first visit (not just first in session)
+    const hasEverVisited = localStorage.getItem('hasVisitedHomepage');
+    
+    // Only show sand overlay if user has visited before
+    if (sandOverlay && hasEverVisited) {
+        sandOverlay.classList.add('show');
     }
     
     if (splash) {
@@ -109,6 +104,10 @@ document.addEventListener('DOMContentLoaded', function() {
                     // Remove splash screen from DOM after fade animation
                     setTimeout(function() {
                         splash.style.display = 'none';
+                        
+                        // Mark as visited only after splash screen is completely hidden
+                        // This ensures first-time visitors don't get sand overlay
+                        localStorage.setItem('hasVisitedHomepage', 'true');
                     }, 1000);
                 }
             }
