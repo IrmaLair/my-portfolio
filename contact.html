@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact - Nidhi's Portfolio</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Logo Navigation -->
+    <div class="logo-nav">
+        <a href="index.html">
+            <img src="./assets/Logo.svg" alt="Logo">
+        </a>
+    </div>
+
+    <!-- Main Content -->
+    <div class="container">
+        <header>
+            <h1>Get In Touch</h1>
+            <p>Let's collaborate and create something amazing together</p>
+        </header>
+
+        <nav class="nav-menu">
+            <a href="index.html" class="nav-link">Home</a>
+            <a href="about.html" class="nav-link">About</a>
+            <a href="projects.html" class="nav-link">Projects</a>
+        </nav>
+
+        <main>
+            <div class="content-section">
+                <h2>Let's Connect</h2>
+                <p>I'm always excited to discuss new projects, creative ideas, or opportunities to be part of your vision. Whether you're looking for design consultation, collaboration, or just want to say hello, I'd love to hear from you!</p>
+                
+                <div style="margin: 30px 0;">
+                    <p><strong>Email:</strong> nidhi.design@email.com</p>
+                    <p><strong>Phone:</strong> +91 98765 43210</p>
+                    <p><strong>Location:</strong> Based in India, Available Worldwide</p>
+                </div>
+
+                <div style="display: flex; justify-content: center; gap: 20px; margin: 30px 0;">
+                    <a href="#" style="text-decoration: none;">
+                        <img src="./assets/Linkedin icon.svg" alt="LinkedIn" style="width: 40px; height: 40px; transition: transform 0.3s ease;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">
+                    </a>
+                    <a href="#" style="text-decoration: none;">
+                        <img src="./assets/Whatsapp icon.svg" alt="WhatsApp" style="width: 40px; height: 40px; transition: transform 0.3s ease;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">
+                    </a>
+                </div>
+            </div>
+
+            <div class="content-section">
+                <h2>Send Me a Message</h2>
+                <form class="contact-form" action="#" method="post">
+                    <div class="form-group">
+                        <label for="name">Your Name</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="subject">Subject</label>
+                        <input type="text" id="subject" name="subject" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea id="message" name="message" rows="6" required></textarea>
+                    </div>
+                    
+                    <div style="text-align: center;">
+                        <button type="submit" class="submit-btn">Send Message</button>
+                    </div>
+                </form>
+            </div>
+
+            <div class="content-section">
+                <h2>Work With Me</h2>
+                <p><strong>Services I Offer:</strong></p>
+                <p>• UI/UX Design for Web & Mobile Applications</p>
+                <p>• Brand Identity Design & Visual Communication</p>
+                <p>• Digital Art & Illustration</p>
+                <p>• Design Consultation & Creative Direction</p>
+                <p>• Workshop Facilitation & Design Thinking Sessions</p>
+                
+                <p style="margin-top: 20px;">I believe in creating designs that not only look beautiful but also solve real problems and create meaningful experiences for users. Let's discuss how we can bring your vision to life!</p>
+            </div>
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
