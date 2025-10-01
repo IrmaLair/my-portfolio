@@ -50,7 +50,7 @@ p {
 
 /* Logo Navigation */
 .logo-nav {
-    position: fixed;
+    position: absolute;
     top: 20px;
     left: 20px;
     z-index: 1000;
@@ -527,5 +527,207 @@ p {
     
     .content-section {
         padding: 20px;
+    }
+}
+
+/* Contact Page Layout */
+.contact-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    margin-top: 0px;
+    align-items: start;
+}
+
+.contact-left,
+.contact-right {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    padding: 20px;
+}
+
+.contact-left h2 {
+    font-family: 'Kalam', cursive;
+    font-size: 3rem;
+    color: #303030;
+    margin-bottom: 5px;
+    text-align: left;
+}
+
+.contact-left p {
+    font-size: 1rem;
+    color: #303030;
+    margin-bottom: 5px;
+    text-align: left;
+}
+
+.contact-left p:last-of-type {
+    margin-bottom: 15px;
+    text-align: left;
+    font-size: 0.9rem;
+}
+
+.contact-form {
+    background: #ffffff;
+    padding: 25px;
+    border-radius: 15px;
+    box-shadow: 
+        0 4px 15px rgba(0, 0, 0, 0.1),
+        inset 0 1px 0 rgba(255, 255, 255, 0.3);
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    font-weight: 500;
+    color: #303030;
+    margin-bottom: 8px;
+    font-size: 0.8rem;
+}
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: 10px 12px;
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    font-size: 0.8rem;
+    transition: border-color 0.3s ease;
+    box-sizing: border-box;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: #996b3d;
+}
+
+.error-message {
+    color: #e74c3c;
+    font-size: 0.8rem;
+    margin-top: 5px;
+    display: none;
+}
+
+.submit-btn {
+    background: #996b3d;
+    color: white;
+    padding: 12px 30px;
+    border: none;
+    border-radius: 25px;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    width: 100%;
+    margin-top: auto;
+}
+
+.submit-btn:hover {
+    background: #8B4513;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(153, 107, 61, 0.3);
+}
+
+.contact-right {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.contact-info h3,
+.social-section h3 {
+    font-family: 'Kalam', cursive;
+    font-size: 1.8rem;
+    color: #303030;
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+.contact-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 15px;
+    font-size: 1rem;
+    color: #303030;
+}
+
+.contact-item .material-icons {
+    color: #996b3d;
+    font-size: 20px;
+}
+
+.social-section {
+    margin-top: 40px;
+}
+
+.social-links {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-bottom: 30px;
+}
+
+.social-link {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+    color: #303030;
+    font-size: 1rem;
+    transition: color 0.3s ease;
+}
+
+.social-link:hover {
+    color: #996b3d;
+}
+
+.social-link img {
+    width: 24px;
+    height: 24px;
+}
+
+.map-container {
+    margin-top: 20px;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+    .contact-layout {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+    
+    .form-row {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+    
+    .contact-left h2 {
+        font-size: 2rem;
+    }
+    
+    .contact-info h3,
+    .social-section h3 {
+        font-size: 1.5rem;
     }
 }
