@@ -134,12 +134,62 @@ p {
     box-shadow: 0 4px 15px rgba(244, 209, 168, 0.5);
 }
 
+/* Sleeping Cat Decoration */
+.sleeping-cat {
+    position: absolute;
+    top: -50px;
+    right: 20px;
+    width: 80px;
+    height: auto;
+    z-index: 10;
+    opacity: 0.9;
+}
+
+/* Vine Decorations on Cards */
+.vine-card-decoration {
+    position: absolute;
+    width: 60px;
+    height: auto;
+    opacity: 1;
+    z-index: 15;
+    pointer-events: none;
+    transform-origin: top center;
+}
+
+.vine-top-left {
+    top: 0;
+    left: -20px;
+}
+
+.vine-top-right {
+    top: 0;
+    right: -20px;
+}
+
+/* Vine1 specific scaling */
+.vine-top-left.vine1 {
+    transform: scale(0.5);
+}
+
+.vine-top-right.vine1 {
+    transform: scale(0.6) scaleX(-1);
+}
+
+/* Vine2 specific scaling */
+.vine-top-left.vine2 {
+    transform: scale(0.2);
+}
+
+.vine-top-right.vine2 {
+    transform: scale(0.3) scaleX(-1);
+}
+
 /* Project Grid */
 .projects-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 30px;
-    margin-top: 30px;
+    margin-top: 80px;
     padding: 20px;
     background: #996b3d;
     border-radius: 10px;
@@ -160,23 +210,6 @@ p {
     background-size: cover;
     background-blend-mode: soft-light;
     opacity: 0.05;
-    border-radius: 10px;
-    pointer-events: none;
-}
-
-.projects-grid::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: linear-gradient(
-        to bottom,
-        rgba(139, 69, 19, 0.2) 0%,
-        rgba(160, 82, 45, 0.1) 50%,
-        rgba(139, 69, 19, 0.3) 100%
-    );
     border-radius: 10px;
     pointer-events: none;
 }
