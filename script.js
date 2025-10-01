@@ -57,7 +57,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 './assets/shell-star.svg',
                 './assets/project1.svg',
                 './assets/Linkedin icon.svg',
-                './assets/Whatsapp icon.svg'
+                './assets/Whatsapp icon.svg',
+                './assets/beach-bg.mp3' // Add background music to preload
             ];
             
             // Preload other images
@@ -395,4 +396,145 @@ document.addEventListener('DOMContentLoaded', function() {
             console.log('Gallery not found');
         }
     }, 1500);
+});
+
+// Background Music System
+document.addEventListener('DOMContentLoaded', function() {
+    // Create audio element for background music
+    let backgroundMusic = null;
+    const musicSrc = './assets/beach-bg.mp3';
+    
+    // Initialize background music
+    function initBackgroundMusic() {
+        if (!backgroundMusic) {
+            backgroundMusic = new Audio(musicSrc);
+            backgroundMusic.loop = true;
+            backgroundMusic.volume = 0.3; // Set to 30% volume for ambient background
+            
+            // Handle loading and playback
+            backgroundMusic.addEventListener('canplaythrough', () => {
+                console.log('Background music loaded and ready');
+                playMusicBasedOnPage();
+            });
+            
+            backgroundMusic.addEventListener('error', (e) => {
+                console.warn('Background music failed to load:', e);
+            });
+            
+            // Load the audio
+            backgroundMusic.load();
+        }
+    }
+    
+    // Determine if current page should have music
+    function shouldPlayMusic() {
+        const currentPath = window.location.pathname;
+        const currentPage = currentPath.split('/').pop() || 'index.html';
+        
+        // Main pages where music should play
+        const mainPages = ['index.html', 'about.html', 'projects.html', 'contact.html', ''];
+        
+        // Check if it's a project subpage (in projects folder)
+        const isProjectSubpage = currentPath.includes('/projects/') || 
+                                currentPage.startsWith('projects/') ||
+                                (currentPath.includes('projects') && currentPage.endsWith('.html') && !mainPages.includes(currentPage));
+        
+        console.log('Current path:', currentPath, 'Current page:', currentPage, 'Is project subpage:', isProjectSubpage);
+        
+        return !isProjectSubpage && (mainPages.includes(currentPage) || currentPath === '/' || currentPath.endsWith('/'));
+    }
+    
+    // Play or pause music based on current page
+    function playMusicBasedOnPage() {
+        if (!backgroundMusic) return;
+        
+        if (shouldPlayMusic()) {
+            // Try to play music (may be blocked by browser autoplay policy)
+            const playPromise = backgroundMusic.play();
+            if (playPromise !== undefined) {
+                playPromise.then(() => {
+                    console.log('Background music started playing');
+                }).catch((error) => {
+                    console.log('Autoplay was prevented. Music will start on user interaction:', error);
+                    
+                    // Add click listener to start music on first user interaction
+                    const startMusicOnInteraction = () => {
+                        backgroundMusic.play().then(() => {
+                            console.log('Background music started after user interaction');
+                        }).catch(console.error);
+                        document.removeEventListener('click', startMusicOnInteraction);
+                        document.removeEventListener('keydown', startMusicOnInteraction);
+                    };
+                    
+                    document.addEventListener('click', startMusicOnInteraction);
+                    document.addEventListener('keydown', startMusicOnInteraction);
+                });
+            }
+        } else {
+            // Pause music on project subpages
+            if (!backgroundMusic.paused) {
+                backgroundMusic.pause();
+                console.log('Background music paused for project subpage');
+            }
+        }
+    }
+    
+    // Store music state in localStorage for persistence across pages
+    function saveMusicState() {
+        if (backgroundMusic) {
+            localStorage.setItem('musicCurrentTime', backgroundMusic.currentTime);
+            localStorage.setItem('musicWasPlaying', !backgroundMusic.paused);
+        }
+    }
+    
+    // Restore music state when navigating between pages
+    function restoreMusicState() {
+        const savedTime = localStorage.getItem('musicCurrentTime');
+        const wasPlaying = localStorage.getItem('musicWasPlaying') === 'true';
+        
+        if (backgroundMusic && savedTime) {
+            backgroundMusic.currentTime = parseFloat(savedTime);
+            
+            if (wasPlaying && shouldPlayMusic()) {
+                backgroundMusic.play().catch(console.error);
+            }
+        }
+    }
+    
+    // Save music state before page unload
+    window.addEventListener('beforeunload', saveMusicState);
+    
+    // Initialize music system
+    initBackgroundMusic();
+    
+    // Also check for music state restoration after a short delay
+    setTimeout(() => {
+        restoreMusicState();
+    }, 1000);
+    
+    // Handle navigation for single-page-like behavior (if using client-side routing)
+    window.addEventListener('popstate', () => {
+        setTimeout(playMusicBasedOnPage, 100);
+    });
+    
+    // Volume control function (can be called from console for testing)
+    window.setMusicVolume = function(volume) {
+        if (backgroundMusic) {
+            backgroundMusic.volume = Math.max(0, Math.min(1, volume));
+            console.log('Music volume set to:', backgroundMusic.volume);
+        }
+    };
+    
+    // Manual music control functions for debugging
+    window.musicControls = {
+        play: () => backgroundMusic && backgroundMusic.play(),
+        pause: () => backgroundMusic && backgroundMusic.pause(),
+        setVolume: (vol) => backgroundMusic && (backgroundMusic.volume = vol),
+        getState: () => backgroundMusic ? {
+            paused: backgroundMusic.paused,
+            volume: backgroundMusic.volume,
+            currentTime: backgroundMusic.currentTime,
+            duration: backgroundMusic.duration
+        } : null
+    };
 });
