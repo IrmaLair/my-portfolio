@@ -14,9 +14,39 @@ document.addEventListener('DOMContentLoaded', function() {
             // Mark as shown in sessionStorage
             sessionStorage.setItem('splashShown', 'true');
             
-            // Preload critical assets from all pages
-            const assetsToPreload = [
-                './assets/sand-texture-overlay.png', // Critical background texture
+            // Preload critical sand texture first, then other assets
+            const sandTextureImg = new Image();
+            let sandTextureLoaded = false;
+            let otherAssetsLoaded = false;
+            
+            // Load sand texture with highest priority
+            sandTextureImg.onload = () => {
+                sandTextureLoaded = true;
+                console.log('Sand texture preloaded successfully');
+                
+                // Force apply the background to ensure it's rendered
+                document.body.style.backgroundImage = "url('./assets/sand-texture-overlay.png')";
+                
+                // Small delay to ensure rendering, then check if we can hide splash
+                setTimeout(() => {
+                    if (otherAssetsLoaded) {
+                        hideSplash();
+                    }
+                }, 100);
+            };
+            
+            sandTextureImg.onerror = () => {
+                console.warn('Sand texture failed to load');
+                sandTextureLoaded = true; // Continue anyway
+                if (otherAssetsLoaded) {
+                    hideSplash();
+                }
+            };
+            
+            sandTextureImg.src = './assets/sand-texture-overlay.png';
+            
+            // Preload other critical assets
+            const otherAssets = [
                 './assets/wood-texture-overlay.png',
                 './assets/Logo.svg',
                 './assets/cat-sleep-sticker.png',
@@ -25,38 +55,37 @@ document.addEventListener('DOMContentLoaded', function() {
                 './assets/about me.png',
                 './assets/cat-sticker.png',
                 './assets/shell-star.svg',
-                './assets/project1.svg', // Add project images
+                './assets/project1.svg',
                 './assets/Linkedin icon.svg',
                 './assets/Whatsapp icon.svg'
             ];
             
-            // Preload images
+            // Preload other images
             let loadedCount = 0;
-            const totalAssets = assetsToPreload.length;
-            let sandTextureLoaded = false;
+            const totalOtherAssets = otherAssets.length;
             
-            assetsToPreload.forEach(src => {
+            
+            otherAssets.forEach(src => {
                 const img = new Image();
                 img.onload = img.onerror = () => {
                     loadedCount++;
                     
-                    // Track sand texture specifically
-                    if (src.includes('sand-texture-overlay.png')) {
-                        sandTextureLoaded = true;
-                        console.log('Sand texture loaded');
-                    }
-                    
-                    // Only hide splash when all assets are loaded AND sand texture is ready
-                    if (loadedCount === totalAssets && sandTextureLoaded) {
-                        console.log('All critical assets loaded including sand texture');
-                        hideSplash();
+                    // Check if all other assets are loaded
+                    if (loadedCount === totalOtherAssets) {
+                        otherAssetsLoaded = true;
+                        console.log('All other assets loaded');
+                        
+                        // Only hide splash when sand texture is also ready
+                        if (sandTextureLoaded) {
+                            hideSplash();
+                        }
                     }
                 };
                 img.src = src;
             });
             
-            // Fallback: hide splash after 5 seconds regardless of loading status
-            setTimeout(hideSplash, 5000);
+            // Fallback: hide splash after 6 seconds regardless of loading status
+            setTimeout(hideSplash, 6000);
             
             function hideSplash() {
                 if (splash.style.display !== 'none') {

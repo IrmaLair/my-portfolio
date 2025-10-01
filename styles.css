@@ -18,6 +18,8 @@ body {
     text-align: center;
     min-height: 100vh;
     line-height: 1.6;
+    /* Ensure sand texture loads with high priority */
+    will-change: background-image;
 }
 
 /* Typography */
