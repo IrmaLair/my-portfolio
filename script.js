@@ -431,17 +431,15 @@ document.addEventListener('DOMContentLoaded', function() {
         const currentPath = window.location.pathname;
         const currentPage = currentPath.split('/').pop() || 'index.html';
         
-        // Main pages where music should play
-        const mainPages = ['index.html', 'about.html', 'projects.html', 'contact.html', ''];
+        // Only play music on the home page
+        const isHomePage = currentPage === 'index.html' || 
+                          currentPage === '' || 
+                          currentPath === '/' || 
+                          currentPath.endsWith('/');
         
-        // Check if it's a project subpage (in projects folder)
-        const isProjectSubpage = currentPath.includes('/projects/') || 
-                                currentPage.startsWith('projects/') ||
-                                (currentPath.includes('projects') && currentPage.endsWith('.html') && !mainPages.includes(currentPage));
+        console.log('Current path:', currentPath, 'Current page:', currentPage, 'Is home page:', isHomePage);
         
-        console.log('Current path:', currentPath, 'Current page:', currentPage, 'Is project subpage:', isProjectSubpage);
-        
-        return !isProjectSubpage && (mainPages.includes(currentPage) || currentPath === '/' || currentPath.endsWith('/'));
+        return isHomePage;
     }
     
     // Play or pause music based on current page
@@ -471,10 +469,10 @@ document.addEventListener('DOMContentLoaded', function() {
                 });
             }
         } else {
-            // Pause music on project subpages
+            // Pause music on all pages except home page
             if (!backgroundMusic.paused) {
                 backgroundMusic.pause();
-                console.log('Background music paused for project subpage');
+                console.log('Background music paused - not on home page');
             }
         }
     }
