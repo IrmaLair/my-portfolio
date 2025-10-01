@@ -1,6 +1,20 @@
 // Splash Screen functionality - shows only once per session
 document.addEventListener('DOMContentLoaded', function() {
     const splash = document.getElementById('splash');
+    const sandOverlay = document.getElementById('sand-overlay');
+    
+    // Sand overlay logic - only show after first visit
+    if (sandOverlay) {
+        const firstVisit = !localStorage.getItem('hasVisitedHomepage');
+        
+        if (firstVisit) {
+            // First visit - mark as visited but don't show sand overlay
+            localStorage.setItem('hasVisitedHomepage', 'true');
+        } else {
+            // Not first visit - show sand overlay
+            sandOverlay.classList.add('show');
+        }
+    }
     
     if (splash) {
         // Check if splash has already been shown in this session
