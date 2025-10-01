@@ -536,3 +536,59 @@ document.addEventListener('DOMContentLoaded', function() {
         } : null
     };
 });
+
+// Beach Homepage Shell Navigation
+document.addEventListener('DOMContentLoaded', function() {
+    // Available shell images (6 different shells)
+    const shellImages = [
+        './assets/shell-star.svg',
+        './assets/shell-conchsharp.svg',
+        './assets/shell-conchsmooth.svg',
+        './assets/shell-spiral.svg',
+        './assets/shell-spiralcone.svg',
+        './assets/shell-clam.svg'
+    ];
+    
+    // Function to get 3 random unique shells
+    function getRandomShells() {
+        const shuffled = [...shellImages].sort(() => 0.5 - Math.random());
+        return shuffled.slice(0, 3);
+    }
+    
+    // Initialize shell navigation if we're on the homepage
+    const shellButtons = document.querySelectorAll('.shell-btn');
+    
+    if (shellButtons.length === 3) {
+        const randomShells = getRandomShells();
+        
+        shellButtons.forEach((button, index) => {
+            const shellImage = button.querySelector('.shell-image');
+            if (shellImage && randomShells[index]) {
+                shellImage.src = randomShells[index];
+                console.log(`Shell ${index + 1} assigned: ${randomShells[index]}`);
+            }
+        });
+        
+        // Add click handlers for navigation
+        shellButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                const href = this.getAttribute('data-href');
+                if (href) {
+                    // Add a small delay for the click animation
+                    setTimeout(() => {
+                        window.location.href = href;
+                    }, 200);
+                }
+            });
+            
+            // Add hover sound effect
+            button.addEventListener('mouseenter', function() {
+                const shellSound = new Audio('./assets/shell.mp3');
+                shellSound.volume = 0.3; // Set volume to 30%
+                shellSound.play().catch(error => {
+                    console.log('Shell sound failed to play:', error);
+                });
+            });
+        });
+    }
+});

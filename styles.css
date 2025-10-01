@@ -18,24 +18,85 @@ body {
     text-align: center;
     min-height: 100vh;
     line-height: 1.6;
-    /* Ensure sand texture loads with high priority */
-    will-change: background-image;
+}
+
+/* Homepage specific background - no texture overlay */
+body.homepage {
+    background: #e6d7c2;
+    background-image: none;
+}
+
+/* Animated Waves */
+.waves-wrapper {
+    position: fixed;
+    top: -50px;
+    left: 0;
+    width: 100%;
+    height: 300px;
+    z-index: 1;
+    pointer-events: none;
+    overflow: hidden;
+}
+
+.waves {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+}
+
+/* Sand Texture Overlay (above waves, below content) */
+.sand-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('./assets/sand-texture-overlay.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: repeat;
+    mix-blend-mode: overlay;
+    opacity: 1;
+    z-index: 2;
+    pointer-events: none;
+}
+
+/* Ensure all main content appears above waves */
+.container {
+    position: relative;
+    z-index: 10;
+}
+
+.splash-screen {
+    position: relative;
+    z-index: 9999;
+}
+
+.logo-nav {
+    position: relative;
+    z-index: 1000;
 }
 
 /* Typography */
 h1, h2 {
     font-family: 'Kalam', cursive;
     font-weight: 700;
+    color: #303030;
 }
 
 h1 {
     font-size: 3rem;
     margin-bottom: 1rem;
+    color: #303030;
 }
 
 h2 {
     font-size: 2rem;
     margin-bottom: 0.8rem;
+    color: #303030;
 }
 
 h3 {
@@ -43,11 +104,13 @@ h3 {
     font-size: 1.5rem;
     font-weight: 600;
     margin-bottom: 0.6rem;
+    color: #303030;
 }
 
 p {
     font-size: 1rem;
     margin-bottom: 1rem;
+    color: #303030;
 }
 
 /* Logo Navigation */
@@ -208,7 +271,8 @@ p {
     left: 0;
     right: 0;
     bottom: 0;
-    background-image: url('./assets/wood-texture-overlay.png');
+    background-image: url('./assets/sand-texture-overlay.png');
+    background-blend-mode: overlay;
     background-size: cover;
     background-blend-mode: soft-light;
     opacity: 0.05;
@@ -795,7 +859,7 @@ p {
 
 .intro-text {
     font-size: 1.1rem;
-    color: #666;
+    color: #303030;
     font-style: italic;
     margin: 0;
 }
@@ -941,5 +1005,265 @@ p {
     .gallery-scroll .gallery-item {
         width: 150px;
         height: 150px;
+    }
+}
+
+/* Beach Homepage Styles */
+.hero-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 80vh;
+    text-align: center;
+    padding: 20px;
+}
+
+.hero-title {
+    font-family: 'Kalam', cursive;
+    font-size: 4rem;
+    font-weight: 700;
+    color: #303030;
+    margin-bottom: 1rem;
+    margin-top: 100px; /* Push title down below waves */
+    line-height: 1.2;
+}
+
+.hero-subtitle {
+    font-size: 1.8rem;
+    color: #303030;
+    margin-bottom: 0; /* Set to 0 for no gap */
+    font-weight: 400;
+    line-height: 1.3;
+}
+
+.shell-navigation {
+    display: flex;
+    justify-content: center;
+    gap: 100px;
+    margin: 4rem 0;
+    flex-wrap: wrap;
+    align-items: flex-end;
+}
+
+.shell-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-align: center;
+    padding: 20px;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+}
+
+/* V-shaped positioning with rotation */
+.shell-btn:first-child {
+    transform: translateY(80px) rotate(-6deg);
+}
+
+.shell-btn:nth-child(2) {
+    transform: translateY(0px);
+}
+
+.shell-btn:last-child {
+    transform: translateY(80px) rotate(6deg);
+}
+
+.shell-btn:hover {
+    transform: translateY(-10px) scale(1.05);
+}
+
+/* V-shaped positioning with hover adjustments and rotation */
+.shell-btn:first-child:hover {
+    transform: translateY(60px) rotate(-6deg) scale(1.05);
+}
+
+.shell-btn:nth-child(2):hover {
+    transform: translateY(-10px) scale(1.05);
+}
+
+.shell-btn:last-child:hover {
+    transform: translateY(60px) rotate(6deg) scale(1.05);
+}
+
+.shell-image {
+    display: block;
+    transition: all 0.3s ease;
+    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.15));
+}
+
+.shell-btn:hover .shell-image {
+    transform: rotate(5deg);
+    filter: 
+        drop-shadow(0 6px 12px rgba(0, 0, 0, 0.3))
+        drop-shadow(0 0 0 2px rgba(153, 107, 61, 0.6))
+        brightness(0.8);
+}
+
+.shell-label {
+    font-family: 'Kalam', cursive;
+    font-size: 1.4rem;
+    font-weight: 400;
+    color: #303030;
+    display: block;
+}
+
+.welcome-text {
+    font-size: 1.3rem;
+    color: #303030;
+    line-height: 1.6;
+    max-width: 600px;
+    margin: 2rem auto 0;
+}
+
+.welcome-text p {
+    margin-bottom: 0;
+}
+
+
+
+/* Copyright Text */
+.copyright {
+    color: #303030;
+    font-size: 0.9rem;
+    text-align: center;
+    margin: 40px 20px 20px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(102, 102, 102, 0.2);
+}
+
+/* Responsive Design for Beach Homepage */
+@media (max-width: 768px) {
+    .waves-wrapper {
+        height: 200px; /* Smaller waves on mobile */
+    }
+    
+    .hero-title {
+        font-size: 3rem;
+        margin-top: 100px; /* Moved up by 50px from 150px */
+    }
+    
+    .hero-subtitle {
+        font-size: 1.2rem; /* Reduced from 1.5rem to fit in single line */
+        margin-bottom: 0; /* Set to 0 for no gap */
+    }
+    
+    .shell-navigation {
+        gap: 60px;
+        margin: 3rem 0;
+        flex-wrap: nowrap;
+        justify-content: space-between;
+        padding: 0 20px;
+    }
+    
+    .shell-btn {
+        padding: 10px;
+        gap: 8px;
+        flex: 1;
+        max-width: 120px;
+    }
+    
+    /* Maintain prominent V-shape on tablets with rotation */
+    .shell-btn:first-child {
+        transform: translateY(60px) rotate(-6deg);
+    }
+    
+    .shell-btn:nth-child(2) {
+        transform: translateY(0px);
+    }
+    
+    .shell-btn:last-child {
+        transform: translateY(60px) rotate(6deg);
+    }
+    
+    .shell-btn:first-child:hover {
+        transform: translateY(45px) rotate(-6deg) scale(1.05);
+    }
+    
+    .shell-btn:nth-child(2):hover {
+        transform: translateY(-10px) scale(1.05);
+    }
+    
+    .shell-btn:last-child:hover {
+        transform: translateY(45px) rotate(6deg) scale(1.05);
+    }
+    
+    .shell-image {
+        width: 70px !important;
+        height: 70px !important;
+    }
+    
+    .shell-label {
+        font-size: 1rem;
+        line-height: 1.1;
+    }
+    
+    .welcome-text {
+        font-size: 1.2rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-title {
+        font-size: 2.5rem;
+    }
+    
+    .hero-subtitle {
+        font-size: 1.3rem;
+    }
+    
+    .shell-navigation {
+        gap: 30px;
+        margin: 2rem 0;
+        padding: 0 10px;
+    }
+    
+    .shell-btn {
+        padding: 8px;
+        gap: 6px;
+        max-width: 100px;
+    }
+    
+    /* Maintain V-shape on mobile with rotation */
+    .shell-btn:first-child {
+        transform: translateY(40px) rotate(-6deg);
+    }
+    
+    .shell-btn:nth-child(2) {
+        transform: translateY(0px);
+    }
+    
+    .shell-btn:last-child {
+        transform: translateY(40px) rotate(6deg);
+    }
+    
+    .shell-btn:first-child:hover {
+        transform: translateY(30px) rotate(-6deg) scale(1.05);
+    }
+    
+    .shell-btn:nth-child(2):hover {
+        transform: translateY(-10px) scale(1.05);
+    }
+    
+    .shell-btn:last-child:hover {
+        transform: translateY(30px) rotate(6deg) scale(1.05);
+    }
+    
+    .shell-image {
+        width: 60px !important;
+        height: 60px !important;
+    }
+    
+    .shell-label {
+        font-size: 0.9rem;
+        line-height: 1;
+    }
+    
+    .welcome-text {
+        font-size: 1.1rem;
     }
 }
