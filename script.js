@@ -16,7 +16,7 @@ document.addEventListener('DOMContentLoaded', function() {
             
             // Preload critical assets from all pages
             const assetsToPreload = [
-                './assets/sand-texture-overlay.png',
+                './assets/sand-texture-overlay.png', // Critical background texture
                 './assets/wood-texture-overlay.png',
                 './assets/Logo.svg',
                 './assets/cat-sleep-sticker.png',
@@ -24,27 +24,39 @@ document.addEventListener('DOMContentLoaded', function() {
                 './assets/Vine2.svg',
                 './assets/about me.png',
                 './assets/cat-sticker.png',
-                './assets/shell-star.svg'
+                './assets/shell-star.svg',
+                './assets/project1.svg', // Add project images
+                './assets/Linkedin icon.svg',
+                './assets/Whatsapp icon.svg'
             ];
             
             // Preload images
             let loadedCount = 0;
             const totalAssets = assetsToPreload.length;
+            let sandTextureLoaded = false;
             
             assetsToPreload.forEach(src => {
                 const img = new Image();
                 img.onload = img.onerror = () => {
                     loadedCount++;
-                    if (loadedCount === totalAssets) {
-                        // All assets loaded or attempted to load
+                    
+                    // Track sand texture specifically
+                    if (src.includes('sand-texture-overlay.png')) {
+                        sandTextureLoaded = true;
+                        console.log('Sand texture loaded');
+                    }
+                    
+                    // Only hide splash when all assets are loaded AND sand texture is ready
+                    if (loadedCount === totalAssets && sandTextureLoaded) {
+                        console.log('All critical assets loaded including sand texture');
                         hideSplash();
                     }
                 };
                 img.src = src;
             });
             
-            // Fallback: hide splash after 4 seconds regardless of loading status
-            setTimeout(hideSplash, 4000);
+            // Fallback: hide splash after 5 seconds regardless of loading status
+            setTimeout(hideSplash, 5000);
             
             function hideSplash() {
                 if (splash.style.display !== 'none') {
