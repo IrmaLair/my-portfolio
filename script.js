@@ -35,21 +35,6 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
-// Add hover effects to project cards
-document.addEventListener('DOMContentLoaded', function() {
-    const projectCards = document.querySelectorAll('.project-card');
-    
-    projectCards.forEach(card => {
-        card.addEventListener('mouseenter', function() {
-            this.style.transform = 'translateY(-5px) scale(1.02)';
-        });
-        
-        card.addEventListener('mouseleave', function() {
-            this.style.transform = 'translateY(0) scale(1)';
-        });
-    });
-});
-
 // Contact form handling
 document.addEventListener('DOMContentLoaded', function() {
     const contactForm = document.querySelector('.contact-form');
