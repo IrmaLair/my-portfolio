@@ -12,6 +12,13 @@ document.addEventListener('DOMContentLoaded', function() {
         // Check if this is truly a first visit (not just first in session)
         const hasEverVisited = localStorage.getItem('hasVisitedHomepage');
         
+        // Ensure homepage body background is clean for first visit
+        if (!hasEverVisited) {
+            // Force clean background for first visit
+            document.body.style.backgroundImage = 'none';
+            document.body.style.backgroundBlendMode = 'normal';
+        }
+        
         // Only show sand overlay if user has visited before
         if (hasEverVisited) {
             // Small delay to ensure proper loading

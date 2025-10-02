@@ -22,8 +22,12 @@ body {
 
 /* Homepage specific background - no texture overlay */
 body.homepage {
-    background: #e6d7c2;
-    background-image: none;
+    background: #e6d7c2 !important;
+    background-image: none !important;
+    background-blend-mode: normal !important;
+    background-attachment: initial !important;
+    background-size: initial !important;
+    background-repeat: initial !important;
 }
 
 /* Animated Waves */
