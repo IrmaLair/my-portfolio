@@ -599,17 +599,88 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
         
-        // Add click handlers for navigation
+        // Add click handlers for navigation with throwing animation
         shellButtons.forEach(button => {
-            button.addEventListener('click', function() {
+            button.addEventListener('click', async function(e) {
+                e.preventDefault();
                 const href = this.getAttribute('data-href');
-                if (href) {
-                    // Add a small delay for the click animation
-                    setTimeout(() => {
+                if (!href) return;
+                
+                // Create a clone for the throwing animation
+                const rect = this.getBoundingClientRect();
+                const clone = this.cloneNode(true);
+                
+                // Hide the original button
+                this.classList.add('shell-hidden');
+                this.style.pointerEvents = 'none';
+                
+                // Position the clone exactly where the original button is
+                const cs = getComputedStyle(this);
+                let baseW = Math.round(parseFloat(cs.width) || this.offsetWidth);
+                let baseH = Math.round(parseFloat(cs.height) || this.offsetHeight);
+                const centerX = rect.left + rect.width / 2;
+                const centerY = rect.top + rect.height / 2;
+                const left = Math.round(centerX - baseW / 2);
+                const top = Math.round(centerY - baseH / 2);
+                
+                // Style the clone
+                clone.style.transform = 'none';
+                clone.style.position = 'fixed';
+                clone.style.left = left + 'px';
+                clone.style.top = top + 'px';
+                clone.style.width = baseW + 'px';
+                clone.style.height = baseH + 'px';
+                clone.style.boxSizing = cs.boxSizing || 'border-box';
+                clone.style.margin = '0';
+                clone.style.zIndex = 9999;
+                clone.style.pointerEvents = 'none';
+                
+                // Remove any nested transforms
+                try {
+                    clone.querySelectorAll && clone.querySelectorAll('*').forEach(n => {
+                        if (n.style) n.style.transform = 'none';
+                    });
+                } catch (e) {}
+                
+                document.body.appendChild(clone);
+                
+                // Start the throwing animation
+                const THROW_ANIM_MS = 600;
+                clone.style.transition = `transform ${THROW_ANIM_MS}ms cubic-bezier(.2,.8,.2,1), left ${THROW_ANIM_MS}ms, top ${THROW_ANIM_MS}ms, opacity .6s`;
+                
+                // Play shell splash sound if available
+                try {
+                    const shellSplash = new Audio('./assets/shell-splash.mp3');
+                    shellSplash.volume = 0.8;
+                    shellSplash.play().catch(() => {});
+                } catch (e) {}
+                
+                // Animate to the waves area
+                requestAnimationFrame(() => {
+                    clone.classList.add('throwing');
+                    clone.style.left = '50%';
+                    clone.style.top = '8%';
+                    clone.style.transform = 'translate(-50%, -10%)';
+                    clone.style.opacity = '1';
+                });
+                
+                // Clean up and navigate after animation
+                setTimeout(async () => {
+                    try {
+                        clone.style.opacity = '0';
+                        await new Promise(r => setTimeout(r, 400));
+                        try { clone.remove(); } catch (e) {}
+                        
+                        // Restore original button and navigate
+                        this.classList.remove('shell-hidden');
+                        this.style.pointerEvents = '';
                         window.location.href = href;
-                    }, 200);
-                }
-            });
+                    } catch (e) {
+                        console.error(e);
+                        window.location.href = href;
+                    }
+                }, THROW_ANIM_MS);
+            }, { passive: false });
             
             // Add hover sound effect
             button.addEventListener('mouseenter', function() {
@@ -653,6 +724,9 @@ function initFootprints() {
         footprints.push({ x, y, angle, mirror, ts: now });
     }
     
+    let isTracking = false; // Track if we should create footprints
+    let isTouchDevice = false;
+    
     function onPointerMove(ev) {
         // Don't create footprints in the waves area
         const wavesEl = document.querySelector('.waves-wrapper');
@@ -660,6 +734,9 @@ function initFootprints() {
             const wr = wavesEl.getBoundingClientRect();
             if (ev.clientY <= wr.bottom) return;
         }
+        
+        // For touch devices, only create footprints if actively tracking
+        if (isTouchDevice && !isTracking) return;
         
         const x = ev.clientX;
         const y = ev.clientY;
@@ -672,6 +749,30 @@ function initFootprints() {
             addFoot(x, y, angle);
             lastX = x;
             lastY = y;
+        }
+    }
+    
+    function onPointerDown(ev) {
+        // Check if this is a touch device
+        isTouchDevice = ev.pointerType === 'touch';
+        
+        if (isTouchDevice) {
+            isTracking = true;
+            // Start tracking immediately on touch
+            const wavesEl = document.querySelector('.waves-wrapper');
+            if (wavesEl) {
+                const wr = wavesEl.getBoundingClientRect();
+                if (ev.clientY <= wr.bottom) return;
+            }
+            
+            lastX = ev.clientX;
+            lastY = ev.clientY;
+        }
+    }
+    
+    function onPointerUp(ev) {
+        if (isTouchDevice) {
+            isTracking = false;
         }
     }
     
@@ -761,6 +862,8 @@ function initFootprints() {
         resize();
         window.addEventListener('resize', resize);
         window.addEventListener('pointermove', onPointerMove, { passive: true });
+        window.addEventListener('pointerdown', onPointerDown, { passive: true });
+        window.addEventListener('pointerup', onPointerUp, { passive: true });
         raf = requestAnimationFrame(frame);
     }
     
@@ -768,6 +871,8 @@ function initFootprints() {
         try {
             window.removeEventListener('resize', resize);
             window.removeEventListener('pointermove', onPointerMove, { passive: true });
+            window.removeEventListener('pointerdown', onPointerDown, { passive: true });
+            window.removeEventListener('pointerup', onPointerUp, { passive: true });
         } catch (e) {}
         if (raf) {
             cancelAnimationFrame(raf);
@@ -775,6 +880,7 @@ function initFootprints() {
         }
         ctx.clearRect(0, 0, w, h);
         footprints.length = 0;
+        isTracking = false;
     }
     
     start();
@@ -803,3 +909,145 @@ function ensureFootprintsForCurrentPage() {
 document.addEventListener('DOMContentLoaded', () => {
     ensureFootprintsForCurrentPage();
 });
+
+/* Logo sparkle particle effect */
+(function() {
+    function findLogos() {
+        return Array.from(document.querySelectorAll('.logo-nav a, .splash-logo'));
+    }
+
+    const __activeSparkleIntervals = new Set();
+    const __activeSparkleTimeouts = new Set();
+    
+    try {
+        window.__activeSparkleIntervals = __activeSparkleIntervals;
+        window.__activeSparkleTimeouts = __activeSparkleTimeouts;
+    } catch (e) {}
+
+    function spawnSparklesAt(el, count, duration = 15000) {
+        if (!el || !(el.getBoundingClientRect)) return;
+        const rect = el.getBoundingClientRect();
+        if (!rect || (!rect.width && !rect.height)) return;
+        
+        const centerX = rect.left + rect.width / 2;
+        const centerY = rect.top + rect.height / 2 - 15; // Position slightly above center
+
+        for (let i = 0; i < count; i++) {
+            const startDelay = Math.random() * 220;
+            const tid = setTimeout(() => {
+                try {
+                    __activeSparkleTimeouts.delete(tid);
+                } catch (e) {}
+                
+                const s = document.createElement('div');
+                s.className = 'logo-sparkle';
+                const size = 4 + Math.floor(Math.random() * 3); // 4..6px
+                s.style.width = size + 'px';
+                s.style.height = size + 'px';
+                s.style.left = (centerX - size / 2) + 'px';
+                s.style.top = (centerY - size / 2) + 'px';
+                s.style.opacity = '1';
+                document.body.appendChild(s);
+
+                const deg = (Math.random() * 60 - 30) * (Math.PI / 180);
+                const minDist = 80;
+                const maxDist = 300;
+                const dist = minDist + Math.random() * (maxDist - minDist);
+
+                // Color palette variations
+                const palette = Math.floor(Math.random() * 3);
+                if (palette === 1) {
+                    s.style.background = 'radial-gradient(circle at 50% 50%, #ffffff 0px, #ffffff 2px, rgba(189,230,255,0.95) 30%, rgba(130,200,255,0.6) 60%, rgba(130,200,255,0) 85%)';
+                    s.style.boxShadow = '0 0 2px #ffffff, 0 0 10px rgba(120,190,255,0.95), 0 0 30px rgba(60,150,255,0.55)';
+                } else if (palette === 2) {
+                    s.style.background = 'radial-gradient(circle at 50% 50%, #ffffff 0px, #ffffff 2px, rgba(191,255,199,0.95) 30%, rgba(160,255,160,0.6) 60%, rgba(160,255,160,0) 85%)';
+                    s.style.boxShadow = '0 0 2px #ffffff, 0 0 10px rgba(160,255,160,0.95), 0 0 30px rgba(100,230,120,0.55)';
+                } else {
+                    s.style.background = 'radial-gradient(circle at 50% 50%, #ffffff 0px, #ffffff 2px, rgba(255,250,230,0.95) 30%, rgba(255,235,200,0.6) 60%, rgba(255,235,200,0) 85%)';
+                    s.style.boxShadow = '0 0 2px #ffffff, 0 0 10px rgba(255,235,200,0.95), 0 0 30px rgba(255,200,120,0.55)';
+                }
+
+                const dx = Math.sin(deg) * dist;
+                const dy = Math.cos(deg) * dist;
+                const dur = Math.max(8000, Math.round(duration + (Math.random() * 4000 - 2000)));
+
+                s.classList.add('logo-sparkle--pulse');
+                const sway = (Math.random() * 10) - 5;
+                const rotate = (Math.random() * 80) - 40;
+                
+                const anim = s.animate([
+                    { transform: 'translate(0px, 0px) rotate(0deg) scale(1)', opacity: 1 },
+                    { transform: `translate(${dx / 2 + sway}px, ${dy / 2}px) rotate(${rotate / 2}deg) scale(0.9)`, opacity: 0.95, offset: 0.5 },
+                    { transform: `translate(${dx}px, ${dy}px) rotate(${rotate}deg) scale(0.35)`, opacity: 0 }
+                ], { duration: dur, easing: 'cubic-bezier(.2,.8,.25,1)', fill: 'forwards' });
+
+                anim.onfinish = () => {
+                    try { s.remove(); } catch (e) {}
+                };
+            }, startDelay);
+            __activeSparkleTimeouts.add(tid);
+        }
+    }
+
+    function attachHandlersTo(el) {
+        if (!el || el.dataset.__sparkleAttached) return;
+        el.dataset.__sparkleAttached = '1';
+        
+        let sparkleInterval = null;
+        
+        function startSparks() {
+            // Start spawning single particles continuously at shorter intervals
+            sparkleInterval = setInterval(() => spawnSparklesAt(el, 1, 14000), 300);
+            try {
+                el.dataset.__sparkleInterval = String(sparkleInterval);
+                __activeSparkleIntervals.add(sparkleInterval);
+            } catch (e) {}
+            
+            // Play sparkle sound if available
+            try {
+                const sparkleSound = new Audio('./assets/logo-sparkle.mp3');
+                sparkleSound.volume = 0.9;
+                sparkleSound.play().catch(() => {});
+            } catch (e) {}
+        }
+        
+        function stopSparks() {
+            try {
+                if (sparkleInterval) {
+                    clearInterval(sparkleInterval);
+                    __activeSparkleIntervals.delete(sparkleInterval);
+                    sparkleInterval = null;
+                }
+            } catch (e) {}
+        }
+        
+        // Attach hover events
+        el.addEventListener('pointerenter', startSparks);
+        el.addEventListener('pointerleave', stopSparks);
+        el.addEventListener('focus', startSparks, true);
+        el.addEventListener('blur', stopSparks, true);
+        
+        console.debug('Sparkle: attached to', el);
+    }
+
+    // Initial attach for any logos already in the DOM
+    findLogos().forEach(attachHandlersTo);
+
+    // Watch for dynamically added logos
+    const mo = new MutationObserver((records) => {
+        for (const rec of records) {
+            if (!rec.addedNodes) continue;
+            rec.addedNodes.forEach(node => {
+                if (!(node instanceof Element)) return;
+                if (node.matches && node.matches('.logo-nav a, .splash-logo')) {
+                    attachHandlersTo(node);
+                }
+                // Check descendants
+                if (node.querySelectorAll) {
+                    node.querySelectorAll('.logo-nav a, .splash-logo').forEach(attachHandlersTo);
+                }
+            });
+        }
+    });
+    mo.observe(document.documentElement || document.body, { childList: true, subtree: true });
+})();

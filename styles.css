@@ -18,23 +18,33 @@ body {
     text-align: center;
     min-height: 100vh;
     line-height: 1.6;
-    /* Footprint system variables */
-    --footprint-size: clamp(14px, 1.75vw, 24px);
+}
+
+/* Footprint system variables */
+:root {
+    --footprint-size: clamp(16px, 2vw, 28px);
     --footprint-gap: calc(var(--footprint-size) * 4.0);
     --footprint-scale: 1;
 }
 
 /* Responsive footprint scaling */
 @media (max-width: 900px) {
-    body {
-        --footprint-size: clamp(12px, 1.5vw, 18px);
-        --footprint-scale: 0.5;
+    :root {
+        --footprint-size: clamp(14px, 1.8vw, 22px);
+        --footprint-scale: 0.6;
     }
 }
 
 @media (max-width: 600px) {
-    body {
-        --footprint-size: clamp(10px, 1.2vw, 14px);
+    :root {
+        --footprint-size: clamp(12px, 1.6vw, 18px);
+        --footprint-scale: 0.35;
+    }
+}
+
+@media (max-width: 400px) {
+    :root {
+        --footprint-size: clamp(10px, 1.4vw, 16px);
         --footprint-scale: 0.25;
     }
 }
@@ -1363,4 +1373,55 @@ p {
     .welcome-text {
         font-size: 1.1rem;
     }
+}
+
+/* Shell throwing animation */
+.throwing {
+    position: fixed !important;
+    left: 50% !important;
+    top: 10% !important;
+    transform: translate(-50%, -10%);
+    transition: transform 0.7s cubic-bezier(0.2, 0.8, 0.2, 1), opacity 0.6s ease-in-out;
+    z-index: 9999;
+    opacity: 1 !important;
+}
+
+.throwing .shell-label {
+    opacity: 0 !important;
+    transition: opacity 0.2s ease;
+}
+
+.shell-hidden {
+    opacity: 0;
+    transition: opacity 0.4s;
+}
+
+/* Logo sparkle particles */
+.logo-sparkle {
+    position: fixed;
+    z-index: 10020;
+    width: 6px;
+    height: 6px;
+    background: radial-gradient(circle at 30% 30%, #fff 0%, rgba(255,255,255,0.9) 30%, rgba(255,240,200,0.5) 55%, rgba(255,240,200,0) 70%);
+    border-radius: 50%;
+    pointer-events: none;
+    opacity: 0;
+    will-change: transform, opacity, filter;
+    box-shadow:
+        0 0 3px rgba(255,255,255,1),
+        0 0 10px rgba(255,250,220,0.98),
+        0 0 28px rgba(255,220,160,0.9),
+        0 0 60px rgba(255,200,120,0.65);
+    filter: blur(0.8px) saturate(1.3) contrast(1.1);
+    mix-blend-mode: screen;
+}
+
+.logo-sparkle--pulse {
+    animation: sparklePulse 2400ms ease-in-out infinite;
+}
+
+@keyframes sparklePulse {
+    0% { filter: blur(0.6px) brightness(1); transform: scale(0.85); }
+    40% { filter: blur(2.2px) brightness(2.2); transform: scale(1.12); }
+    100% { filter: blur(0.6px) brightness(1); transform: scale(0.9); }
 }
