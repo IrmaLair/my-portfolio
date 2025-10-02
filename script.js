@@ -1315,3 +1315,95 @@ document.addEventListener('DOMContentLoaded', function() {
         }, 100);
     }
 });
+
+// Cat Animation System
+document.addEventListener('DOMContentLoaded', function() {
+    const sleepingCat = document.querySelector('.sleeping-cat');
+    console.log("Sleeping cat element:", sleepingCat); // Debug log
+    
+    if (!sleepingCat) {
+        console.log("ERROR: Could not find sleeping cat element!");
+        return;
+    }
+    
+    // Force the cat size and position with inline styles
+    sleepingCat.style.width = '140px';
+    sleepingCat.style.height = '140px';
+    sleepingCat.style.objectFit = 'contain';
+    sleepingCat.style.position = 'absolute';
+    sleepingCat.style.top = '-100px';
+    sleepingCat.style.right = '20px';
+    sleepingCat.style.zIndex = '10';
+    console.log("Applied inline cat sizing and positioning"); // Debug log
+    
+    let catTimeout = null;
+    let isAwake = false;
+    
+    // Get the correct asset path based on page location
+    const isInSubdirectory = window.location.pathname.includes('/projects/');
+    const assetPath = isInSubdirectory ? '../assets/' : './assets/';
+    
+    const sleepImageSrc = `${assetPath}cat-sleep-sticker.png`;
+    const awakeImageSrc = `${assetPath}cat-awake-sticker.png`;
+    
+    function wakeUpCat() {
+        if (isAwake) return; // Prevent multiple triggers
+        
+        console.log("Cat wake up triggered!"); // Debug log
+        isAwake = true;
+        
+        // Add shake animation
+        sleepingCat.classList.add('shaking');
+        
+        // Create a custom shake animation using JavaScript
+        let shakeCount = 0;
+        const maxShakes = 5; // 0.5 second of shaking at 0.1s intervals
+        
+        const shakeInterval = setInterval(() => {
+            const direction = shakeCount % 2 === 0 ? -1.25 : 1.25;
+            sleepingCat.style.transform = `translateX(${direction}px)`;
+            
+            shakeCount++;
+            
+            if (shakeCount >= maxShakes) {
+                clearInterval(shakeInterval);
+                // Change to awake image
+                sleepingCat.src = awakeImageSrc;
+                console.log("Changed to awake image"); // Debug log
+                
+                // Clean up after short delay
+                setTimeout(() => {
+                    sleepingCat.classList.remove('shaking');
+                    sleepingCat.style.transform = '';
+                    isAwake = false;
+                    console.log("Cleaned up styles"); // Debug log
+                }, 200);
+            }
+        }, 100); // Shake every 100ms
+        
+        console.log("Started shake animation"); // Debug log
+        
+        // Clear any existing timeout
+        if (catTimeout) {
+            clearTimeout(catTimeout);
+        }
+        
+        // Return to sleep after 2 seconds
+        catTimeout = setTimeout(() => {
+            sleepingCat.src = sleepImageSrc;
+            isAwake = false;
+        }, 2000);
+    }
+    
+    // Desktop hover
+    sleepingCat.addEventListener('mouseenter', wakeUpCat);
+    
+    // Mobile tap
+    sleepingCat.addEventListener('touchstart', function(e) {
+        e.preventDefault(); // Prevent scroll on touch
+        wakeUpCat();
+    });
+    
+    // Also trigger on click for accessibility
+    sleepingCat.addEventListener('click', wakeUpCat);
+});
