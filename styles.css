@@ -18,6 +18,36 @@ body {
     text-align: center;
     min-height: 100vh;
     line-height: 1.6;
+    /* Footprint system variables */
+    --footprint-size: clamp(14px, 1.75vw, 24px);
+    --footprint-gap: calc(var(--footprint-size) * 4.0);
+    --footprint-scale: 1;
+}
+
+/* Responsive footprint scaling */
+@media (max-width: 900px) {
+    body {
+        --footprint-size: clamp(12px, 1.5vw, 18px);
+        --footprint-scale: 0.5;
+    }
+}
+
+@media (max-width: 600px) {
+    body {
+        --footprint-size: clamp(10px, 1.2vw, 14px);
+        --footprint-scale: 0.25;
+    }
+}
+
+/* Footprint canvas */
+#footprint-canvas {
+    position: fixed;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    pointer-events: none;
+    z-index: 3;
 }
 
 /* Homepage specific background - no texture overlay */
@@ -75,6 +105,60 @@ body.homepage {
     display: block !important;
     visibility: visible;
     opacity: 1;
+}
+
+/* Resume Button */
+.resume-button-container {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1000;
+    pointer-events: none;
+}
+
+.resume-btn {
+    display: inline-block;
+    padding: 12px 24px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 2px solid rgba(255, 255, 255, 0.8);
+    border-radius: 8px;
+    color: white;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 14px;
+    font-family: 'Poppins', sans-serif;
+    letter-spacing: 0.5px;
+    transition: all 0.3s ease;
+    pointer-events: auto;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.resume-btn:hover {
+    background: rgba(255, 255, 255, 0.25);
+    border-color: rgba(255, 255, 255, 1);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+}
+
+.resume-btn:active {
+    transform: translateY(0);
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.15);
+}
+
+/* Mobile responsive adjustments */
+@media (max-width: 768px) {
+    .resume-button-container {
+        top: 15px;
+        right: 15px;
+    }
+    
+    .resume-btn {
+        padding: 10px 18px;
+        font-size: 12px;
+        border-radius: 6px;
+    }
 }
 
 /* Ensure all main content appears above waves */

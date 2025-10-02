@@ -622,3 +622,184 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 });
+
+/* Footprint canvas: spawn footprint shapes following the cursor and expire after fade time */
+function initFootprints() {
+    const canvas = document.getElementById('footprint-canvas');
+    if (!canvas) return { start: () => {}, stop: () => {} };
+    
+    const ctx = canvas.getContext('2d');
+    let dpr = window.devicePixelRatio || 1;
+    let w = 0, h = 0;
+    const footprints = [];
+    const baseMinStride = 96;
+    let lastX = -9999, lastY = -9999, mirror = 0;
+    let raf = null;
+    
+    function resize() {
+        dpr = window.devicePixelRatio || 1;
+        w = window.innerWidth;
+        h = window.innerHeight;
+        canvas.width = Math.round(w * dpr);
+        canvas.height = Math.round(h * dpr);
+        canvas.style.width = w + 'px';
+        canvas.style.height = h + 'px';
+        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    }
+    
+    function addFoot(x, y, angle) {
+        const now = performance.now();
+        mirror += 1;
+        footprints.push({ x, y, angle, mirror, ts: now });
+    }
+    
+    function onPointerMove(ev) {
+        // Don't create footprints in the waves area
+        const wavesEl = document.querySelector('.waves-wrapper');
+        if (wavesEl) {
+            const wr = wavesEl.getBoundingClientRect();
+            if (ev.clientY <= wr.bottom) return;
+        }
+        
+        const x = ev.clientX;
+        const y = ev.clientY;
+        const footprintScale = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--footprint-scale')) || 1;
+        const minStride = baseMinStride * footprintScale;
+        const dist = Math.hypot(x - lastX, y - lastY);
+        
+        if (dist > minStride) {
+            const angle = Math.atan2(y - lastY || 0, x - lastX || 0) + Math.PI / 2;
+            addFoot(x, y, angle);
+            lastX = x;
+            lastY = y;
+        }
+    }
+    
+    function drawFoot(f, age) {
+        const alpha = Math.max(0, 1 - age / 1000);
+        ctx.save();
+        
+        const footprintScale = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--footprint-scale')) || 1;
+        const gapPx = (parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--footprint-gap')) || 20) * footprintScale;
+        
+        const perpX = Math.cos((f.angle || 0) - Math.PI / 2);
+        const perpY = Math.sin((f.angle || 0) - Math.PI / 2);
+        const lateral = (f.mirror % 2 === 0) ? -gapPx / 2 : gapPx / 2;
+        
+        ctx.translate(f.x + perpX * lateral, f.y + perpY * lateral);
+        ctx.rotate(f.angle || 0);
+        
+        const footprintBaseWidth = 235;
+        const footprintSize = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--footprint-size')) || 24;
+        let s = footprintSize / footprintBaseWidth;
+        s = s * footprintScale;
+        ctx.scale(s, s);
+        
+        if (f.mirror % 2 === 0) ctx.scale(-1, 1);
+        
+        const footCenterX = 180;
+        const bridgeY = 300;
+        const pts = [];
+        
+        // Foot shape points
+        pts.push({ x: footCenterX + 10, y: bridgeY - 1.72 * 200 });
+        pts.push({ x: footCenterX - 235 / 2.0 + 35, y: bridgeY - 1.7 * 200 });
+        pts.push({ x: footCenterX - 235 / 2.0, y: bridgeY - 1.2 * 200 });
+        pts.push({ x: footCenterX - 150 / 2.0 + 15, y: bridgeY - 70 });
+        pts.push({ x: footCenterX - 160 / 2.0, y: bridgeY + 100 });
+        pts.push({ x: footCenterX - 80 / 2.0, y: bridgeY + 185 });
+        pts.push({ x: footCenterX + 80 / 2.0, y: bridgeY + 185 });
+        pts.push({ x: footCenterX + 160 / 2.0, y: bridgeY + 120 });
+        pts.push({ x: footCenterX + 150 / 2.0 + 10, y: bridgeY - 20 });
+        pts.push({ x: footCenterX + 235 / 2.0, y: bridgeY - 200 });
+        pts.push({ x: footCenterX + 235 / 2.0 - 30, y: bridgeY - 1.45 * 200 });
+        
+        const local = pts.map(p => ({ x: p.x - footCenterX, y: p.y - bridgeY }));
+        
+        ctx.fillStyle = `rgba(176,140,104,${0.75 * alpha})`;
+        ctx.strokeStyle = `rgba(0,0,0,${0.06 * alpha})`;
+        ctx.lineWidth = 2;
+        
+        ctx.beginPath();
+        const last = local[local.length - 1];
+        ctx.moveTo(last.x, last.y);
+        
+        for (let i = 0; i < local.length; i++) {
+            const p = local[i];
+            const next = local[(i + 1) % local.length];
+            const cx = (p.x + next.x) / 2;
+            const cy = (p.y + next.y) / 2;
+            ctx.quadraticCurveTo(p.x, p.y, cx, cy);
+        }
+        
+        ctx.closePath();
+        ctx.fill();
+        ctx.stroke();
+        ctx.restore();
+    }
+    
+    function frame() {
+        ctx.clearRect(0, 0, w, h);
+        const now = performance.now();
+        
+        for (let i = footprints.length - 1; i >= 0; i--) {
+            const f = footprints[i];
+            const age = now - f.ts;
+            
+            if (age > 1000) {
+                footprints.splice(i, 1);
+                continue;
+            }
+            
+            drawFoot(f, age);
+        }
+        
+        raf = requestAnimationFrame(frame);
+    }
+    
+    function start() {
+        resize();
+        window.addEventListener('resize', resize);
+        window.addEventListener('pointermove', onPointerMove, { passive: true });
+        raf = requestAnimationFrame(frame);
+    }
+    
+    function stop() {
+        try {
+            window.removeEventListener('resize', resize);
+            window.removeEventListener('pointermove', onPointerMove, { passive: true });
+        } catch (e) {}
+        if (raf) {
+            cancelAnimationFrame(raf);
+            raf = null;
+        }
+        ctx.clearRect(0, 0, w, h);
+        footprints.length = 0;
+    }
+    
+    start();
+    return { start, stop };
+}
+
+// Initialize footprints on homepage only
+let footprintController = null;
+
+function ensureFootprintsForCurrentPage() {
+    const isHomepage = document.body.classList.contains('homepage');
+    
+    try {
+        if (footprintController && !isHomepage) {
+            footprintController.stop();
+            footprintController = null;
+        }
+    } catch (e) {}
+    
+    if (!footprintController && isHomepage) {
+        footprintController = initFootprints();
+    }
+}
+
+// Start footprints when page loads
+document.addEventListener('DOMContentLoaded', () => {
+    ensureFootprintsForCurrentPage();
+});
