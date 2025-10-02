@@ -40,6 +40,10 @@ document.addEventListener('DOMContentLoaded', function() {
             // Mark as shown in sessionStorage
             sessionStorage.setItem('splashShown', 'true');
             
+            // Detect if we're in a subdirectory (projects folder)
+            const isInSubdirectory = window.location.pathname.includes('/projects/');
+            const assetPath = isInSubdirectory ? '../assets/' : './assets/';
+            
             // Preload critical sand texture first, then other assets
             const sandTextureImg = new Image();
             let sandTextureLoaded = false;
@@ -51,7 +55,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 console.log('Sand texture preloaded successfully');
                 
                 // Force apply the background to ensure it's rendered
-                document.body.style.backgroundImage = "url('./assets/sand-texture-overlay.png')";
+                document.body.style.backgroundImage = `url('${assetPath}sand-texture-overlay.png')`;
                 
                 // Small delay to ensure rendering, then check if we can hide splash
                 setTimeout(() => {
@@ -69,22 +73,22 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
             };
             
-            sandTextureImg.src = './assets/sand-texture-overlay.png';
+            sandTextureImg.src = `${assetPath}sand-texture-overlay.png`;
             
             // Preload other critical assets
             const otherAssets = [
-                './assets/wood-texture-overlay.png',
-                './assets/Logo.svg',
-                './assets/cat-sleep-sticker.png',
-                './assets/Vine1.svg',
-                './assets/Vine2.svg',
-                './assets/about me.png',
-                './assets/cat-sticker.png',
-                './assets/shell-star.svg',
-                './assets/project1.svg',
-                './assets/Linkedin icon.svg',
-                './assets/Whatsapp icon.svg',
-                './assets/beach-bg.mp3' // Add background music to preload
+                `${assetPath}wood-texture-overlay.png`,
+                `${assetPath}Logo.svg`,
+                `${assetPath}cat-sleep-sticker.png`,
+                `${assetPath}Vine1.svg`,
+                `${assetPath}Vine2.svg`,
+                `${assetPath}about me.png`,
+                `${assetPath}cat-sticker.png`,
+                `${assetPath}shell-star.svg`,
+                `${assetPath}project1.svg`,
+                `${assetPath}Linkedin icon.svg`,
+                `${assetPath}Whatsapp icon.svg`,
+                `${assetPath}beach-bg.mp3` // Add background music to preload
             ];
             
             // Preload other images
