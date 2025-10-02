@@ -223,14 +223,14 @@ p {
 /* Logo Navigation */
 .logo-nav {
     position: absolute;
-    top: 20px;
-    left: 20px;
+    top: 0px;
+    left: 0px;
     z-index: 1000;
 }
 
 .logo-nav img {
-    width: 120px;
-    height: 120px;
+    width: 160px;
+    height: 160px;
     transition: transform 0.3s ease;
     cursor: pointer;
 }
@@ -378,13 +378,14 @@ p {
     left: 0;
     right: 0;
     bottom: 0;
-    background-image: url('./assets/sand-texture-overlay.png');
-    background-blend-mode: overlay;
+    background-image: url('./assets/wood-texture-overlay.png');
     background-size: cover;
-    background-blend-mode: soft-light;
-    opacity: 0.05;
-    border-radius: 10px;
+    background-position: center;
+    background-repeat: no-repeat;
+    mix-blend-mode: soft-light;
+    opacity: 0.1;
     pointer-events: none;
+    border-radius: 10px;
 }
 
 /* Filter Chips */
@@ -673,13 +674,13 @@ p {
     }
     
     .logo-nav {
-        top: 15px;
-        left: 15px;
+        top: 0px;
+        left: 0px;
     }
     
     .logo-nav img {
-        width: 80px;
-        height: 80px;
+        width: 100px;
+        height: 100px;
     }
 }
 
@@ -949,10 +950,10 @@ p {
 }
 
 .star-sticker {
-    top: -55px;
-    left: -60px;
+    top: -30px;
+    left: -30px;
     transform: rotate(-20deg);
-    width: 180px;
+    width: 90px;
     height: auto;
 }
 
