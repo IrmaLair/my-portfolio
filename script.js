@@ -1257,3 +1257,57 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 });
+
+// Add shell sound to Shell navigation button on project subpages
+document.addEventListener('DOMContentLoaded', function() {
+    const shellNavBtn = document.querySelector('.shell-nav-btn');
+    if (shellNavBtn) {
+        shellNavBtn.addEventListener('click', function() {
+            try {
+                const shellSound = new Audio('./assets/shell.mp3');
+                shellSound.volume = 0.6;
+                shellSound.play().catch(() => {});
+            } catch (e) {}
+        });
+    }
+});
+
+// Play project opening sound on project subpages
+document.addEventListener('DOMContentLoaded', function() {
+    // Add project opening sound to project card clicks
+    const projectCards = document.querySelectorAll('.project-card');
+    if (projectCards.length > 0) {
+        projectCards.forEach(card => {
+            card.addEventListener('click', function(e) {
+                // Play project opening sound when clicking to enter a project
+                try {
+                    const projectOpeningSound = new Audio('./assets/project-opening.mp3');
+                    projectOpeningSound.volume = 0.7;
+                    projectOpeningSound.play().catch(() => {});
+                } catch (e) {}
+            });
+        });
+    }
+    
+    // Also try to play on project subpages (with user gesture fallback)
+    const isProjectSubpage = window.location.pathname.includes('/projects/') && 
+                             window.location.pathname.endsWith('.html') &&
+                             !window.location.pathname.endsWith('/projects.html');
+    
+    if (isProjectSubpage) {
+        // Try to play immediately (may be blocked)
+        setTimeout(() => {
+            try {
+                const projectOpeningSound = new Audio('../assets/project-opening.mp3');
+                projectOpeningSound.volume = 0.7;
+                projectOpeningSound.play().catch(() => {
+                    // If blocked, wait for any user interaction
+                    document.addEventListener('click', function playOnClick() {
+                        projectOpeningSound.play().catch(() => {});
+                        document.removeEventListener('click', playOnClick);
+                    }, { once: true });
+                });
+            } catch (e) {}
+        }, 100);
+    }
+});
