@@ -340,20 +340,20 @@ p {
 
 /* Vine1 specific scaling */
 .vine-top-left.vine1 {
-    transform: scale(0.5);
+    transform: scale(0.75);
 }
 
 .vine-top-right.vine1 {
-    transform: scale(0.6) scaleX(-1);
+    transform: scale(0.9) scaleX(-1);
 }
 
 /* Vine2 specific scaling */
 .vine-top-left.vine2 {
-    transform: scale(0.2);
+    transform: scale(0.3);
 }
 
 .vine-top-right.vine2 {
-    transform: scale(0.3) scaleX(-1);
+    transform: scale(0.45) scaleX(-1);
 }
 
 /* Project Grid */
