@@ -63,11 +63,13 @@ body.homepage {
     z-index: 2;
     pointer-events: none;
     transition: opacity 1s ease-in-out;
-    display: none;
+    display: none !important;
+    visibility: hidden;
 }
 
 .sand-overlay.show {
-    display: block;
+    display: block !important;
+    visibility: visible;
     opacity: 1;
 }
 

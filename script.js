@@ -3,12 +3,22 @@ document.addEventListener('DOMContentLoaded', function() {
     const splash = document.getElementById('splash');
     const sandOverlay = document.getElementById('sand-overlay');
     
-    // Check if this is truly a first visit (not just first in session)
-    const hasEverVisited = localStorage.getItem('hasVisitedHomepage');
-    
-    // Only show sand overlay if user has visited before
-    if (sandOverlay && hasEverVisited) {
-        sandOverlay.classList.add('show');
+    // Sand overlay logic - ensure it's hidden by default
+    if (sandOverlay) {
+        // Force hide initially
+        sandOverlay.style.display = 'none';
+        sandOverlay.classList.remove('show');
+        
+        // Check if this is truly a first visit (not just first in session)
+        const hasEverVisited = localStorage.getItem('hasVisitedHomepage');
+        
+        // Only show sand overlay if user has visited before
+        if (hasEverVisited) {
+            // Small delay to ensure proper loading
+            setTimeout(() => {
+                sandOverlay.classList.add('show');
+            }, 100);
+        }
     }
     
     if (splash) {
