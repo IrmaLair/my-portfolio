@@ -278,6 +278,13 @@ document.addEventListener('DOMContentLoaded', function() {
         chip.addEventListener('click', function() {
             const category = this.getAttribute('data-category');
             
+            // Play shell sound effect
+            try {
+                const shellSound = new Audio('./assets/shell.mp3');
+                shellSound.volume = 0.6;
+                shellSound.play().catch(() => {});
+            } catch (e) {}
+            
             // Update active state
             filterChips.forEach(c => c.classList.remove('active'));
             this.classList.add('active');
@@ -645,7 +652,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 document.body.appendChild(clone);
                 
                 // Start the throwing animation
-                const THROW_ANIM_MS = 600;
+                const THROW_ANIM_MS = 1200; // Increased from 600ms to 1200ms for splash sound
                 clone.style.transition = `transform ${THROW_ANIM_MS}ms cubic-bezier(.2,.8,.2,1), left ${THROW_ANIM_MS}ms, top ${THROW_ANIM_MS}ms, opacity .6s`;
                 
                 // Play shell splash sound if available
@@ -887,21 +894,33 @@ function initFootprints() {
     return { start, stop };
 }
 
-// Initialize footprints on homepage only
+// Initialize footprints on homepage and cat paws on about page
 let footprintController = null;
+let catPawController = null;
 
 function ensureFootprintsForCurrentPage() {
     const isHomepage = document.body.classList.contains('homepage');
+    const isAboutPage = window.location.pathname.includes('about.html') || 
+                       (window.location.pathname === '/' && document.getElementById('cat-paw-canvas'));
     
     try {
         if (footprintController && !isHomepage) {
             footprintController.stop();
             footprintController = null;
         }
+        if (catPawController && !isAboutPage) {
+            catPawController.stop();
+            catPawController = null;
+        }
     } catch (e) {}
     
     if (!footprintController && isHomepage) {
         footprintController = initFootprints();
+    }
+    
+    if (!catPawController && isAboutPage) {
+        catPawController = initCatPawFootprints();
+        if (catPawController) catPawController.start();
     }
 }
 
@@ -1051,3 +1070,190 @@ document.addEventListener('DOMContentLoaded', () => {
     });
     mo.observe(document.documentElement || document.body, { childList: true, subtree: true });
 })();
+
+/* Cat Paw Footprints for About Page */
+function initCatPawFootprints() {
+    const canvas = document.getElementById('cat-paw-canvas');
+    if (!canvas) return { start: () => {}, stop: () => {} };
+    
+    const ctx = canvas.getContext('2d');
+    let dpr = window.devicePixelRatio || 1;
+    let w = 0, h = 0;
+    const pawPrints = [];
+    const baseMinStride = 60; // Smaller stride for cat paws
+    let lastX = -9999, lastY = -9999, mirror = 0;
+    let raf = null;
+    let catPawImage = null;
+    
+    // Load cat paw SVG
+    const img = new Image();
+    img.onload = function() {
+        catPawImage = img;
+    };
+    img.src = './assets/cat-paw.svg';
+    
+    function resize() {
+        dpr = window.devicePixelRatio || 1;
+        w = window.innerWidth;
+        h = window.innerHeight;
+        canvas.width = Math.round(w * dpr);
+        canvas.height = Math.round(h * dpr);
+        canvas.style.width = w + 'px';
+        canvas.style.height = h + 'px';
+        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    }
+    
+    function addPaw(x, y, angle) {
+        const now = performance.now();
+        mirror += 1;
+        pawPrints.push({ x, y, angle, mirror, ts: now });
+    }
+    
+    let isTracking = false;
+    let isTouchDevice = false;
+    
+    function onPointerMove(ev) {
+        // For touch devices, only create paw prints if actively tracking
+        if (isTouchDevice && !isTracking) return;
+        
+        const x = ev.clientX;
+        const y = ev.clientY;
+        const pawScale = 1; // Cat paws are smaller
+        const minStride = baseMinStride * pawScale;
+        const dist = Math.hypot(x - lastX, y - lastY);
+        
+        if (dist > minStride) {
+            const angle = Math.atan2(y - lastY || 0, x - lastX || 0) + Math.PI / 2;
+            addPaw(x, y, angle);
+            lastX = x;
+            lastY = y;
+        }
+    }
+    
+    function onPointerDown(ev) {
+        isTouchDevice = ev.pointerType === 'touch';
+        
+        if (isTouchDevice) {
+            isTracking = true;
+            lastX = ev.clientX;
+            lastY = ev.clientY;
+        }
+    }
+    
+    function onPointerUp(ev) {
+        if (isTouchDevice) {
+            isTracking = false;
+        }
+    }
+    
+    function drawPaw(paw, age) {
+        if (!catPawImage) return;
+        
+        const alpha = Math.max(0, 1 - age / 1500); // Slightly longer fade
+        ctx.save();
+        
+        const pawSize = 20; // Size in pixels
+        const gapPx = 15; // Gap between left and right paws
+        
+        const perpX = Math.cos((paw.angle || 0) - Math.PI / 2);
+        const perpY = Math.sin((paw.angle || 0) - Math.PI / 2);
+        const lateral = (paw.mirror % 2 === 0) ? -gapPx / 2 : gapPx / 2;
+        
+        ctx.translate(paw.x + perpX * lateral, paw.y + perpY * lateral);
+        ctx.rotate(paw.angle || 0);
+        
+        if (paw.mirror % 2 === 0) ctx.scale(-1, 1);
+        
+        ctx.globalAlpha = alpha * 0.7; // Semi-transparent cat paws
+        
+        // Draw cat paw centered
+        ctx.drawImage(catPawImage, -pawSize/2, -pawSize/2, pawSize, pawSize);
+        
+        ctx.restore();
+    }
+    
+    function frame() {
+        ctx.clearRect(0, 0, w, h);
+        const now = performance.now();
+        
+        for (let i = pawPrints.length - 1; i >= 0; i--) {
+            const paw = pawPrints[i];
+            const age = now - paw.ts;
+            
+            if (age > 1500) { // Slightly longer duration
+                pawPrints.splice(i, 1);
+                continue;
+            }
+            
+            drawPaw(paw, age);
+        }
+        
+        raf = requestAnimationFrame(frame);
+    }
+    
+    function start() {
+        resize();
+        window.addEventListener('resize', resize);
+        window.addEventListener('pointermove', onPointerMove, { passive: true });
+        window.addEventListener('pointerdown', onPointerDown, { passive: true });
+        window.addEventListener('pointerup', onPointerUp, { passive: true });
+        raf = requestAnimationFrame(frame);
+    }
+    
+    function stop() {
+        try {
+            window.removeEventListener('resize', resize);
+            window.removeEventListener('pointermove', onPointerMove, { passive: true });
+            window.removeEventListener('pointerdown', onPointerDown, { passive: true });
+            window.removeEventListener('pointerup', onPointerUp, { passive: true });
+        } catch (e) {}
+        if (raf) {
+            cancelAnimationFrame(raf);
+            raf = null;
+        }
+    }
+    
+    return { start, stop };
+}
+
+// Add shell sound to View Work button on about page
+document.addEventListener('DOMContentLoaded', function() {
+    const viewWorkBtn = document.querySelector('.view-work-btn');
+    if (viewWorkBtn) {
+        viewWorkBtn.addEventListener('click', function() {
+            try {
+                const shellSound = new Audio('./assets/shell.mp3');
+                shellSound.volume = 0.6;
+                shellSound.play().catch(() => {});
+            } catch (e) {}
+        });
+    }
+});
+
+// Add shell sound to Submit button on contact page
+document.addEventListener('DOMContentLoaded', function() {
+    const submitBtn = document.querySelector('.submit-btn');
+    if (submitBtn) {
+        submitBtn.addEventListener('click', function() {
+            try {
+                const shellSound = new Audio('./assets/shell.mp3');
+                shellSound.volume = 0.6;
+                shellSound.play().catch(() => {});
+            } catch (e) {}
+        });
+    }
+});
+
+// Add shell sound to Resume button on homepage
+document.addEventListener('DOMContentLoaded', function() {
+    const resumeBtn = document.querySelector('.resume-btn');
+    if (resumeBtn) {
+        resumeBtn.addEventListener('click', function() {
+            try {
+                const shellSound = new Audio('./assets/shell.mp3');
+                shellSound.volume = 0.6;
+                shellSound.play().catch(() => {});
+            } catch (e) {}
+        });
+    }
+});
