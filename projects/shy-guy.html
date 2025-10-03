@@ -69,7 +69,7 @@
                 <div class="project-subtitle">Oct, 2019 · 2 Weeks</div>
             </div>
             
-                                                <!-- Container 3: Team card (white overlay bg) -->
+            <!-- Container 3: Team card (white overlay bg) -->
             <div class="metadata-team-container">
                 <div class="team-card">
                     <div style="text-align: left !important;">
@@ -101,11 +101,339 @@
                         </div>
                     </div>
                 </div>
+            </div>
+
+            <!-- Hero Section -->
+            <div class="project-section">
+                <div class="hero-image-container">
+                    <div class="video-container" style="position: relative; cursor: pointer; width: 100%; max-width: 1200px; margin: 0 auto;" onclick="playVideo()">
+                        <img src="../assets/shy-guy/thumbnail-shy-guy.png" alt="Shy Guy Hero" id="videoThumbnail" class="hero-image">
+                        <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); background: rgba(0,0,0,0.7); border-radius: 50%; width: 80px; height: 80px; display: flex; align-items: center; justify-content: center;">
+                            <span class="material-icons" style="color: white; font-size: 40px; margin-left: 4px;">play_arrow</span>
+                        </div>
+                        <video id="shyGuyVideo" controls style="width: 100%; border-radius: 12px; box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1); display: none;">
+                            <source src="../assets/shy-guy/shy-guy-video.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
                     </div>
                 </div>
+                
+                <div class="section-intro" style="max-width: 600px; margin: 0 auto;">
+                    <p style="color: #303030;">An interactive human-robot collaborative art installation featuring a shy robot that creates unique soot paintings on a ceiling canvas, fleeing when viewers approach it.</p>
+                </div>
+
+                <!-- Key Insights Section -->
+                <section class="project-section">
+                    <h2>The Robot That Paints with Fire</h2>
+                    
+                    <div class="insight-content">
+                        <div class="insight-images">
+                            <img src="../assets/shy-guy/robot-shy-guy.jpg" alt="Shy Guy Robot" class="insight-photo clickable-image" onclick="openImageModal(this)">
+                        </div>
+                        <div class="key-insights">
+                            <div class="research-text" style="margin-bottom: 0px;">
+                                <h3>Can a machine be creative?</h3>
+                                <p>Our goal was to create an interactive piece that makes people question everything they know about art, using an unexpected medium: fire, smoke and a machine.</p>
+                                
+                                <h3 style="margin-top: 50px;">What we created</h3>
+                            </div>
+                            
+                            <div class="insight-item">
+                                <span class="material-icons insight-icon">architecture</span>
+                                <p>Interactive installation that responds to human movement.</p>
+                            </div>
+                            <div class="insight-item">
+                                <span class="material-icons insight-icon">palette</span>
+                                <p>Unique soot artworks created through fire and smoke.</p>
+                            </div>
+                            <div class="insight-item">
+                                <span class="material-icons insight-icon">code</span>
+                                <p>Arduino-powered system with sensors and motor control.</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+            <!-- The Process Section -->
+            <div class="project-section">
+                <h2>From Code to Canvas: The Making of Shy Guy</h2>
+                
+                <!-- Timeline Process -->
+                <div class="timeline-container" style="position: relative; margin-top: 40px;">
+                    <!-- Timeline Line -->
+                    <div style="position: absolute; left: 50%; top: 0; bottom: 0; width: 3px; background: #8B7355; transform: translateX(-50%); z-index: 1;"></div>
+                    
+                    <!-- Timeline Item 1 -->
+                    <div class="timeline-item" style="display: flex; margin-bottom: 80px; position: relative;">
+                        <div style="flex: 1; padding-right: 40px; text-align: right;">
+                            <h3>Step 1: Conceptual Brainstorming</h3>
+                            <p>Our process began with wide-ranging brainstorming, exploring different mediums and mechanisms for our artsy bot. These initial notes mapped our first ideas as we searched for a unique artistic voice for our machine.</p>
+                        </div>
+                        <div style="position: absolute; left: 50%; top: 20px; width: 20px; height: 20px; background: #8B7355; border-radius: 50%; transform: translateX(-50%); z-index: 2; border: 3px solid white;"></div>
+                        <div style="flex: 1; padding-left: 40px;">
+                            <div class="research-image-container">
+                                <img src="../assets/shy-guy/notes-shy-guy.jpg" alt="Conceptual brainstorming notes" class="research-image-small clickable-image" onclick="openImageModal(this)">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Timeline Item 2 -->
+                    <div class="timeline-item" style="display: flex; margin-bottom: 80px; position: relative;">
+                        <div style="flex: 1; padding-right: 40px;">
+                            <div class="research-image-container">
+                                <img src="../assets/shy-guy/sketch-shy-guy.png?v=updated" alt="Initial sketch" class="research-image-small clickable-image" onclick="openImageModal(this)">
+                            </div>
+                        </div>
+                        <div style="position: absolute; left: 50%; top: 20px; width: 20px; height: 20px; background: #8B7355; border-radius: 50%; transform: translateX(-50%); z-index: 2; border: 3px solid white;"></div>
+                        <div style="flex: 1; padding-left: 40px; text-align: left;" class="timeline-text-step2">
+                            <h3>Step 2: The "Aha!" Moment & Sketch</h3>
+                            <p>Inspired by candle soot art, we pivoted to the thrilling medium of fire and smoke. This conceptual sketch by Anirudha then brought our vision to life, defining the robot's physical form and its core interactive loop.</p>
+                        </div>
+                    </div>
+
+                    <!-- Timeline Item 3 -->
+                    <div class="timeline-item" style="display: flex; margin-bottom: 80px; position: relative;">
+                        <div style="flex: 1; padding-right: 40px; text-align: right;">
+                            <h3>Step 3: Digital Prototyping</h3>
+                            <p>Before building, we coded and simulated the logic for motors and sensors in TinkerCAD. This digital prototyping ensured our electronics and code for movement and interaction were sound before we ever touched physical hardware.</p>
+                        </div>
+                        <div style="position: absolute; left: 50%; top: 20px; width: 20px; height: 20px; background: #8B7355; border-radius: 50%; transform: translateX(-50%); z-index: 2; border: 3px solid white;"></div>
+                        <div style="flex: 1; padding-left: 40px;">
+                            <div class="small-images-row">
+                                <div class="research-image-container">
+                                    <img src="../assets/shy-guy/construction-shy-guy-1.jpg" alt="Construction 1" class="research-image-small clickable-image" onclick="openImageModal(this)">
+                                </div>
+                                <div class="research-image-container">
+                                    <img src="../assets/shy-guy/construction-shy-guy-3.jpg" alt="Construction 3" class="research-image-small clickable-image" onclick="openImageModal(this)">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Timeline Item 4 -->
+                    <div class="timeline-item" style="display: flex; margin-bottom: 80px; position: relative;">
+                        <div style="flex: 1; padding-right: 40px;">
+                            <div class="research-image-container">
+                                <img src="../assets/shy-guy/robot-shy-guy.jpg" alt="Final robot" class="research-image-small clickable-image" onclick="openImageModal(this)">
+                            </div>
+                        </div>
+                        <div style="position: absolute; left: 50%; top: 20px; width: 20px; height: 20px; background: #8B7355; border-radius: 50%; transform: translateX(-50%); z-index: 2; border: 3px solid white;"></div>
+                        <div style="flex: 1; padding-left: 40px; text-align: left;" class="timeline-text-step4">
+                            <h3>Step 4: Giving It Personality & Purpose</h3>
+                            <p>The concept of a robot that moves away when it senses motion gave it character. We named him 'Shy Guy,' a creature of code and candlelight programmed with one simple directive: create beautifully, but flee when approached.</p>
+                        </div>
+                    </div>
+
+                    <!-- Timeline Item 5 -->
+                    <div class="timeline-item" style="display: flex; margin-bottom: 40px; position: relative;">
+                        <div style="flex: 1; padding-right: 40px; text-align: right;">
+                            <h3>Step 5: Thus, 'Shy Guy' Was Born</h3>
+                            <p>Built for around ₹1500, Shy Guy was a clever example of making the most of what we had: Arduino in a Tupperware box, wooden wheels, and PVC pipes for the frame.</p>
+                        </div>
+                        <div style="position: absolute; left: 50%; top: 20px; width: 20px; height: 20px; background: #8B7355; border-radius: 50%; transform: translateX(-50%); z-index: 2; border: 3px solid white;"></div>
+                        <div style="flex: 1; padding-left: 40px;">
+                            <div class="small-images-row">
+                                <div class="research-image-container">
+                                    <img src="../assets/shy-guy/construction-shy-guy-4.png" alt="Construction 4" class="research-image-small clickable-image" onclick="openImageModal(this)">
+                                </div>
+                                <div class="research-image-container">
+                                    <img src="../assets/shy-guy/construction-shy-guy-6.jpg" alt="Construction 6" class="research-image-small clickable-image" onclick="openImageModal(this)">
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
+
+                <!-- Mobile Timeline Styles -->
+                <style>
+                    @media (max-width: 768px) {
+                        .timeline-container > div[style*="position: absolute"]:first-child {
+                            left: 20px !important;
+                            transform: translateX(-50%) !important;
+                        }
+                        .timeline-item > div[style*="position: absolute"] {
+                            left: 20px !important;
+                            transform: translateX(-50%) !important;
+                        }
+                        .timeline-item {
+                            flex-direction: column !important;
+                            padding-left: 50px !important;
+                        }
+                        .timeline-item > div[style*="flex: 1"] {
+                            padding-left: 0 !important;
+                            padding-right: 0 !important;
+                            text-align: left !important;
+                        }
+                        .timeline-item > div[style*="flex: 1"]:first-child {
+                            margin-bottom: 20px;
+                        }
+                        /* Steps 2 and 4: Text above image on mobile */
+                        .timeline-item:nth-child(3) {
+                            flex-direction: column !important;
+                        }
+                        .timeline-item:nth-child(3) > div:first-child {
+                            order: 2 !important;
+                        }
+                        .timeline-item:nth-child(3) .timeline-text-step2 {
+                            order: 1 !important;
+                            margin-bottom: 20px !important;
+                        }
+                        .timeline-item:nth-child(5) {
+                            flex-direction: column !important;
+                        }
+                        .timeline-item:nth-child(5) > div:first-child {
+                            order: 2 !important;
+                        }
+                        .timeline-item:nth-child(5) .timeline-text-step4 {
+                            order: 1 !important;
+                            margin-bottom: 20px !important;
+                        }
+                    }
+                </style>
+            </div>
+
+            <!-- The Interactive Experience -->
+            <div class="project-section">
+                <h2>The Magic of the Mirror</h2>
+                <p>We turned the painting experience into an installation. The canvas hung from the ceiling, and a salvaged mirror became the dance floor. This setup let viewers engage comfortably, watching the artistic process unfold through the reflection in the mirror.</p>
+                
+                <div class="small-images-row">
+                    <div class="research-image-container">
+                        <img src="../assets/shy-guy/installation-shy-guy-1.jpg" alt="Installation 1" class="research-image-small clickable-image" onclick="openImageModal(this)">
+                    </div>
+                    <div class="research-image-container">
+                        <img src="../assets/shy-guy/installation-shy-guy-2.jpg" alt="Installation 2" class="research-image-small clickable-image" onclick="openImageModal(this)">
+                    </div>
+                    <div class="research-image-container">
+                        <img src="../assets/shy-guy/installation-shy-guy-3.jpg" alt="Installation 3" class="research-image-small clickable-image" onclick="openImageModal(this)">
+                    </div>
                 </div>
+                
+                <div class="small-images-row">
+                    <div class="research-image-container">
+                        <img src="../assets/shy-guy/installation-shy-guy-4.jpg" alt="Installation 4" class="research-image-small clickable-image" onclick="openImageModal(this)">
+                    </div>
+                    <div class="research-image-container">
+                        <img src="../assets/shy-guy/installation-shy-guy-5.jpg" alt="Installation 5" class="research-image-small clickable-image" onclick="openImageModal(this)">
+                    </div>
+                </div>
+            </div>
+
+            <!-- The Final Installation -->
+            <div class="project-section">
+                <h2>The Collaborative Artwork</h2>
+                <p>Shy Guy shies away with fire. These shots capture the magic- the flicker of the candle, the trail of soot on the canvas, and the robot's elusive dance as it reacted to the audience's movements.</p>
+                
+                <div class="gallery-grid" style="grid-template-columns: repeat(4, 1fr); gap: 15px; margin-top: 30px;">
+                    <div class="research-image-container">
+                        <img src="../assets/shy-guy/at-work-shy-guy-1.png" alt="At work 1" class="research-image-small clickable-image" onclick="openImageModal(this)" style="height: 400px; object-fit: cover;">
+                    </div>
+                    <div class="research-image-container">
+                        <img src="../assets/shy-guy/at-work-shy-guy-2.jpg" alt="At work 2" class="research-image-small clickable-image" onclick="openImageModal(this)" style="height: 400px; object-fit: cover;">
+                    </div>
+                    <div class="research-image-container">
+                        <img src="../assets/shy-guy/at-work-shy-guy-3.jpg" alt="At work 3" class="research-image-small clickable-image" onclick="openImageModal(this)" style="height: 400px; object-fit: cover;">
+                    </div>
+                    <div class="research-image-container">
+                        <img src="../assets/shy-guy/at-work-shy-guy-4.jpg" alt="At work 4" class="research-image-small clickable-image" onclick="openImageModal(this)" style="height: 400px; object-fit: cover;">
+                    </div>
+                </div>
+
+                <!-- Final Paintings Gallery -->
+                <h3>The Soot Paintings</h3>
+                <div class="small-images-row">
+                    <div class="research-image-container">
+                        <img src="../assets/shy-guy/painting-shy-guy-1.jpg" alt="Final painting 1" class="research-image-small clickable-image" onclick="openImageModal(this)">
+                    </div>
+                    <div class="research-image-container">
+                        <img src="../assets/shy-guy/painting-shy-guy-2.jpg" alt="Final painting 2" class="research-image-small clickable-image" onclick="openImageModal(this)">
+                    </div>
+                </div>
+                
+                <p style="max-width: 600px; margin: 30px auto; text-align: center;">Shy Guy didn't paint for us, but with us. Its unpredictable movements, combined with human interaction, created truly unique, generative artworks.</p>
+            </div>
+
+            <!-- Code Documentation Section -->
+            <section class="project-section">
+                <h2>Learning from the Code</h2>
+                <div class="insight-content">
+                    <div class="insight-images">
+                        <img src="../assets/shy-guy/document-shy-guy.jpg" alt="Arduino code documentation" class="insight-photo clickable-image" onclick="openImageModal(this)">
+                    </div>
+                    <div class="key-insights" style="text-align: left;">
+                        <div class="insight-item">
+                            <span class="material-icons insight-icon">sensors</span>
+                            <p>Motion sensors detect human presence and trigger retreat behavior.</p>
+                        </div>
+                        <div class="insight-item">
+                            <span class="material-icons insight-icon">psychology</span>
+                            <p>Simple code creates complex, personality-driven interactions.</p>
+                        </div>
+                        <div class="insight-item">
+                            <span class="material-icons insight-icon">brush</span>
+                            <p>Programmed randomness ensures each artwork is unique.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Reflection & Recognition -->
+            <div class="project-section">
+                <h2>Learning Through Fire</h2>
+                
+                <!-- Key Learnings -->
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin: 40px 0;">
+                    <div style="display: flex; align-items: flex-start; gap: 15px;">
+                        <span class="material-icons" style="color: #8B7355; font-size: 32px; margin-top: 5px;">lightbulb</span>
+                        <div>
+                            <h4>Embrace Constraints</h4>
+                            <p>Limited budget and materials fueled greater creativity.</p>
+                        </div>
+                    </div>
+                    <div style="display: flex; align-items: flex-start; gap: 15px;">
+                        <span class="material-icons" style="color: #8B7355; font-size: 32px; margin-top: 5px;">code</span>
+                        <div>
+                            <h4>Prototype Everything</h4>
+                            <p>Digital simulations save countless hours of physical debugging.</p>
+                        </div>
+                    </div>
+                    <div style="display: flex; align-items: flex-start; gap: 15px;">
+                        <span class="material-icons" style="color: #8B7355; font-size: 32px; margin-top: 5px;">people</span>
+                        <div>
+                            <h4>Interaction is Key</h4>
+                            <p>The art wasn't the painting alone, but the entire human-robot performance.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Recognition & Impact Section -->
+                <section class="project-section reflection-section">
+                    <h2>Recognition & Impact</h2>
+                    <div class="reflection-content">
+                        <blockquote class="reflection-quote">
+                            This work was showcased at the 'Artsy Bots: Generative Art and Collaborative Performances' exhibit, Indian Institute of Science, Bengaluru. The robot image was also used in Srishti Manipal's admissions site, highlighting its success as a fusion of technology, art, and interactive design.
+                            <div class="research-image-container" style="margin-top: 30px;">
+                                <img src="../assets/shy-guy/shy-guy-srishti-website.jpg" alt="Srishti website feature" class="research-image-small clickable-image" onclick="openImageModal(this)">
+                            </div>
+                        </blockquote>
+                    </div>
+                </section>
+            </div>
+
+            <!-- Add video play functionality -->
+            <script>
+                function playVideo() {
+                    const thumbnail = document.getElementById('videoThumbnail');
+                    const video = document.getElementById('shyGuyVideo');
+                    const playButton = document.querySelector('.video-container > div');
+                    
+                    thumbnail.style.display = 'none';
+                    playButton.style.display = 'none';
+                    video.style.display = 'block';
+                    video.play();
+                }
+            </script>
         </main>
     </div>
 
@@ -129,7 +457,37 @@ if (shellLabel) {
         lastScrollTop = scrollTop <= 0 ? 0 : scrollTop; // For Mobile or negative scrolling
     });
 }
+
+            // Image modal functions
+            function openImageModal(imgElement) {
+                const modal = document.getElementById('imageModal');
+                const modalImg = document.getElementById('modalImage');
+                modal.style.display = 'flex';
+                modalImg.src = imgElement.src;
+                modalImg.alt = imgElement.alt;
+                document.body.style.overflow = 'hidden'; // Prevent background scrolling
+            }
+
+            function closeImageModal() {
+                const modal = document.getElementById('imageModal');
+                modal.style.display = 'none';
+                document.body.style.overflow = 'auto'; // Restore scrolling
+            }
+
+            // Close modal when pressing Escape key
+            document.addEventListener('keydown', function(event) {
+                if (event.key === 'Escape') {
+                    closeImageModal();
+                }
+            });
 </script>
+
+        <!-- Image Modal -->
+        <div id="imageModal" class="image-modal" onclick="closeImageModal()">
+            <span class="modal-close" onclick="closeImageModal()">&times;</span>
+            <img id="modalImage" class="modal-image" src="" alt="">
+        </div>
+
     <script src="../script.js"></script>
 </body>
 </html>
