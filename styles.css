@@ -1502,3 +1502,72 @@ p {
     40% { filter: blur(2.2px) brightness(2.2); transform: scale(1.12); }
     100% { filter: blur(0.6px) brightness(1); transform: scale(0.9); }
 }
+
+/* Project Metadata Styles - Final Working Version */
+
+/* Skills tags - centered, brown background */
+.metadata-skills-container {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.skill-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    justify-content: center;
+}
+
+.skill-tag {
+    background: #8B7355;
+    color: white;
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 500;
+    border: 1px solid #8B7355;
+}
+
+/* Timeline text - dark color (#303030), centered */
+.metadata-title-container {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.project-subtitle {
+    color: #303030;
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+/* Team card - content width, centered */
+.metadata-team-container {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.team-card {
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 12px;
+    padding: 20px 24px;
+    box-shadow: 0 6px 24px rgba(0, 0, 0, 0.12);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    display: inline-block;
+    width: auto;
+}
+
+.individual-project {
+    color: #303030;
+    font-size: 0.95rem;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.individual-project .material-icons {
+    font-size: 20px;
+    color: #8B7355;
+}
