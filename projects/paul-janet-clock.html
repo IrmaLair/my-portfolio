@@ -21,10 +21,26 @@
         </a>
     </div>
 
+        <!-- Mobile spacer to prevent overlap -->
+    <div class="mobile-spacer" style="height: 65px; width: 100%; display: none;"></div>
+    
+    <style>
+    @media (max-width: 768px) {
+        .mobile-spacer {
+            display: block !important;
+        }
+    }
+    @media (max-width: 480px) {
+        .mobile-spacer {
+            height: 55px !important;
+        }
+    }
+    </style>
+
     <div class="container">
                 <!-- Project Metadata -->
                 <!-- Container 1: Skills chips (no bg) - ABOVE TITLE -->
-        <div class="metadata-skills-container">
+        <div class="metadata-skills-container" style="margin-top: 20px !important;">
             <div class="skill-tags">
                 <span class="skill-tag">Creative Coding</span>
                 <span class="skill-tag">Animation</span>
@@ -56,6 +72,7 @@
     <script src="../script.js"></script>
 </body>
 </html>
+
 
 
 
