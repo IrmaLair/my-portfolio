@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Nidhi Surekha — Design Portfolio</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="styles.css?v=copyright-weight-fix-999">
 </head>
 <body class="homepage">
     <!-- Animated Waves -->
@@ -39,13 +39,6 @@
     <!-- Canvas layer for cursor-following footprints -->
     <canvas id="footprint-canvas" aria-hidden="true"></canvas>
 
-    <!-- Resume Button -->
-    <div class="resume-button-container">
-        <a href="https://drive.google.com/uc?export=download&id=1iXW18WvcdEFuIPEd-yZXsfi9SV6BbPjb" target="_blank" rel="noopener noreferrer" class="resume-btn" aria-label="Download Resume">
-            Get My Resume
-        </a>
-    </div>
-
     <!-- Sand Texture Overlay (above waves, below content) - Only shown after first visit -->
     <div class="sand-overlay" aria-hidden="true" id="sand-overlay"></div>
 
@@ -62,7 +55,14 @@
     </div>
 
     <!-- Main Content -->
-    <div class="container">
+    <div class="container" style="width: calc(100vw - 20px) !important; max-width: none !important;">
+        <!-- Resume Button -->
+        <div class="resume-button-container" style="position: absolute !important; top: 20px; right: 20px; z-index: 1000; pointer-events: none;">
+            <a href="https://drive.google.com/uc?export=download&id=1iXW18WvcdEFuIPEd-yZXsfi9SV6BbPjb" target="_blank" rel="noopener noreferrer" class="resume-btn" aria-label="Download Resume">
+                Get My Resume
+            </a>
+        </div>
+        
         <main class="hero-content">
             <h1 class="hero-title">Nidhi Surekha</h1>
             <p class="hero-subtitle">Experience Designer & Creative Technologist</p>
@@ -92,7 +92,7 @@
         </main>
     </div>
 
-    <p class="copyright">&copy; 2025 Nidhi Surekha. All rights reserved.</p>
+    <p class="copyright" style="color: #303030 !important; font-weight: 100 !important; font-family: inherit !important;">&copy; 2025 Nidhi Surekha. All rights reserved.</p>
 
     <script src="script.js"></script>
 </body>
