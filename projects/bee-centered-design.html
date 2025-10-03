@@ -233,6 +233,24 @@
                     closeImageModal();
                 }
             });
+
+            // Hide shell label when scrolling
+            let lastScrollTop = 0;
+            const shellLabel = document.querySelector('.shell-label');
+            
+            window.addEventListener('scroll', function() {
+                const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+                
+                if (scrollTop > 50) { // Start hiding after 50px of scroll
+                    shellLabel.style.opacity = '0';
+                    shellLabel.style.transform = 'translateY(-10px)';
+                } else {
+                    shellLabel.style.opacity = '1';
+                    shellLabel.style.transform = 'translateY(0)';
+                }
+                
+                lastScrollTop = scrollTop <= 0 ? 0 : scrollTop; // For Mobile or negative scrolling
+            });
             </script>
 
             <!-- The Solution Section -->
