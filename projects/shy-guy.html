@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Shy Guy - Nidhi's Portfolio</title>
-    <link rel="stylesheet" href="../styles.css?v=force-1003170959">
+    <link rel="stylesheet" href="../styles.css?v=debug-spacer-1003180347918">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 <body>
@@ -21,10 +21,26 @@
         </a>
     </div>
 
+    <!-- Mobile spacer to prevent overlap -->
+    <div class="mobile-spacer" style="height: 65px; width: 100%; display: none;"></div>
+    
+    <style>
+    @media (max-width: 768px) {
+        .mobile-spacer {
+            display: block !important;
+        }
+    }
+    @media (max-width: 480px) {
+        .mobile-spacer {
+            height: 55px !important;
+        }
+    }
+    </style>
+
     <div class="container">
                 <!-- Project Metadata -->
                 <!-- Container 1: Skills chips (no bg) - ABOVE TITLE -->
-        <div class="metadata-skills-container">
+        <div class="metadata-skills-container" style="margin-top: 20px !important;">
             <div class="skill-tags">
                 <span class="skill-tag">Tangible Computing</span>
                 <span class="skill-tag">Creative Coding</span>
@@ -86,6 +102,12 @@
     <script src="../script.js"></script>
 </body>
 </html>
+
+
+
+
+
+
 
 
 
