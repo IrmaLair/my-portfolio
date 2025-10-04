@@ -6,6 +6,7 @@
     <title>Weather Moodwheel - Nidhi's Portfolio</title>
     <link rel="stylesheet" href="../styles.css?v=mobile-title-1003182043489">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <script type="module" src="https://unpkg.com/@splinetool/viewer@1.10.74/build/spline-viewer.js"></script>
 </head>
 <body>
         <!-- Splash Screen -->
@@ -45,6 +46,32 @@
             line-height: 1.1 !important;
         }
     }
+
+    /* Responsive Spline viewer */
+    @media (max-width: 768px) {
+        .spline-container {
+            max-width: 90% !important;
+        }
+        .spline-container spline-viewer {
+            transform: scale(0.4) !important;
+            transform-origin: center !important;
+            width: 250% !important; /* 100% / 0.4 */
+            height: 250% !important; /* 100% / 0.4 */
+            margin: -42% 0 0 -75% !important; /* Updated top margin */
+        }
+    }
+    @media (max-width: 480px) {
+        .spline-container {
+            max-width: 95% !important;
+        }
+        .spline-container spline-viewer {
+            transform: scale(0.3) !important;
+            transform-origin: center !important;
+            width: 333.33% !important; /* 100% / 0.3 */
+            height: 333.33% !important; /* 100% / 0.3 */
+            margin: -21% 0 0 -116.67% !important; /* Updated top margin */
+        }
+    }
     </style>
 
     <div class="container">
@@ -78,6 +105,15 @@
                 </div>
             </div>
         </main>
+    </div>
+
+    <!-- Spline 3D Model Section -->
+    <section class="project-section" style="margin-top: 40px; padding: 0 20px;">
+        <div class="spline-container" style="width: 100%; max-width: 1200px; aspect-ratio: 16/9; margin: 0 auto; border-radius: 12px; overflow: hidden; box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);">
+            <spline-viewer url="https://prod.spline.design/TRR0xjOkjjWUWkGp/scene.splinecode"></spline-viewer>
+        </div>
+        <p style="text-align: center; margin-top: 20px; color: #8B7355; font-style: italic;">Click any of the weather icon to see how our moods vary depending on the season</p>
+    </section>
     </div>
 
     <script>
