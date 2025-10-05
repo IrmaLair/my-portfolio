@@ -34,6 +34,28 @@
             font-size: 2.5rem !important;
             line-height: 1.1 !important;
         }
+        /* Mobile two-column layout */
+        div[style*="display: grid; grid-template-columns: 1fr 1fr"] {
+            grid-template-columns: 1fr !important;
+            gap: 20px !important;
+        }
+        /* Mobile flex layouts */
+        div[style*="display: flex"][style*="flex-wrap: wrap"] {
+            flex-direction: column !important;
+        }
+        /* Mobile technical tools grid */
+        div[style*="grid-template-columns: repeat(auto-fit, minmax(300px, 1fr))"] {
+            grid-template-columns: 1fr !important;
+        }
+        /* Mobile screenshot container */
+        div[style*="display: flex; gap: 20px; justify-content: center"] {
+            flex-direction: column !important;
+            align-items: center !important;
+        }
+        div[style*="display: flex; gap: 20px; justify-content: center"] img {
+            max-width: 100% !important;
+            height: auto !important;
+        }
     }
     @media (max-width: 480px) {
         .mobile-spacer {
@@ -89,10 +111,160 @@
                 </div>
                 <p style="text-align: center; margin-top: 20px; color: #8B7355; font-style: italic;">Displaced Development explores the sad realities of tribal communities living in forests through satire</p>
             </section>
+
+            <!-- The Story in Watercolor and Sound Section -->
+            <section class="project-section">
+                <h2>The Story in Watercolor and Sound</h2>
+                <p>This motion graphics piece uses the soft, handmade charm of watercolor puppetry to explore a harsh reality: the displacement of India's tribal (Adivasi) communities from their ancestral forests for industrial development. Narratives are expressed through symbolic imagery, like a runaway marble representing the irreversible loss of leaving home.</p>
+                
+                <!-- Screenshots from the video -->
+                <div style="display: flex; gap: 20px; justify-content: center; margin: 30px 0; flex-wrap: wrap;">
+                    <img src="../assets/tribal-displacement/tribal-ss1.png" alt="Screenshot from Displaced Development video" style="height: 250px; object-fit: cover; border-radius: 8px; cursor: pointer;" class="clickable-image" onclick="openImageModal(this)">
+                    <img src="../assets/tribal-displacement/tribal-ss2.png" alt="Screenshot from Displaced Development video" style="height: 250px; object-fit: cover; border-radius: 8px; cursor: pointer;" class="clickable-image" onclick="openImageModal(this)">
+                </div>
+            </section>
+
+            <!-- The Beauty & The Brutality Section -->
+            <section class="project-section">
+                <h2>The Beauty & The Brutality</h2>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-top: 30px;">
+                    <!-- Column 1: Visuals -->
+                    <div style="background: rgba(139, 115, 85, 0.08); padding: 30px; border-radius: 12px;">
+                        <div style="display: flex; align-items: flex-start; gap: 15px; margin-bottom: 20px;">
+                            <span style="font-size: 2.5rem; flex-shrink: 0;">🖼️</span>
+                            <div>
+                                <h3 style="color: #8B7355; margin-bottom: 15px;">The Visuals</h3>
+                                <p>The visuals use the deliberate 'flaws' of handmade art clash with the polished, cold narrative of development, creating a visually jarring experience.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Column 2: Sound -->
+                    <div style="background: rgba(139, 115, 85, 0.08); padding: 30px; border-radius: 12px;">
+                        <div style="display: flex; align-items: flex-start; gap: 15px; margin-bottom: 20px;">
+                            <span style="font-size: 2.5rem; flex-shrink: 0;">🎶</span>
+                            <div>
+                                <h3 style="color: #8B7355; margin-bottom: 15px;">The Sound</h3>
+                                <p>The soundscape creates conflict: serene forest sounds and a sarcastic narration that's disrupted by harsh city noise, ending with authentic Irula tribal music recorded in Bandipur forest.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- A Voice from Bandipur Section -->
+            <section class="project-section">
+                <h2>A Voice from Bandipur</h2>
+                
+                <div style="margin: 30px 0;">
+                    <blockquote style="background: rgba(139, 115, 85, 0.08); padding: 30px; border-left: 4px solid #8B7355; margin: 20px 0; font-style: italic; border-radius: 8px;">
+                        <p>A conversation in 2019 with an Irula tribe member revealed their key pain point was being pushed from forests and forced to build their homes again. There was a lack of modern housing- pakka houses that 'don't bring in the rain.'</p>
+                    </blockquote>
+                    
+                    <div style="text-align: center; margin: 30px 0;">
+                        <img src="../assets/tribal-displacement/tribal-community.png" alt="Tribal community in Bandipur" style="width: 100%; max-width: 600px; border-radius: 8px; cursor: pointer;" class="clickable-image" onclick="openImageModal(this)">
+                    </div>
+                    
+                    <div style="text-align: center; margin: 30px 0;">
+                        <img src="../assets/tribal-displacement/bandipur-forest-map.png" alt="Bandipur forest map showing tribal areas" style="width: 100%; max-width: 400px; border-radius: 8px; cursor: pointer;" class="clickable-image" onclick="openImageModal(this)">
+                        <p style="text-align: center; margin-top: 10px; font-style: italic; color: #8B7355; font-size: 0.9rem;">Bandipur forest area where Irula communities reside</p>
+                    </div>
+                </div>
+
+                <!-- Tribal singing video -->
+                <div style="text-align: center; margin: 40px 0;">
+                    <h3 style="color: #8B7355; margin-bottom: 20px;">Authentic Irula Tribal Music</h3>
+                    <video controls style="width: 100%; max-width: 600px; border-radius: 8px;">
+                        <source src="../assets/tribal-displacement/tribal-singing-video.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <p style="margin-top: 15px; font-style: italic; color: #8B7355;">Traditional Irula music recorded in Bandipur forest, featured in the motion graphics piece</p>
+                </div>
+            </section>
+
+            <!-- Technical Execution Section -->
+            <section class="project-section">
+                <h2>Technical Execution</h2>
+                
+                <!-- Technical Tools with Images -->
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin-top: 40px;">
+                    <div style="background: rgba(139, 115, 85, 0.08); padding: 25px; border-radius: 12px; text-align: center;">
+                        <img src="../assets/tribal-displacement/tribal-adobe-aftereffects.png" alt="Adobe After Effects workspace" style="width: 100%; border-radius: 8px; margin-bottom: 15px; cursor: pointer;" class="clickable-image" onclick="openImageModal(this)">
+                        <div style="display: flex; align-items: center; justify-content: center; gap: 10px;">
+                            <span style="font-weight: 600; color: #8B7355;">Adobe After Effects</span>
+                            <span style="color: #303030;">(Motion Graphics)</span>
+                        </div>
+                    </div>
+                    
+                    <div style="background: rgba(139, 115, 85, 0.08); padding: 25px; border-radius: 12px; text-align: center;">
+                        <img src="../assets/tribal-displacement/tribal-cakewalk.png" alt="Cakewalk audio editing interface" style="width: 100%; border-radius: 8px; margin-bottom: 15px; cursor: pointer;" class="clickable-image" onclick="openImageModal(this)">
+                        <div style="display: flex; align-items: center; justify-content: center; gap: 10px;">
+                            <span style="font-weight: 600; color: #8B7355;">Cakewalk</span>
+                            <span style="color: #303030;">(Sound Editing)</span>
+                        </div>
+                    </div>
+                    
+                    <div style="background: rgba(139, 115, 85, 0.08); padding: 25px; border-radius: 12px; text-align: center;">
+                        <img src="../assets/tribal-displacement/recording studio.png" alt="MITID Recording Studio setup" style="width: 100%; border-radius: 8px; margin-bottom: 15px; cursor: pointer;" class="clickable-image" onclick="openImageModal(this)">
+                        <div style="display: flex; align-items: center; justify-content: center; gap: 10px;">
+                            <span style="font-weight: 600; color: #8B7355;">MITID Recording Studio</span>
+                            <span style="color: #303030;">(Narration)</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Reflection Section -->
+            <section class="project-section">
+                <h2>The True Cost of Progress</h2>
+                <div class="reflection-content" style="margin-top: 30px;">
+                    <blockquote class="reflection-quote">
+                        <p>My conversation with the Irula tribe members revealed the true cost of "development": the elders are confined to the forest's edges, while the youth are pushed toward distant cities, each generation fractured in its search for a place to call home.</p>
+                    </blockquote>
+                </div>
+            </section>
         </main>
     </div>
 
+    <!-- Image Modal -->
+    <div id="imageModal" style="display: none; position: fixed; z-index: 10000; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.9); justify-content: center; align-items: center;" onclick="closeImageModal()">
+        <span style="position: absolute; top: 20px; right: 30px; color: white; font-size: 40px; font-weight: bold; cursor: pointer; z-index: 10001;" onclick="closeImageModal()">&times;</span>
+        <img id="modalImage" src="" alt="" style="max-width: 90%; max-height: 90%; object-fit: contain;">
+    </div>
+
     <script>
+function openImageModal(imgElement) {
+    const modal = document.getElementById('imageModal');
+    const modalImage = document.getElementById('modalImage');
+    
+    modal.style.display = 'flex';
+    modalImage.src = imgElement.src;
+    modalImage.alt = imgElement.alt;
+    
+    // Prevent body scroll when modal is open
+    document.body.style.overflow = 'hidden';
+}
+
+function closeImageModal() {
+    const modal = document.getElementById('imageModal');
+    modal.style.display = 'none';
+    
+    // Restore body scroll
+    document.body.style.overflow = 'auto';
+}
+
+// Close modal with Escape key
+document.addEventListener('keydown', function(event) {
+    if (event.key === 'Escape') {
+        closeImageModal();
+    }
+});
+
+// Prevent modal from closing when clicking on the image
+document.getElementById('modalImage').addEventListener('click', function(event) {
+    event.stopPropagation();
+});
+
 // Hide shell label when scrolling
 let lastScrollTop = 0;
 const shellLabel = document.querySelector('.shell-label');
@@ -112,7 +284,7 @@ if (shellLabel) {
         lastScrollTop = scrollTop <= 0 ? 0 : scrollTop; // For Mobile or negative scrolling
     });
 }
-</script>
+    </script>
     <script src="../script.js"></script>
 </body>
 </html>
