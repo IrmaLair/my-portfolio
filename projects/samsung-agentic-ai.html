@@ -34,6 +34,77 @@
             font-size: 2.5rem !important;
             line-height: 1.1 !important;
         }
+        /* Mobile PDF adjustments */
+        .pdf-header {
+            flex-direction: column !important;
+            align-items: flex-start !important;
+            gap: 20px !important;
+        }
+        .pdf-header > div {
+            width: 100% !important;
+        }
+        .pdf-header > div:last-child {
+            display: flex !important;
+            justify-content: center !important;
+        }
+        iframe {
+            height: 350px !important;
+        }
+        .download-btn {
+            font-size: 0.8rem !important;
+            padding: 6px 10px !important;
+        }
+        /* Show zoom controls on mobile */
+        .mobile-zoom-controls {
+            display: flex !important;
+        }
+        /* Mobile PDF container height fix */
+        .pdf-display {
+            height: auto !important;
+            min-height: auto !important;
+        }
+        .pdf-container .pdf-display {
+            padding: 10px !important;
+        }
+        /* Mobile grid adjustments */
+        div[style*="grid-template-columns: repeat(auto-fit, minmax(250px, 1fr))"] {
+            grid-template-columns: 1fr !important;
+            gap: 20px !important;
+        }
+        div[style*="grid-template-columns: repeat(auto-fit, minmax(200px, 1fr))"] {
+            grid-template-columns: 1fr !important;
+            gap: 20px !important;
+        }
+        div[style*="grid-template-columns: repeat(auto-fit, minmax(300px, 1fr))"] {
+            grid-template-columns: 1fr !important;
+            gap: 20px !important;
+        }
+    }
+    @media (max-width: 480px) {
+        .mobile-spacer {
+            height: 55px !important;
+        }
+        /* Smaller mobile title sizing */
+        header h1, .container header h1 {
+            font-size: 2rem !important;
+            line-height: 1.1 !important;
+        }
+        iframe {
+            height: 300px !important;
+        }
+    }
+    </style>
+    
+    <style>
+    @media (max-width: 768px) {
+        .mobile-spacer {
+            display: block !important;
+        }
+        /* Mobile title sizing */
+        header h1, .container header h1 {
+            font-size: 2.5rem !important;
+            line-height: 1.1 !important;
+        }
     }
     @media (max-width: 480px) {
         .mobile-spacer {
@@ -68,7 +139,7 @@
                 <div class="project-subtitle">Jul, 2025 · 5 Weeks</div>
             </div>
             
-                                    <!-- Container 3: Team card (white overlay bg) -->
+            <!-- Container 3: Team card (white overlay bg) -->
             <div class="metadata-team-container">
                 <div class="team-card">
                     <div style="text-align: left !important;">
@@ -78,28 +149,240 @@
                         </div>
                         <div class="collaborators-list" style="text-align: left !important; line-height: 1.3 !important;">
                             <div style="margin-bottom: 2px !important; text-align: left !important; font-size: 0.9rem !important;">
-<span style="font-weight: 500 !important; color: #303030 !important;">Himanshi Puri</span>
+                                <span style="font-weight: 500 !important; color: #303030 !important;">Himanshi Puri</span>
                             </div>
                             <div style="margin-bottom: 2px !important; text-align: left !important; font-size: 0.9rem !important;">
-<span style="font-weight: 500 !important; color: #303030 !important;">Nidhi Surekha</span>
+                                <span style="font-weight: 500 !important; color: #303030 !important;">Nidhi Surekha</span>
                             </div>
                             <div style="margin-bottom: 2px !important; text-align: left !important; font-size: 0.9rem !important;">
-<span style="font-weight: 500 !important; color: #303030 !important;">Rachit Bhatnagar</span>
+                                <span style="font-weight: 500 !important; color: #303030 !important;">Rachit Bhatnagar</span>
                             </div>
                             <div style="margin-bottom: 2px !important; text-align: left !important; font-size: 0.9rem !important;">
-<span style="font-weight: 500 !important; color: #303030 !important;">Akash Rawat</span>
+                                <span style="font-weight: 500 !important; color: #303030 !important;">Akash Rawat</span>
                             </div>
                         </div>
                     </div>
                 </div>
+            </div>
+
+            <!-- Hero Video Section -->
+            <section class="project-section">
+                <div class="video-section">
+                    <div class="video-container">
+                        <video controls style="width: 100%; max-width: 1200px; height: auto; border-radius: 8px; margin: 0 auto; display: block;">
+                            <source src="../assets/samsung-agentic-ai/samsung-ai-agent-skye.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
                     </div>
                 </div>
+                <p style="text-align: center; margin-top: 20px; color: #8B7355; font-style: italic;">A context-aware co-pilot that transforms airport navigation through multimodal interaction.</p>
+            </section>
+
+            <!-- The Empathetic XR Agent Section -->
+            <section class="project-section">
+                <h2>The Empathetic XR Agent for Travel</h2>
+                <p>Skye is an agentic AI for XR platform that uses conversational AI and context-awareness to guide travelers seamlessly for transport, reducing stress and cognitive load.</p>
+            </section>
+
+            <!-- Reimagining Airport Mobility Section -->
+            <section class="project-section">
+                <h2>Reimagining Airport Mobility</h2>
+                <p>Our brief was to Design user-agent interactions for a futuristic and ubiquitous agent in an XR device. We narrowed down our use case to the modern air travel which can be complex and stressful.</p>
+                
+                <!-- PDF Documentation -->
+                <div class="pdf-container" style="background: rgba(139, 115, 85, 0.08); border-radius: 12px; padding: 30px; margin: 30px 0;">
+                    <div class="pdf-header" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; flex-wrap: wrap; gap: 15px;">
+                        <div class="pdf-title">
+                            <h3 style="color: #8B7355; margin: 0;">Complete Documentation</h3>
+                            <p style="margin: 5px 0 0 0; color: #303030; font-size: 0.9rem;">Comprehensive design process and interaction guidelines</p>
+                        </div>
+                        <div style="display: flex; gap: 10px; align-items: center;">
+                            <a href="../assets/samsung-agentic-ai/samsung-agentic-ai.pdf" download class="download-btn" style="background: rgba(139, 115, 85, 0.2); color: #8B7355; border: 1px solid #8B7355; padding: 8px 12px; border-radius: 6px; text-decoration: none; display: flex; align-items: center; gap: 5px; font-size: 0.9rem;">
+                                <span class="material-icons" style="font-size: 18px;">download</span>
+                                Download PDF
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <!-- PDF Display -->
+                    <div class="pdf-display" style="border-radius: 8px; padding: 20px; text-align: center;">
+                        <!-- Mobile Zoom Controls -->
+                        <div class="mobile-zoom-controls" style="display: none; margin-bottom: 15px; gap: 10px; justify-content: center; align-items: center;">
+                            <button onclick="zoomOut()" style="background: #8B7355; color: white; border: none; padding: 6px 10px; border-radius: 4px; cursor: pointer; font-size: 0.8rem;">
+                                <span class="material-icons" style="font-size: 16px;">zoom_out</span>
+                            </button>
+                            <span id="zoomLevel" style="color: #8B7355; font-size: 0.8rem; min-width: 50px; text-align: center;">75%</span>
+                            <button onclick="zoomIn()" style="background: #8B7355; color: white; border: none; padding: 6px 10px; border-radius: 4px; cursor: pointer; font-size: 0.8rem;">
+                                <span class="material-icons" style="font-size: 16px;">zoom_in</span>
+                            </button>
+                            <button onclick="resetZoom()" style="background: rgba(139, 115, 85, 0.2); color: #8B7355; border: 1px solid #8B7355; padding: 6px 10px; border-radius: 4px; cursor: pointer; font-size: 0.8rem;">
+                                Reset
+                            </button>
+                        </div>
+                        <iframe id="pdfViewer" src="../assets/samsung-agentic-ai/samsung-agentic-ai.pdf#view=FitH&zoom=75" style="width: 100%; height: 700px; border: none; border-radius: 4px;" title="Samsung Agentic AI Documentation"></iframe>
                     </div>
                 </div>
+            </section>
+
+            <!-- Multimodal & Agentic AI Section -->
+            <section class="project-section">
+                <h2>Multimodal & Agentic AI</h2>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin-top: 30px;">
+                    <div style="background: rgba(139, 115, 85, 0.08); padding: 30px; border-radius: 12px;">
+                        <h4 style="color: #8B7355; margin-bottom: 15px; font-size: 1.2rem;">Seamless Interaction</h4>
+                        <p style="color: #303030; margin-bottom: 20px; line-height: 1.6;">Skye understands voice, gaze, gestures, and environmental context, allowing for natural, human-like communication without overwhelming the user.</p>
+                        <div style="display: flex; flex-wrap: wrap; gap: 15px; justify-content: center;">
+                            <div style="display: flex; align-items: center; gap: 8px; background: rgba(139, 115, 85, 0.2); padding: 8px 12px; border-radius: 20px;">
+                                <span style="font-size: 1.2rem;">👀</span>
+                                <span style="color: #8B7355; font-size: 0.9rem; font-weight: 500;">Gaze</span>
+                            </div>
+                            <div style="display: flex; align-items: center; gap: 8px; background: rgba(139, 115, 85, 0.2); padding: 8px 12px; border-radius: 20px;">
+                                <span style="font-size: 1.2rem;">👋</span>
+                                <span style="color: #8B7355; font-size: 0.9rem; font-weight: 500;">Gesture</span>
+                            </div>
+                            <div style="display: flex; align-items: center; gap: 8px; background: rgba(139, 115, 85, 0.2); padding: 8px 12px; border-radius: 20px;">
+                                <span style="font-size: 1.2rem;">🗣️</span>
+                                <span style="color: #8B7355; font-size: 0.9rem; font-weight: 500;">Voice</span>
+                            </div>
+                            <div style="display: flex; align-items: center; gap: 8px; background: rgba(139, 115, 85, 0.2); padding: 8px 12px; border-radius: 20px;">
+                                <span style="font-size: 1.2rem;">🏢</span>
+                                <span style="color: #8B7355; font-size: 0.9rem; font-weight: 500;">Context</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div style="background: rgba(139, 115, 85, 0.08); padding: 30px; border-radius: 12px;">
+                        <h4 style="color: #8B7355; margin-bottom: 15px; font-size: 1.2rem;">Intelligent Action</h4>
+                        <p style="color: #303030; margin: 0; line-height: 1.6;">A modular system of specialized AI agents (for navigation, scheduling, etc.) works collaboratively to anticipate needs and act proactively on the user's behalf.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Skye in Action Section -->
+            <section class="project-section">
+                <h2>Skye in Action</h2>
+                
+                <!-- Feature 1 -->
+                <div style="background: rgba(139, 115, 85, 0.08); padding: 30px; border-radius: 12px; margin: 30px 0;">
+                    <h3 style="color: #8B7355; margin-bottom: 15px;">Proactive Navigation</h3>
+                    <p style="color: #303030; margin: 0; line-height: 1.6;">Upon landing, Skye automatically provides real-time wayfinding to baggage claim and exits, anchored to your environment for intuitive guidance.</p>
+                </div>
+                
+                <!-- Feature 2 -->
+                <div style="background: rgba(139, 115, 85, 0.08); padding: 30px; border-radius: 12px; margin: 30px 0;">
+                    <h3 style="color: #8B7355; margin-bottom: 15px;">The Agentic Camera</h3>
+                    <p style="color: #303030; margin: 0; line-height: 1.6;">Senses when you want to capture a moment. It auto-frames, stabilizes, and prepares the media for easy sharing, all with minimal input.</p>
+                </div>
+                
+                <!-- Feature 3 -->
+                <div style="background: rgba(139, 115, 85, 0.08); padding: 30px; border-radius: 12px; margin: 30px 0;">
+                    <h3 style="color: #8B7355; margin-bottom: 15px;">Frictionless Booking</h3>
+                    <p style="color: #303030; margin: 0; line-height: 1.6;">When you need a ride, Skye surfaces vetted options and handles the booking within the XR environment, reducing decision fatigue.</p>
+                </div>
+            </section>
+
+            <!-- Principles of Calm Technology Section -->
+            <section class="project-section">
+                <h2>Principles of Calm Technology</h2>
+                <p style="margin-bottom: 30px;">The UI is designed to respect human attention. It remains passive until needed, uses progressive disclosure to avoid overload, and speaks with the tone of a reliable travel companion, not a machine.</p>
+                
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px;">
+                    <div style="background: rgba(139, 115, 85, 0.08); padding: 20px; border-radius: 12px; text-align: center;">
+                        <span style="font-size: 2.5rem; display: block; margin-bottom: 10px;">🧠</span>
+                        <h4 style="color: #8B7355; margin-bottom: 8px; font-size: 1rem;">Low Cognitive Load</h4>
+                    </div>
+                    <div style="background: rgba(139, 115, 85, 0.08); padding: 20px; border-radius: 12px; text-align: center;">
+                        <span style="font-size: 2.5rem; display: block; margin-bottom: 10px;">🔊</span>
+                        <h4 style="color: #8B7355; margin-bottom: 8px; font-size: 1rem;">Proactive, Not Intrusive</h4>
+                    </div>
+                    <div style="background: rgba(139, 115, 85, 0.08); padding: 20px; border-radius: 12px; text-align: center;">
+                        <span style="font-size: 2.5rem; display: block; margin-bottom: 10px;">♿</span>
+                        <h4 style="color: #8B7355; margin-bottom: 8px; font-size: 1rem;">Accessible by Design</h4>
+                    </div>
+                    <div style="background: rgba(139, 115, 85, 0.08); padding: 20px; border-radius: 12px; text-align: center;">
+                        <span style="font-size: 2.5rem; display: block; margin-bottom: 10px;">🤖</span>
+                        <h4 style="color: #8B7355; margin-bottom: 8px; font-size: 1rem;">Collaborative Tone</h4>
+                    </div>
+                </div>
+            </section>
+
+            <!-- The Future is Agentic Section -->
+            <section class="project-section">
+                <h2>The Future is Agentic</h2>
+                <div class="reflection-content" style="margin-top: 30px;">
+                    <blockquote class="reflection-quote">
+                        <p style="margin: 0;">This project was a deep dive into designing for the next paradigm of Human-Computer Interaction. We moved beyond automating single tasks to designing a collaborative process between human and agent, creating a system that is truly greater than the sum of its parts.</p>
+                    </blockquote>
+                </div>
+            </section>
         </main>
     </div>
 
     <script>
+// PDF Zoom functionality
+let currentZoom = 100; // Start with 100% zoom for mobile
+const minZoom = 50;
+const maxZoom = 150;
+const zoomStep = 25;
+
+function updatePDFZoom() {
+    const pdfViewer = document.getElementById('pdfViewer');
+    const zoomLevel = document.getElementById('zoomLevel');
+    const pdfContainer = pdfViewer.parentElement;
+    
+    // Update zoom level display
+    zoomLevel.textContent = `${currentZoom}%`;
+    
+    // Apply CSS transform for reliable scaling
+    const scale = currentZoom / 100;
+    pdfViewer.style.transform = `scale(${scale})`;
+    pdfViewer.style.transformOrigin = 'top center';
+    
+    // Adjust container height based on screen size
+    const isMobile = window.innerWidth <= 768;
+    const isSmallMobile = window.innerWidth <= 480;
+    
+    if (isSmallMobile) {
+        // Small mobile: fixed height regardless of zoom
+        pdfContainer.style.height = 'auto';
+    } else if (isMobile) {
+        // Tablet: fixed height regardless of zoom  
+        pdfContainer.style.height = 'auto';
+    } else {
+        // Desktop: dynamic height based on zoom
+        const originalHeight = 700;
+        const scaledHeight = originalHeight * scale;
+        pdfContainer.style.height = `${scaledHeight + 40}px`; // +40 for padding
+    }
+    
+    // Update the PDF src to force reload with fit parameter
+    const baseUrl = '../assets/samsung-agentic-ai/samsung-agentic-ai.pdf';
+    pdfViewer.src = `${baseUrl}#view=FitH&page=1`;
+}
+
+function zoomIn() {
+    if (currentZoom < maxZoom) {
+        currentZoom += zoomStep;
+        updatePDFZoom();
+    }
+}
+
+function zoomOut() {
+    if (currentZoom > minZoom) {
+        currentZoom -= zoomStep;
+        updatePDFZoom();
+    }
+}
+
+function resetZoom() {
+    currentZoom = 75;
+    updatePDFZoom();
+}
+
+// Initialize zoom on page load
+document.addEventListener('DOMContentLoaded', function() {
+    updatePDFZoom();
+});
+
 // Hide shell label when scrolling
 let lastScrollTop = 0;
 const shellLabel = document.querySelector('.shell-label');
