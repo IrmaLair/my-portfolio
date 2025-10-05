@@ -3,17 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Row Beyond - Nidhi's Portfolio</title>
-    <link rel="stylesheet" href="../styles.css?v=mobile-title-1003182043489">
+    <title>Row Beyond - XR Rowing Simulator | Nidhi's Portfolio</title>
+    <link rel="stylesheet" href="../styles.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="icon" type="image/x-icon" href="../assets/Logo.svg">
 </head>
 <body>
-        <!-- Splash Screen -->
+    <!-- Splash Screen -->
     <div class="splash-screen" id="splash">
         <img src="../assets/Logo.svg" alt="Logo" class="splash-logo">
     </div>
 
-<!-- Shell Navigation Button -->
+    <!-- Shell Navigation Button -->
     <div class="shell-nav">
         <a href="../projects.html" class="shell-nav-btn" aria-label="Back to Projects">
             <img src="../assets/shell-clam.svg" alt="Back to Projects" width="60" height="60">
@@ -21,15 +22,15 @@
         </a>
     </div>
 
-        <!-- Mobile spacer to prevent overlap -->
+    <!-- Mobile spacer to prevent overlap -->
     <div class="mobile-spacer" style="height: 65px; width: 100%; display: none;"></div>
     
     <style>
+    /* Mobile responsiveness */
     @media (max-width: 768px) {
         .mobile-spacer {
             display: block !important;
         }
-        /* Mobile title sizing */
         header h1, .container header h1 {
             font-size: 2.5rem !important;
             line-height: 1.1 !important;
@@ -39,21 +40,196 @@
         .mobile-spacer {
             height: 55px !important;
         }
-        /* Smaller mobile title sizing */
         header h1, .container header h1 {
             font-size: 2rem !important;
             line-height: 1.1 !important;
         }
     }
+
+    /* Custom styles for this page */
+    .image-modal {
+        display: none;
+        position: fixed;
+        z-index: 10000;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0,0,0,0.9);
+        justify-content: center;
+        align-items: center;
+    }
+
+    .modal-close {
+        position: absolute;
+        top: 20px;
+        right: 30px;
+        color: white;
+        font-size: 40px;
+        font-weight: bold;
+        cursor: pointer;
+        z-index: 10001;
+    }
+
+    .modal-close:hover {
+        opacity: 0.7;
+    }
+
+    .modal-image {
+        max-width: 90%;
+        max-height: 90%;
+        object-fit: contain;
+    }
+
+    .clickable-image {
+        cursor: pointer;
+        transition: transform 0.3s ease;
+    }
+
+    .clickable-image:hover {
+        transform: scale(1.02);
+    }
+
+    .problem-icons {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 30px;
+        margin: 40px 0;
+    }
+
+    .problem-icon {
+        text-align: center;
+        padding: 20px;
+        background: rgba(139, 115, 85, 0.05);
+        border-radius: 12px;
+    }
+
+    .problem-icon .icon {
+        font-size: 3rem;
+        margin-bottom: 15px;
+        display: block;
+    }
+
+    .features-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 30px;
+        margin-top: 40px;
+    }
+
+    .feature-card {
+        text-align: center;
+        padding: 30px 20px;
+        background: rgba(139, 115, 85, 0.05);
+        border-radius: 12px;
+    }
+
+    .feature-card h4 {
+        color: #8B7355;
+        margin-bottom: 15px;
+        font-size: 1.2rem;
+    }
+
+    .environment-images {
+        display: flex;
+        gap: 20px;
+        justify-content: center;
+        margin: 30px 0;
+        flex-wrap: wrap;
+    }
+
+    .environment-images img {
+        height: 200px;
+        object-fit: cover;
+        border-radius: 8px;
+        flex: 1;
+        min-width: 250px;
+    }
+
+    .learning-insight {
+        display: flex;
+        align-items: flex-start;
+        margin-bottom: 30px;
+        gap: 20px;
+    }
+
+    .insight-icon {
+        font-size: 2rem;
+        color: #8B7355;
+        margin-right: 15px;
+        flex-shrink: 0;
+    }
+
+    .learning-content {
+        display: grid;
+        grid-template-columns: 300px 1fr;
+        gap: 40px;
+        align-items: start;
+        margin-top: 30px;
+    }
+
+    .learning-image {
+        width: 100%;
+        border-radius: 8px;
+    }
+
+    .linkedin-thumbnail {
+        cursor: pointer;
+        transition: transform 0.3s ease;
+        border-radius: 8px;
+        max-width: 100%;
+        height: auto;
+    }
+
+    .linkedin-thumbnail:hover {
+        transform: scale(1.02);
+    }
+
+    @media (max-width: 768px) {
+        .learning-content {
+            grid-template-columns: 1fr;
+            gap: 20px;
+        }
+        
+        .learning-image {
+            max-width: 300px;
+            margin: 0 auto;
+        }
+        
+        .environment-images {
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .environment-images img {
+            min-width: unset;
+            width: 100%;
+            max-width: 400px;
+        }
+        
+        .features-grid {
+            grid-template-columns: 1fr;
+        }
+        
+        .problem-icons {
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 20px;
+        }
+        
+        /* LinkedIn images 2x2 grid on mobile */
+        .project-section div[style*="grid-template-columns: repeat(4, 1fr)"] {
+            grid-template-columns: repeat(2, 1fr) !important;
+        }
+    }
     </style>
 
     <div class="container">
-                <!-- Project Metadata -->
-                <!-- Container 1: Skills chips (no bg) - ABOVE TITLE -->
+        <!-- Project Metadata -->
         <div class="metadata-skills-container" style="margin-top: 20px !important;">
             <div class="skill-tags">
-                <span class="skill-tag">VR Simulation</span>
-                <span class="skill-tag">Environment Building</span>
+                <span class="skill-tag">XR Development</span>
+                <span class="skill-tag">Motion Tracking</span>
+                <span class="skill-tag">UX Design</span>
             </div>
         </div>
         
@@ -62,12 +238,12 @@
         </header>
 
         <main>
-            <!-- Container 2: Timeline · Duration (no bg) -->
+            <!-- Timeline -->
             <div class="metadata-title-container">
-                <div class="project-subtitle">Aug, 2025 · 1 Day</div>
+                <div class="project-subtitle">24hr DJX Hackathon 2025</div>
             </div>
             
-                                                <!-- Container 3: Team card (white overlay bg) -->
+            <!-- Team card -->
             <div class="metadata-team-container">
                 <div class="team-card">
                     <div style="text-align: left !important;">
@@ -95,15 +271,221 @@
                         </div>
                     </div>
                 </div>
+            </div>
+
+            <!-- Hero Video Section -->
+            <section class="project-section">
+                <div class="video-section">
+                    <div class="video-container">
+                        <iframe width="100%" height="600" src="https://www.youtube.com/embed/4nmort3LdNg" title="Row Beyond - XR Rowing Simulator" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen style="border-radius: 8px; max-width: 1200px; margin: 0 auto; display: block;"></iframe>
                     </div>
                 </div>
+                <p style="text-align: center; margin-top: 20px; color: #8B7355; font-style: italic;">Bringing the river to the gym. An XR solution for realistic, accessible rowing training.</p>
+            </section>
+
+            <!-- Project Summary -->
+            <section class="project-summary">
+                <h2>Train Like You're on the Water, Anywhere</h2>
+                <p class="summary-text">An immersive VR rowing simulator that solves accessibility and engagement issues for athletes by blending real-time posture feedback with serene, realistic waterways.</p>
+            </section>
+
+            <!-- LinkedIn Post Section -->
+            <section class="project-section">
+                <h2>24hr DJX Hackathon 2025</h2>
+                <div style="text-align: center; margin: 30px 0;">
+                    <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 15px; max-width: 1000px; margin: 0 auto;">
+                        <img src="../assets/row-beyond/row-djx-hack1.jpg" alt="DJX Hackathon 2025 - Image 1" class="linkedin-thumbnail clickable-image" onclick="window.open('https://www.linkedin.com/posts/djxlabs_djxhack-djxhack-djxhack-activity-7363137109911601152-MOlD?utm_source=social_share_send&utm_medium=member_desktop_web&rcm=ACoAADbXZhgBqOa5N2Ec7kUS4fAPEzQHcglqGyk', '_blank')" style="width: 100%; aspect-ratio: 1; object-fit: cover;">
+                        <img src="../assets/row-beyond/row-djx-hack2.jpeg" alt="DJX Hackathon 2025 - Image 2" class="linkedin-thumbnail clickable-image" onclick="window.open('https://www.linkedin.com/posts/djxlabs_xrhackathon2025-hack2hustle-immersivetech-activity-7357659032632922113-sTuk?utm_source=social_share_send&utm_medium=member_desktop_web&rcm=ACoAADbXZhgBqOa5N2Ec7kUS4fAPEzQHcglqGyk', '_blank')" style="width: 100%; aspect-ratio: 1; object-fit: cover;">
+                        <img src="../assets/row-beyond/row-djx-hack3.jpg" alt="DJX Hackathon 2025 - Image 3" class="linkedin-thumbnail clickable-image" onclick="window.open('https://www.linkedin.com/posts/nidhi-surekha_djxhackathon-vr-rowing-activity-7359179863456448515-HlUw?utm_source=share&utm_medium=member_desktop&rcm=ACoAADbXZhgBqOa5N2Ec7kUS4fAPEzQHcglqGyk', '_blank')" style="width: 100%; aspect-ratio: 1; object-fit: cover;">
+                        <img src="../assets/row-beyond/row-djx-hack4.png" alt="DJX Hackathon 2025 - Image 4" class="linkedin-thumbnail clickable-image" onclick="window.open('https://www.linkedin.com/posts/djxlabs_xrhackathon2025-hackathonhighlights-immersivetech-activity-7358355724688666624-d7Vz?utm_source=social_share_send&utm_medium=member_desktop_web&rcm=ACoAADbXZhgBqOa5N2Ec7kUS4fAPEzQHcglqGyk', '_blank')" style="width: 100%; aspect-ratio: 1; object-fit: cover;">
+                    </div>
+                    <p style="margin-top: 15px; font-style: italic; color: #8B7355;">Click any image to view the LinkedIn posts of our hackathon experience!</p>
+                </div>
+            </section>
+
+            <!-- Problem & Persona Section -->
+            <section class="project-section">
+                <h2>The Problem & Persona: A Rower's Dilemma</h2>
+                
+                <div style="text-align: center; max-width: 800px; margin: 0 auto;">
+                    <p style="margin: 30px 0;">DJX hack provided us a 'Sportsperson / Coach / Fitness trainee / Trainer' persona. Our teammate Janice, being a professional rower, gave us insights from her own experience and from talking with her coach and classmates.</p>
+                    
+                    <div style="margin: 40px 0;">
+                        <img src="../assets/row-beyond/row-janice-rowing.png" alt="Janice rowing - our team member and professional rower" style="width: 100%; max-width: 600px; border-radius: 8px;" class="clickable-image" onclick="openImageModal(this)">
+                    </div>
+                    
+                    <div style="margin: 40px 0;">
+                        <video controls preload="metadata" style="width: 100%; max-width: 600px; border-radius: 8px;">
+                            <source src="../assets/row-beyond/row-technique.mp4#t=2" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                    </div>
+                    
+                    <p style="margin: 30px 0; font-weight: 600;"><strong>Outdoor rowing is limited by location, safety, and weather. Indoor training is safe but monotonous and lacks real-world technique feedback.</strong></p>
+                </div>
+
+                <!-- Problem Icons -->
+                <div class="problem-icons">
+                    <div class="problem-icon">
+                        <span class="icon">🚫</span>
+                        <h4>Location Locked</h4>
+                        <p>Access to water bodies is limited by geography</p>
+                    </div>
+                    <div class="problem-icon">
+                        <span class="icon">⛈️</span>
+                        <h4>Weather Dependent</h4>
+                        <p>Training schedules disrupted by weather conditions</p>
+                    </div>
+                    <div class="problem-icon">
+                        <span class="icon">😴</span>
+                        <h4>Monotonous Training</h4>
+                        <p>Indoor rowing lacks engagement and motivation</p>
+                    </div>
+                    <div class="problem-icon">
+                        <span class="icon">❓</span>
+                        <h4>No Feedback on Form</h4>
+                        <p>Limited guidance on technique improvement</p>
                     </div>
                 </div>
+            </section>
+
+            <!-- Solution Section -->
+            <section class="project-section">
+                <h2>The Solution</h2>
+                
+                <h3 style="color: #8B7355; margin: 30px 0 20px;">The Virtual River</h3>
+                <div style="text-align: center; margin: 30px 0;">
+                    <img src="../assets/row-beyond/row-storyboard.png" alt="Storyboard of our VR rowing simulation" style="max-width: 100%; border-radius: 8px;" class="clickable-image" onclick="openImageModal(this)">
+                    <p style="margin-top: 15px; color: #8B7355; font-style: italic;">A storyboard of our VR simulation</p>
                 </div>
+                
+                <p>Row Beyond creates a secure, lifelike training environment. It uses motion tracking to monitor your grip and posture, providing real-time audiovisual feedback to correct your form, just like a coach would.</p>
+            </section>
+
+            <!-- How It Works Section -->
+            <section class="project-section">
+                <h2>How It Works</h2>
+                
+                <!-- Environment Images -->
+                <div class="environment-images">
+                    <img src="../assets/row-beyond/row-env1.png" alt="Rowing environment 1" class="clickable-image" onclick="openImageModal(this)">
+                    <img src="../assets/row-beyond/row-env2.png" alt="Rowing environment 2" class="clickable-image" onclick="openImageModal(this)">
+                </div>
+                
+                <!-- Features Grid -->
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <h4>Real-Time Feedback</h4>
+                        <p>The system detects incorrect hand rotation or posture and shows you exactly how to fix it, turning practice into perfect form.</p>
+                    </div>
+                    <div class="feature-card">
+                        <h4>Immersive Environments</h4>
+                        <p>Row through serene, inspiring environments like Kerala's backwaters, designed to motivate and calm.</p>
+                    </div>
+                    <div class="feature-card">
+                        <h4>Competitive Edge</h4>
+                        <p>Race against AI opponents and track your performance with a time-based scoring system to push your limits.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Technical Insight & Learnings Section -->
+            <section class="project-section">
+                <h2>Technical Insight & Learnings</h2>
+                
+                <div class="learning-content">
+                    <div>
+                        <img src="../assets/row-beyond/row-test.png" alt="Testing the VR rowing system" class="learning-image clickable-image" onclick="openImageModal(this)">
+                    </div>
+                    
+                    <div>
+                        <div style="background: rgba(139, 115, 85, 0.08); padding: 25px; border-radius: 12px; margin-bottom: 20px; text-align: left;">
+                            <div style="display: flex; align-items: flex-start; gap: 15px;">
+                                <span style="font-size: 2rem; flex-shrink: 0;">✋</span>
+                                <div>
+                                    <h4 style="color: #8B7355; margin-bottom: 10px; font-size: 1.2rem;">Ghost Overlays</h4>
+                                    <p>Visual guides with tactile feedback drastically improved user alignment and technique.</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div style="background: rgba(139, 115, 85, 0.08); padding: 25px; border-radius: 12px; margin-bottom: 20px; text-align: left;">
+                            <div style="display: flex; align-items: flex-start; gap: 15px;">
+                                <span style="font-size: 2rem; flex-shrink: 0;">🔊</span>
+                                <div>
+                                    <h4 style="color: #8B7355; margin-bottom: 10px; font-size: 1.2rem;">Audio Feedback</h4>
+                                    <p>Real-time sound cues helped users maintain a consistent, effective rhythm.</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div style="background: rgba(139, 115, 85, 0.08); padding: 25px; border-radius: 12px; margin-bottom: 20px; text-align: left;">
+                            <div style="display: flex; align-items: flex-start; gap: 15px;">
+                                <span style="font-size: 2rem; flex-shrink: 0;">🌊</span>
+                                <div>
+                                    <h4 style="color: #8B7355; margin-bottom: 10px; font-size: 1.2rem;">Physics Simulation</h4>
+                                    <p>Overcoming the challenge of simulating realistic boat control and water drag was key to immersion.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- The Next Lap Section -->
+            <section class="project-section">
+                <h2>The Next Lap</h2>
+                <div class="reflection-content" style="margin-top: 30px;">
+                    <blockquote class="reflection-quote">
+                        <p>Row Beyond opens the door to an Adaptive AI Coach, therapeutic calm modes, multiplayer races, and integration with physical rowing machines like Concept2. For rowers who can't easily get to calm open waters, Row Beyond is an easy-to-carry option that boosts their ability and opens up the sport to everyone.</p>
+                        <div style="text-align: center; margin-top: 25px;">
+                            <img src="../assets/row-beyond/concept-2-rowerg.jpg" alt="Concept2 RowErg rowing machine integration" style="max-width: 100%; border-radius: 8px;" class="clickable-image" onclick="openImageModal(this)">
+                        </div>
+                    </blockquote>
+                </div>
+            </section>
         </main>
     </div>
 
+    <!-- Image Modal -->
+    <div id="imageModal" class="image-modal" onclick="closeImageModal()">
+        <span class="modal-close" onclick="closeImageModal()">&times;</span>
+        <img id="modalImage" class="modal-image" src="" alt="">
+    </div>
+
     <script>
+function openImageModal(imgElement) {
+    const modal = document.getElementById('imageModal');
+    const modalImage = document.getElementById('modalImage');
+    
+    modal.style.display = 'flex';
+    modalImage.src = imgElement.src;
+    modalImage.alt = imgElement.alt;
+    
+    // Prevent body scroll when modal is open
+    document.body.style.overflow = 'hidden';
+}
+
+function closeImageModal() {
+    const modal = document.getElementById('imageModal');
+    modal.style.display = 'none';
+    
+    // Restore body scroll
+    document.body.style.overflow = 'auto';
+}
+
+// Close modal with Escape key
+document.addEventListener('keydown', function(event) {
+    if (event.key === 'Escape') {
+        closeImageModal();
+    }
+});
+
+// Prevent modal from closing when clicking on the image
+document.getElementById('modalImage').addEventListener('click', function(event) {
+    event.stopPropagation();
+});
+
 // Hide shell label when scrolling
 let lastScrollTop = 0;
 const shellLabel = document.querySelector('.shell-label');
@@ -123,7 +505,7 @@ if (shellLabel) {
         lastScrollTop = scrollTop <= 0 ? 0 : scrollTop; // For Mobile or negative scrolling
     });
 }
-</script>
+    </script>
     <script src="../script.js"></script>
 </body>
 </html>
