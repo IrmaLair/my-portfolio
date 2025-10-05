@@ -44,6 +44,77 @@
             font-size: 2rem !important;
             line-height: 1.1 !important;
         }
+    /* Mobile grid adjustments for responsive design */
+    @media (max-width: 768px) {
+        div[style*="grid-template-columns: repeat(3, 1fr)"] {
+            grid-template-columns: 1fr !important;
+            gap: 20px !important;
+        }
+        div[style*="grid-column: 1"], div[style*="grid-column: 3"] {
+            grid-column: unset !important;
+        }
+        div[style*="grid-template-columns: repeat(auto-fit, minmax(250px, 1fr))"] {
+            grid-template-columns: 1fr !important;
+            gap: 20px !important;
+        }
+        div[style*="grid-template-columns: repeat(auto-fit, minmax(400px, 1fr))"] {
+            grid-template-columns: 1fr !important;
+            gap: 20px !important;
+        }
+    }
+    
+    /* Image Modal Styles */
+    .modal {
+        display: none !important;
+        position: fixed;
+        z-index: 1000;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.9);
+        justify-content: center;
+        align-items: center;
+    }
+
+    .modal-content {
+        max-width: 90%;
+        max-height: 90%;
+        object-fit: contain;
+        border-radius: 8px;
+        animation: zoom 0.3s ease;
+    }
+
+    @keyframes zoom {
+        from {transform: scale(0)}
+        to {transform: scale(1)}
+    }
+
+    .close {
+        position: absolute;
+        top: 20px;
+        right: 35px;
+        color: #fff;
+        font-size: 40px;
+        font-weight: bold;
+        cursor: pointer;
+        transition: color 0.3s ease;
+    }
+
+    .close:hover,
+    .close:focus {
+        color: #ccc;
+        text-decoration: none;
+    }
+
+    #caption {
+        position: absolute;
+        bottom: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        color: #ccc;
+        text-align: center;
+        max-width: 80%;
     }
     </style>
 
@@ -67,7 +138,7 @@
                 <div class="project-subtitle">Feb, 2025 · 2 Weeks</div>
             </div>
             
-                                                <!-- Container 3: Team card (white overlay bg) -->
+            <!-- Container 3: Team card (white overlay bg) -->
             <div class="metadata-team-container">
                 <div class="team-card">
                     <div style="text-align: left !important;">
@@ -91,15 +162,176 @@
                         </div>
                     </div>
                 </div>
+            </div>
+
+            <!-- Hero Video Section -->
+            <section class="project-section">
+                <div class="video-section">
+                    <div class="video-container">
+                        <video controls style="width: 100%; max-width: 1200px; height: auto; border-radius: 8px; margin: 0 auto; display: block;">
+                            <source src="../assets/kalpavriksh/kalpavriksh-trailer.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
                     </div>
                 </div>
+                <p style="text-align: center; margin-top: 20px; color: #8B7355; font-style: italic;">An interactive VR experience where participants' hopes for the future, aligned with the UN Sustainable Development Goals, become the glowing branches of a collaboratively grown tree.</p>
+            </section>
+
+            <!-- Minding the World, Together Section -->
+            <section class="project-section">
+                <h2>Minding the World, Together</h2>
+                <p>As designers, we dream of a better future, but these hopes often remain unspoken. Kalpavriksh creates a sacred space for these dreams to be voiced, visualized, and woven into a shared vision for global progress.</p>
+                
+                <!-- Inspiration Callout -->
+                <div style="text-align: center; margin: 40px 0; padding: 30px; background: rgba(139, 115, 85, 0.08); border-radius: 12px;">
+                    <p style="color: #8B7355; font-style: italic; margin: 0; font-size: 1.1rem;">Inspired by the interconnected beauty of Avatar's Tree of Souls and the framework of the UN SDGs.</p>
+                </div>
+
+                <!-- SDGs Image -->
+                <div style="text-align: center; margin: 30px 0;">
+                    <img src="../assets/kalpavriksh/kalpavriksh-SDGs.png" alt="UN Sustainable Development Goals Integration" style="width: 100%; max-width: 800px; border-radius: 8px; box-shadow: 0 4px 20px rgba(0,0,0,0.1);">
+                </div>
+            </section>
+
+            <!-- The User Journey Section -->
+            <section class="project-section">
+                <h2>The User Journey</h2>
+                
+                <!-- Storyboard Image -->
+                <div style="text-align: center; margin: 30px 0;">
+                    <img src="../assets/kalpavriksh/kalpavriksh-storyboard.png" alt="Kalpavriksh User Journey Storyboard" style="width: 100%; max-width: 1000px; border-radius: 8px; box-shadow: 0 4px 20px rgba(0,0,0,0.1);">
+                </div>
+                
+                <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 25px; margin-top: 30px;">
+                    <div style="background: rgba(139, 115, 85, 0.08); padding: 25px; border-radius: 12px; text-align: center;">
+                        <span style="font-size: 3rem; display: block; margin-bottom: 15px;">💭</span>
+                        <h4 style="color: #8B7355; margin-bottom: 10px;">Step 1: Compose</h4>
+                        <p style="color: #303030; margin: 0; font-size: 0.9rem;">Users prepare a 13-second message: 'I hope for a future where...'</p>
+                    </div>
+                    <div style="background: rgba(139, 115, 85, 0.08); padding: 25px; border-radius: 12px; text-align: center;">
+                        <span style="font-size: 3rem; display: block; margin-bottom: 15px;">🎨</span>
+                        <h4 style="color: #8B7355; margin-bottom: 10px;">Step 2: Choose</h4>
+                        <p style="color: #303030; margin: 0; font-size: 0.9rem;">In VR, they select a colored 'Woodsprite,' each representing a different UN SDG theme.</p>
+                    </div>
+                    <div style="background: rgba(139, 115, 85, 0.08); padding: 25px; border-radius: 12px; text-align: center;">
+                        <span style="font-size: 3rem; display: block; margin-bottom: 15px;">🎤</span>
+                        <h4 style="color: #8B7355; margin-bottom: 10px;">Step 3: Connect</h4>
+                        <p style="color: #303030; margin: 0; font-size: 0.9rem;">The Woodsprite lands on their hand to record their hope.</p>
+                    </div>
+                    <div style="background: rgba(139, 115, 85, 0.08); padding: 25px; border-radius: 12px; text-align: center; grid-column: 1;">
+                        <span style="font-size: 3rem; display: block; margin-bottom: 15px;">🌱</span>
+                        <h4 style="color: #8B7355; margin-bottom: 10px;">Step 4: Contribute</h4>
+                        <p style="color: #303030; margin: 0; font-size: 0.9rem;">Their audio becomes a new, glowing branch on the collective Kalpavriksh tree.</p>
+                    </div>
+                    <div style="background: rgba(139, 115, 85, 0.08); padding: 25px; border-radius: 12px; text-align: center; grid-column: 3;">
+                        <span style="font-size: 3rem; display: block; margin-bottom: 15px;">👂</span>
+                        <h4 style="color: #8B7355; margin-bottom: 10px;">Step 5: Collaborate</h4>
+                        <p style="color: #303030; margin: 0; font-size: 0.9rem;">They can then listen to the hopes left by others, discovering shared dreams.</p>
                     </div>
                 </div>
+            </section>
+
+            <!-- Bodystorming Process Section -->
+            <section class="project-section">
+                <h2>Bodystorming Process</h2>
+                
+                <!-- Bodystorming Video -->
+                <div style="text-align: center; margin: 30px 0;">
+                    <video controls style="width: 100%; max-width: 800px; height: auto; border-radius: 8px; margin: 0 auto; display: block;">
+                        <source src="../assets/kalpavriksh/kalpavriksh-bodystorming.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
                 </div>
+                
+                <!-- Bodystorming Storyboard -->
+                <div style="text-align: center; margin: 40px 0;">
+                    <img src="../assets/kalpavriksh/kalpavriksh-bodystorming-storyboard.png" alt="Bodystorming Storyboard Process" style="width: 100%; max-width: 1000px; border-radius: 8px; box-shadow: 0 4px 20px rgba(0,0,0,0.1);">
+                </div>
+            </section>
+
+            <!-- Designed for Intuitive Wonder Section -->
+            <section class="project-section">
+                <h2>Designed for Intuitive Wonder</h2>
+                <p>The interaction was structured using the GOMS model to ensure the complex technology felt like pure magic. Every action, from selecting a sprite to recording a message, was designed to be effortless, keeping the focus on the emotional and collaborative experience.</p>
+                
+                <!-- GOMS Model Image -->
+                <div style="text-align: center; margin: 30px 0;">
+                    <img src="../assets/kalpavriksh/kalpavriksh-goms.png" alt="GOMS Model for Kalpavriksh Interaction Design" style="width: 100%; max-width: 900px; border-radius: 8px; box-shadow: 0 4px 20px rgba(0,0,0,0.1);">
+                </div>
+
+                <!-- Human Factors and XR Heuristics -->
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); gap: 30px; margin: 30px 0;">
+                    <div style="text-align: center;">
+                        <img src="../assets/kalpavriksh/kalpavriksh-human-factors.png" alt="Human Factors in VR Design" style="width: 100%; border-radius: 8px; box-shadow: 0 4px 20px rgba(0,0,0,0.1);">
+                    </div>
+                    <div style="text-align: center;">
+                        <img src="../assets/kalpavriksh/kalpavriksh-xr-heuristics.png" alt="XR Design Heuristics" style="width: 100%; border-radius: 8px; box-shadow: 0 4px 20px rgba(0,0,0,0.1);">
+                    </div>
+                </div>
+            </section>
+
+            <!-- Collective Impact Section -->
+            <section class="project-section">
+                <h2>Collective Impact</h2>
+                <div class="reflection-content" style="margin-top: 30px;">
+                    <blockquote class="reflection-quote">
+                        <p style="margin: 0;">As more people participate, their voices merge. The tree transforms into a vibrant, living testament to our collective power to shape a better world, proving that everyone has something to offer for the future.</p>
+                    </blockquote>
+                </div>
+            </section>
         </main>
     </div>
 
+    <!-- Image Modal -->
+    <div id="imageModal" class="modal">
+        <span class="close">✕</span>
+        <img class="modal-content" id="modalImage">
+        <div id="caption"></div>
+    </div>
+
     <script>
+// Image Modal functionality
+const modal = document.getElementById('imageModal');
+const modalImg = document.getElementById('modalImage');
+const captionText = document.getElementById('caption');
+const span = document.getElementsByClassName('close')[0];
+
+// Add click event to all images that should be clickable
+document.addEventListener('DOMContentLoaded', function() {
+    const clickableImages = document.querySelectorAll('img[src*="kalpavriksh"]');
+    
+    clickableImages.forEach(function(img) {
+        // Skip the logo and shell navigation images
+        if (!img.src.includes('Logo.svg') && !img.src.includes('shell-clam.svg')) {
+            img.style.cursor = 'pointer';
+            img.onclick = function() {
+                modal.style.display = 'flex';
+                modalImg.src = this.src;
+                captionText.innerHTML = '';
+            }
+        }
+    });
+});
+
+// Close modal when clicking the X
+span.onclick = function() {
+    modal.style.display = 'none';
+}
+
+// Close modal when clicking outside the image
+modal.onclick = function(event) {
+    if (event.target === modal) {
+        modal.style.display = 'none';
+    }
+}
+
+// Close modal with Escape key
+document.addEventListener('keydown', function(event) {
+    if (event.key === 'Escape') {
+        modal.style.display = 'none';
+    }
+});
+
 // Hide shell label when scrolling
 let lastScrollTop = 0;
 const shellLabel = document.querySelector('.shell-label');
