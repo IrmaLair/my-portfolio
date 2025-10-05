@@ -43,7 +43,116 @@
         header h1, .container header h1 {
             font-size: 2rem !important;
             line-height: 1.1 !important;
+    }
+    /* Mobile grid adjustments for responsive design */
+    @media (max-width: 768px) {
+        .interaction-grid {
+            grid-template-columns: 1fr;
+            gap: 20px;
         }
+        div[style*="grid-template-columns: repeat(auto-fit, minmax(300px, 1fr))"] {
+            grid-template-columns: 1fr !important;
+            gap: 20px !important;
+        }
+        iframe {
+            height: 300px !important;
+        }
+    }
+    @media (max-width: 480px) {
+        iframe {
+            height: 250px !important;
+        }
+    }
+    
+    /* Force mobile single column for muse interactions */
+    @media (max-width: 768px) {
+        .muse-interaction-grid {
+            grid-template-columns: 1fr !important;
+            gap: 20px !important;
+        }
+    }
+    
+    /* Muse Melody specific grid styles */
+    .muse-interaction-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    
+    @media (min-width: 769px) {
+        .muse-interaction-grid {
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+        }
+    }
+    
+    /* Base grid styles for interactions */
+    .interaction-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    
+    /* Desktop 2x2 grid for interactions */
+    @media (min-width: 769px) {
+        .interaction-grid {
+            grid-template-columns: repeat(2, 1fr) !important;
+            gap: 30px !important;
+        }
+    }
+    
+    /* Image Modal Styles */
+    .modal {
+        display: none !important;
+        position: fixed;
+        z-index: 1000;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.9);
+        justify-content: center;
+        align-items: center;
+    }
+
+    .modal-content {
+        max-width: 90%;
+        max-height: 90%;
+        object-fit: contain;
+        border-radius: 8px;
+        animation: zoom 0.3s ease;
+    }
+
+    @keyframes zoom {
+        from {transform: scale(0)}
+        to {transform: scale(1)}
+    }
+
+    .close {
+        position: absolute;
+        top: 20px;
+        right: 35px;
+        color: #fff;
+        font-size: 40px;
+        font-weight: bold;
+        cursor: pointer;
+        transition: color 0.3s ease;
+    }
+
+    .close:hover,
+    .close:focus {
+        color: #ccc;
+        text-decoration: none;
+    }
+
+    #caption {
+        position: absolute;
+        bottom: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        color: #ccc;
+        text-align: center;
+        max-width: 80%;
     }
     </style>
 
@@ -76,10 +185,118 @@
                     </div>
                 </div>
             </div>
+
+            <!-- Hero Video Section -->
+            <section class="project-section">
+                <div class="video-section">
+                    <div class="video-container">
+                        <iframe width="100%" height="500" src="https://www.youtube.com/embed/H7GXM1waHRI" title="Muse & Melody VR Experience" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen style="border-radius: 8px; max-width: 1200px; margin: 0 auto; display: block;"></iframe>
+                    </div>
+                </div>
+                <p style="text-align: center; margin-top: 20px; color: #8B7355; font-style: italic;">Step into a cave island where sculptures hold a symphony</p>
+            </section>
+
+            <!-- Womanhood as a Living Symphony Section -->
+            <section class="project-section">
+                <h2>Womanhood as a Living Symphony</h2>
+                <p>This VR experience reimagines womanhood as an evolving, multifaceted symphony. It invites you into a hauntingly beautiful cave island where you don't just observe, but actively conduct the light and sound that brings three sculptural muses to life.</p>
+                
+                <!-- The Interactive Journey -->
+                <div style="text-align: center; margin: 40px 0; padding: 30px; background: rgba(139, 115, 85, 0.08); border-radius: 12px;">
+                    <p style="color: #8B7355; font-style: italic; margin: 0; font-size: 1.1rem;">"Women exist in a constant interplay of youth, passion, and nurturing spirit. This project is a space to explore that beautiful complexity."</p>
+                </div>
+            </section>
+
+            <!-- Unlock the Symphony Section -->
+            <section class="project-section">
+                <h2>Unlock the Symphony</h2>
+                
+                <div class="muse-interaction-grid" style="margin-top: 30px; display: grid; grid-template-columns: repeat(2, 1fr); gap: 30px;">
+                    <div style="background: rgba(139, 115, 85, 0.08); padding: 30px; border-radius: 12px;">
+                        <img src="../assets/muse-melody/kalpavriksh-interaction1.png" alt="The Key Interaction" style="width: 100%; border-radius: 8px; margin-bottom: 15px; cursor: pointer;" class="clickable-image" onclick="openImageModal(this);">
+                        <h4 style="color: #8B7355; margin-bottom: 15px; font-size: 1.2rem;">Interaction 1: The Key</h4>
+                        <p style="color: #303030; margin: 0; line-height: 1.6;">Your journey begins by finding a key to unlock the museum, setting the stage for discovery.</p>
+                    </div>
+                    <div style="background: rgba(139, 115, 85, 0.08); padding: 30px; border-radius: 12px;">
+                        <img src="../assets/muse-melody/kalpavriksh-interaction2.png" alt="The Light Interaction" style="width: 100%; border-radius: 8px; margin-bottom: 15px; cursor: pointer;" class="clickable-image" onclick="openImageModal(this);">
+                        <h4 style="color: #8B7355; margin-bottom: 15px; font-size: 1.2rem;">Interaction 2: The Light</h4>
+                        <p style="color: #303030; margin: 0; line-height: 1.6;">Motion-sensing torches illuminate the path, revealing the sacred space step-by-step.</p>
+                    </div>
+                    <div style="background: rgba(139, 115, 85, 0.08); padding: 30px; border-radius: 12px;">
+                        <img src="../assets/muse-melody/kalpavriksh-interaction3.png" alt="The Activation Interaction" style="width: 100%; border-radius: 8px; margin-bottom: 15px; cursor: pointer;" class="clickable-image" onclick="openImageModal(this);">
+                        <h4 style="color: #8B7355; margin-bottom: 15px; font-size: 1.2rem;">Interaction 3: The Activation</h4>
+                        <p style="color: #303030; margin: 0; line-height: 1.6;">A touch-activated handprint awakens the magic circles behind each muse, signaling their readiness.</p>
+                    </div>
+                    <div style="background: rgba(139, 115, 85, 0.08); padding: 30px; border-radius: 12px;">
+                        <img src="../assets/muse-melody/kalpavriksh-interaction4.png" alt="The Conductor Interaction" style="width: 100%; border-radius: 8px; margin-bottom: 15px; cursor: pointer;" class="clickable-image" onclick="openImageModal(this);">
+                        <h4 style="color: #8B7355; margin-bottom: 15px; font-size: 1.2rem;">Interaction 4: The Conductor</h4>
+                        <p style="color: #303030; margin: 0; line-height: 1.6;">The final act: grabbing a crystal to trigger the full musical score, transforming the space into a complete sensory symphony.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Crafted in Unreal Engine Section -->
+            <section class="project-section">
+                <h2>Crafted in Unreal Engine</h2>
+                <p>As my first VR project, this was a deep dive into Unreal Engine. I focused on blueprint scripting for the interactive grabbable objects, trigger volumes, and spatial audio to create a seamless and magical user journey.</p>
+                
+                <!-- Unreal Engine Image -->
+                <div style="text-align: center; margin: 30px 0;">
+                    <img src="../assets/muse-melody/kalpavriksh-unreal-engine.png" alt="Unreal Engine Development Process" style="width: 100%; max-width: 900px; border-radius: 8px; box-shadow: 0 4px 20px rgba(0,0,0,0.1); cursor: pointer;" class="clickable-image" onclick="openImageModal(this);">
+                </div>
+            </section>
+
+            <!-- More Than a Museum Section -->
+            <section class="project-section">
+                <h2>More Than a Museum</h2>
+                <div class="reflection-content" style="margin-top: 30px;">
+                    <blockquote class="reflection-quote">
+                        <p style="margin: 0;">Muse & Melody taught me that immersion is about agency. By making the visitor the conductor of the experience, the story becomes personal and profoundly more impactful. This project marks the beginning of my journey into meaningful immersive storytelling.</p>
+                    </blockquote>
+                </div>
+            </section>
         </main>
     </div>
 
+    <!-- Image Modal -->
+    <div id="imageModal" style="display: none; position: fixed; z-index: 10000; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.9); justify-content: center; align-items: center;" onclick="closeImageModal()">
+        <span style="position: absolute; top: 20px; right: 30px; color: white; font-size: 40px; font-weight: bold; cursor: pointer; z-index: 10001;" onclick="closeImageModal()">&times;</span>
+        <img id="modalImage" src="" alt="" style="max-width: 90%; max-height: 90%; object-fit: contain;">
+    </div>
+
     <script>
+function openImageModal(imgElement) {
+    const modal = document.getElementById('imageModal');
+    const modalImage = document.getElementById('modalImage');
+    
+    modal.style.display = 'flex';
+    modalImage.src = imgElement.src;
+    modalImage.alt = imgElement.alt;
+    
+    // Prevent body scroll when modal is open
+    document.body.style.overflow = 'hidden';
+}
+
+function closeImageModal() {
+    const modal = document.getElementById('imageModal');
+    modal.style.display = 'none';
+    
+    // Restore body scroll
+    document.body.style.overflow = 'auto';
+}
+
+// Close modal with Escape key
+document.addEventListener('keydown', function(event) {
+    if (event.key === 'Escape') {
+        closeImageModal();
+    }
+});
+
+// Prevent modal from closing when clicking on the image
+document.getElementById('modalImage').addEventListener('click', function(event) {
+    event.stopPropagation();
+});
+
 // Hide shell label when scrolling
 let lastScrollTop = 0;
 const shellLabel = document.querySelector('.shell-label');
@@ -99,6 +316,7 @@ if (shellLabel) {
         lastScrollTop = scrollTop <= 0 ? 0 : scrollTop; // For Mobile or negative scrolling
     });
 }
+</script>
 </script>
     <script src="../script.js"></script>
 </body>

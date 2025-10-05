@@ -189,7 +189,7 @@
 
                 <!-- SDGs Image -->
                 <div style="text-align: center; margin: 30px 0;">
-                    <img src="../assets/kalpavriksh/kalpavriksh-SDGs.png" alt="UN Sustainable Development Goals Integration" style="width: 100%; max-width: 800px; border-radius: 8px; box-shadow: 0 4px 20px rgba(0,0,0,0.1);">
+                    <img src="../assets/kalpavriksh/kalpavriksh-SDGs.png" alt="UN Sustainable Development Goals Integration" style="width: 100%; max-width: 800px; border-radius: 8px; box-shadow: 0 4px 20px rgba(0,0,0,0.1); cursor: pointer;" class="clickable-image" onclick="openImageModal(this);">
                 </div>
             </section>
 
@@ -199,7 +199,7 @@
                 
                 <!-- Storyboard Image -->
                 <div style="text-align: center; margin: 30px 0;">
-                    <img src="../assets/kalpavriksh/kalpavriksh-storyboard.png" alt="Kalpavriksh User Journey Storyboard" style="width: 100%; max-width: 1000px; border-radius: 8px; box-shadow: 0 4px 20px rgba(0,0,0,0.1);">
+                    <img src="../assets/kalpavriksh/kalpavriksh-storyboard.png" alt="Kalpavriksh User Journey Storyboard" style="width: 100%; max-width: 1000px; border-radius: 8px; box-shadow: 0 4px 20px rgba(0,0,0,0.1); cursor: pointer;" class="clickable-image" onclick="openImageModal(this);">
                 </div>
                 
                 <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 25px; margin-top: 30px;">
@@ -245,7 +245,7 @@
                 
                 <!-- Bodystorming Storyboard -->
                 <div style="text-align: center; margin: 40px 0;">
-                    <img src="../assets/kalpavriksh/kalpavriksh-bodystorming-storyboard.png" alt="Bodystorming Storyboard Process" style="width: 100%; max-width: 1000px; border-radius: 8px; box-shadow: 0 4px 20px rgba(0,0,0,0.1);">
+                    <img src="../assets/kalpavriksh/kalpavriksh-bodystorming-storyboard.png" alt="Bodystorming Storyboard Process" style="width: 100%; max-width: 1000px; border-radius: 8px; box-shadow: 0 4px 20px rgba(0,0,0,0.1); cursor: pointer;" class="clickable-image" onclick="openImageModal(this);">
                 </div>
             </section>
 
@@ -256,16 +256,16 @@
                 
                 <!-- GOMS Model Image -->
                 <div style="text-align: center; margin: 30px 0;">
-                    <img src="../assets/kalpavriksh/kalpavriksh-goms.png" alt="GOMS Model for Kalpavriksh Interaction Design" style="width: 100%; max-width: 900px; border-radius: 8px; box-shadow: 0 4px 20px rgba(0,0,0,0.1);">
+                    <img src="../assets/kalpavriksh/kalpavriksh-goms.png" alt="GOMS Model for Kalpavriksh Interaction Design" style="width: 100%; max-width: 900px; border-radius: 8px; box-shadow: 0 4px 20px rgba(0,0,0,0.1); cursor: pointer;" class="clickable-image" onclick="openImageModal(this);">
                 </div>
 
                 <!-- Human Factors and XR Heuristics -->
                 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); gap: 30px; margin: 30px 0;">
                     <div style="text-align: center;">
-                        <img src="../assets/kalpavriksh/kalpavriksh-human-factors.png" alt="Human Factors in VR Design" style="width: 100%; border-radius: 8px; box-shadow: 0 4px 20px rgba(0,0,0,0.1);">
+                        <img src="../assets/kalpavriksh/kalpavriksh-human-factors.png" alt="Human Factors in VR Design" style="width: 100%; border-radius: 8px; box-shadow: 0 4px 20px rgba(0,0,0,0.1); cursor: pointer;" class="clickable-image" onclick="openImageModal(this);">
                     </div>
                     <div style="text-align: center;">
-                        <img src="../assets/kalpavriksh/kalpavriksh-xr-heuristics.png" alt="XR Design Heuristics" style="width: 100%; border-radius: 8px; box-shadow: 0 4px 20px rgba(0,0,0,0.1);">
+                        <img src="../assets/kalpavriksh/kalpavriksh-xr-heuristics.png" alt="XR Design Heuristics" style="width: 100%; border-radius: 8px; box-shadow: 0 4px 20px rgba(0,0,0,0.1); cursor: pointer;" class="clickable-image" onclick="openImageModal(this);">
                     </div>
                 </div>
             </section>
@@ -283,53 +283,42 @@
     </div>
 
     <!-- Image Modal -->
-    <div id="imageModal" class="modal">
-        <span class="close">✕</span>
-        <img class="modal-content" id="modalImage">
-        <div id="caption"></div>
+    <div id="imageModal" style="display: none; position: fixed; z-index: 10000; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.9); justify-content: center; align-items: center;" onclick="closeImageModal()">
+        <span style="position: absolute; top: 20px; right: 30px; color: white; font-size: 40px; font-weight: bold; cursor: pointer; z-index: 10001;" onclick="closeImageModal()">&times;</span>
+        <img id="modalImage" src="" alt="" style="max-width: 90%; max-height: 90%; object-fit: contain;">
     </div>
 
     <script>
-// Image Modal functionality
-const modal = document.getElementById('imageModal');
-const modalImg = document.getElementById('modalImage');
-const captionText = document.getElementById('caption');
-const span = document.getElementsByClassName('close')[0];
-
-// Add click event to all images that should be clickable
-document.addEventListener('DOMContentLoaded', function() {
-    const clickableImages = document.querySelectorAll('img[src*="kalpavriksh"]');
+function openImageModal(imgElement) {
+    const modal = document.getElementById('imageModal');
+    const modalImage = document.getElementById('modalImage');
     
-    clickableImages.forEach(function(img) {
-        // Skip the logo and shell navigation images
-        if (!img.src.includes('Logo.svg') && !img.src.includes('shell-clam.svg')) {
-            img.style.cursor = 'pointer';
-            img.onclick = function() {
-                modal.style.display = 'flex';
-                modalImg.src = this.src;
-                captionText.innerHTML = '';
-            }
-        }
-    });
-});
-
-// Close modal when clicking the X
-span.onclick = function() {
-    modal.style.display = 'none';
+    modal.style.display = 'flex';
+    modalImage.src = imgElement.src;
+    modalImage.alt = imgElement.alt;
+    
+    // Prevent body scroll when modal is open
+    document.body.style.overflow = 'hidden';
 }
 
-// Close modal when clicking outside the image
-modal.onclick = function(event) {
-    if (event.target === modal) {
-        modal.style.display = 'none';
-    }
+function closeImageModal() {
+    const modal = document.getElementById('imageModal');
+    modal.style.display = 'none';
+    
+    // Restore body scroll
+    document.body.style.overflow = 'auto';
 }
 
 // Close modal with Escape key
 document.addEventListener('keydown', function(event) {
     if (event.key === 'Escape') {
-        modal.style.display = 'none';
+        closeImageModal();
     }
+});
+
+// Prevent modal from closing when clicking on the image
+document.getElementById('modalImage').addEventListener('click', function(event) {
+    event.stopPropagation();
 });
 
 // Hide shell label when scrolling
@@ -351,6 +340,7 @@ if (shellLabel) {
         lastScrollTop = scrollTop <= 0 ? 0 : scrollTop; // For Mobile or negative scrolling
     });
 }
+</script>
 </script>
     <script src="../script.js"></script>
 </body>
