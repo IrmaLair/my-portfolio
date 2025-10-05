@@ -45,6 +45,79 @@
             line-height: 1.1 !important;
         }
     }
+    
+    /* Image Modal Styles */
+    .image-modal {
+        display: none;
+        position: fixed;
+        z-index: 10000;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.9);
+        justify-content: center;
+        align-items: center;
+    }
+
+    .modal-close {
+        position: absolute;
+        top: 20px;
+        right: 30px;
+        color: white;
+        font-size: 40px;
+        font-weight: bold;
+        cursor: pointer;
+        z-index: 10001;
+    }
+
+    .modal-close:hover {
+        opacity: 0.7;
+    }
+
+    .modal-image {
+        max-width: 90%;
+        max-height: 90%;
+        object-fit: contain;
+        border-radius: 8px;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+        .modal-image {
+            max-width: 95%;
+            max-height: 95%;
+        }
+        
+        .modal-close {
+            top: 15px;
+            right: 20px;
+            font-size: 30px;
+        }
+        
+        /* Two-column layout becomes single column on mobile */
+        .project-section > div[style*="grid-template-columns"] {
+            grid-template-columns: 1fr !important;
+            gap: 30px !important;
+        }
+        
+        /* Three-column journey steps become single column on mobile */
+        .project-section > div[style*="repeat(3, 1fr)"] {
+            grid-template-columns: 1fr !important;
+            gap: 40px !important;
+        }
+        
+        /* Research images stack on mobile */
+        .research-images {
+            flex-direction: column !important;
+            align-items: center !important;
+        }
+        
+        .research-images img {
+            width: 100% !important;
+            max-width: 300px !important;
+        }
+    }
     </style>
 
     <div class="container">
@@ -78,10 +151,143 @@
                     </div>
                 </div>
             </div>
+
+            <!-- Hero Video Section -->
+            <section class="project-section">
+                <div class="video-section">
+                    <div class="video-container">
+                        <iframe width="100%" height="600" src="https://www.youtube.com/embed/0r9X84sB5PM" title="Hasta Mudra VR Experience" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen style="border-radius: 8px; max-width: 1200px; margin: 0 auto; display: block;"></iframe>
+                    </div>
+                </div>
+                <p style="text-align: center; margin-top: 20px; color: #8B7355; font-style: italic;">Reimagining Bharatanatyam through Virtual Reality</p>
+            </section>
+
+            <!-- Six Years of Dance Section -->
+            <section class="project-section">
+                <h2>Six Years of Dance, Reborn in Code</h2>
+                <div class="insight-content">
+                    <div class="insight-text">
+                        <p>With 6 years of training in the Vazhavoor style of Bharatnatyam, I've experienced how hasta mudras are not just hand poses, but narratives. This project is my bridge between a lifelong passion for classical dance and the possibilities of immersive technology.</p>
+                    </div>
+                    <div class="insight-visual">
+                        <img src="../assets/hasta-mudra/hasta-bharatnatyam.png" alt="Bharatanatyam dance practice" class="insight-photo clickable-image" onclick="openImageModal(this)">
+                    </div>
+                </div>
+            </section>
+
+            <!-- Key Insight Section -->
+            <section class="project-section">
+                <div class="project-summary">
+                    <p class="summary-text">"Research shows these codified gestures activate both the motor cortex and language centers of the brain. Hasta Mudra makes this invisible connection visible."</p>
+                    <div class="research-images" style="display: flex; gap: 20px; justify-content: center; margin-top: 20px;">
+                        <img src="../assets/hasta-mudra/hasta-research1.png" alt="Research findings 1" style="height: 400px; object-fit: contain; border-radius: 8px;" class="clickable-image" onclick="openImageModal(this)">
+                        <img src="../assets/hasta-mudra/hasta-research2.png" alt="Research findings 2" style="height: 400px; object-fit: contain; border-radius: 8px;" class="clickable-image" onclick="openImageModal(this)">
+                    </div>
+                </div>
+            </section>
+
+            <!-- An Immersive Journey Section -->
+            <section class="project-section">
+                <h2>An Immersive Journey</h2>
+                
+                <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; margin-top: 40px;">
+                    <!-- Step 1: Learn -->
+                    <div class="journey-step" style="text-align: center;">
+                        <img src="../assets/hasta-mudra/hasta-user-test.jpeg" alt="User learning hand tracking" style="width: 100%; height: 250px; object-fit: cover; border-radius: 8px; margin-bottom: 20px;" class="clickable-image" onclick="openImageModal(this)">
+                        <h3 style="color: #8B7355; margin-bottom: 15px;">Step 1: Learn</h3>
+                        <p>Intuitive hand-tracking allows users to learn and perform the authentic gestures themselves.</p>
+                    </div>
+
+                    <!-- Step 2: Transform -->
+                    <div class="journey-step" style="text-align: center;">
+                        <img src="../assets/hasta-mudra/hasta-chandrakala.jpg" alt="Chandrakala gesture transforming the environment" style="width: 100%; height: 250px; object-fit: cover; border-radius: 8px; margin-bottom: 20px;" class="clickable-image" onclick="openImageModal(this)">
+                        <h3 style="color: #8B7355; margin-bottom: 15px;">Step 2: Transform</h3>
+                        <p>Each gesture transforms the virtual world. Perform 'Chandrakala' to raise the moon, making the symbolic meaning tangible.</p>
+                    </div>
+
+                    <!-- Step 3: Explore -->
+                    <div class="journey-step" style="text-align: center;">
+                        <img src="../assets/hasta-mudra/hasta-temple.png" alt="Virtual temple environment" style="width: 100%; height: 250px; object-fit: cover; border-radius: 8px; margin-bottom: 20px;" class="clickable-image" onclick="openImageModal(this)">
+                        <h3 style="color: #8B7355; margin-bottom: 15px;">Step 3: Explore</h3>
+                        <p>Users explore a serene, beautifully crafted space inspired by Dravidian temple aesthetics, accompanied by Carnatic music.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Bridging Culture and Technology Section -->
+            <section class="project-section">
+                <h2>Bridging Culture and Technology</h2>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-top: 30px;">
+                    <!-- Column 1: The Tech -->
+                    <div>
+                        <h3 style="color: #8B7355; margin-bottom: 20px;">Built With</h3>
+                        <div class="tech-stack" style="text-align: center;">
+                            <div style="display: flex; align-items: center; margin-bottom: 15px; justify-content: center;">
+                                <img src="../assets/unreal-engine-icon.svg" alt="Unreal Engine" style="width: 24px; height: 24px; margin-right: 12px;">
+                                <span>Unreal Engine 5</span>
+                            </div>
+                            <div style="display: flex; align-items: center; margin-bottom: 15px; justify-content: center;">
+                                <img src="../assets/open-xr-icon.svg" alt="OpenXR" style="width: 24px; height: 24px; margin-right: 12px;">
+                                <span>OpenXR Hand Tracking</span>
+                            </div>
+                            <div style="display: flex; align-items: center; margin-bottom: 15px; justify-content: center;">
+                                <span class="material-icons" style="color: #8B7355; margin-right: 12px;">volume_up</span>
+                                <span>Spatial Audio</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Column 2: The Purpose -->
+                    <div style="text-align: center;">
+                        <h3 style="color: #8B7355; margin-bottom: 20px;">Designed For</h3>
+                        <div style="max-width: 300px; margin: 0 auto;">
+                            <p>Cultural institutions, heritage preservation, and global audiences seeking an accessible, engaging gateway to Indian classical art.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- The Path Forward Section -->
+            <section class="project-section">
+                <h2>The Path Forward</h2>
+                <div class="reflection-content" style="margin-top: 30px;">
+                    <blockquote class="reflection-quote">
+                        <p>This prototype opens doors to gamified learning and interactive mythological storytelling, ensuring this ancient art form continues to evolve and captivate new generations.</p>
+                    </blockquote>
+                </div>
+            </section>
         </main>
     </div>
 
+    <!-- Image Modal -->
+    <div id="imageModal" class="image-modal" onclick="closeImageModal()">
+        <span class="modal-close" onclick="closeImageModal()">&times;</span>
+        <img id="modalImage" class="modal-image" src="" alt="">
+    </div>
+
     <script>
+function openImageModal(imgElement) {
+    const modal = document.getElementById('imageModal');
+    const modalImg = document.getElementById('modalImage');
+    modal.style.display = 'flex';
+    modalImg.src = imgElement.src;
+    modalImg.alt = imgElement.alt;
+    document.body.style.overflow = 'hidden';
+}
+
+function closeImageModal() {
+    const modal = document.getElementById('imageModal');
+    modal.style.display = 'none';
+    document.body.style.overflow = 'auto';
+}
+
+// Close modal when pressing Escape key
+document.addEventListener('keydown', function(event) {
+    if (event.key === 'Escape') {
+        closeImageModal();
+    }
+});
+
 // Hide shell label when scrolling
 let lastScrollTop = 0;
 const shellLabel = document.querySelector('.shell-label');
@@ -90,7 +296,7 @@ if (shellLabel) {
     window.addEventListener('scroll', function() {
         const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
         
-        if (scrollTop > 50) { // Start hiding after 50px of scroll
+        if (scrollTop > 50) {
             shellLabel.style.opacity = '0';
             shellLabel.style.transform = 'translateY(-10px)';
         } else {
@@ -98,9 +304,10 @@ if (shellLabel) {
             shellLabel.style.transform = 'translateY(0)';
         }
         
-        lastScrollTop = scrollTop <= 0 ? 0 : scrollTop; // For Mobile or negative scrolling
+        lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
     });
 }
+</script>
 </script>
     <script src="../script.js"></script>
 </body>

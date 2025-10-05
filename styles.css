@@ -1639,8 +1639,30 @@ p {
 }
 
 .video-container {
-    max-width: 800px;
+    max-width: 1200px;
     margin: 0 auto;
+}
+
+/* Mobile responsiveness for video container */
+@media (max-width: 768px) {
+    .video-container {
+        max-width: 100%;
+        padding: 0 20px;
+    }
+    
+    .video-container iframe {
+        height: 315px; /* Smaller height for mobile */
+    }
+}
+
+@media (max-width: 480px) {
+    .video-container {
+        padding: 0 15px;
+    }
+    
+    .video-container iframe {
+        height: 250px; /* Even smaller for very small screens */
+    }
 }
 
 .video-embed {
