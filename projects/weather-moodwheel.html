@@ -72,6 +72,196 @@
             margin: -21% 0 0 -116.67% !important; /* Updated top margin */
         }
     }
+
+    /* Image Modal Styles */
+    .image-modal {
+        display: none;
+        position: fixed;
+        z-index: 10000;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.9);
+        justify-content: center;
+        align-items: center;
+    }
+
+    .modal-close {
+        position: absolute;
+        top: 20px;
+        right: 30px;
+        color: white;
+        font-size: 40px;
+        font-weight: bold;
+        cursor: pointer;
+        z-index: 10001;
+    }
+
+    .modal-close:hover {
+        opacity: 0.7;
+    }
+
+    .modal-image {
+        max-width: 90%;
+        max-height: 90%;
+        object-fit: contain;
+        border-radius: 8px;
+    }
+
+    @media (max-width: 768px) {
+        .modal-image {
+            max-width: 95%;
+            max-height: 95%;
+        }
+        
+        .modal-close {
+            top: 15px;
+            right: 20px;
+            font-size: 30px;
+        }
+    }
+
+    /* Gallery Grid Styles for Equal Image Sizing */
+    .gallery-grid {
+        display: grid;
+        gap: 20px;
+        margin: 30px 0;
+        justify-items: center;
+    }
+
+    /* 5 images in concept section */
+    .gallery-grid:has(img:nth-child(5):last-child) {
+        grid-template-columns: repeat(5, 1fr);
+    }
+
+    /* 3 images in spline section */
+    .gallery-grid:has(img:nth-child(3):last-child) {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    /* 2 images in inspiration section */
+    .gallery-grid:has(img:nth-child(2):last-child) {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .gallery-grid .research-image-small {
+        width: 100%;
+        height: 250px;
+        object-fit: contain;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    /* Keep background for other images (like foyer presentation, dear data) */
+    .reflection-content .gallery-grid .research-image-small {
+        background-color: #f8f9fa;
+        height: auto;
+        max-width: 100%;
+        object-fit: none;
+    }
+
+    /* Specific styling for dear data image to reduce size */
+    .reflection-content .gallery-grid .research-image-small[alt*="Dear Data"] {
+        max-width: 30%;
+        margin: 0 auto;
+        height: auto;
+        object-fit: contain;
+    }
+
+    /* Specific styling for foyer presentation images */
+    .gallery-grid .research-image-small[alt*="Foyer presentation"] {
+        height: 300px;
+        width: 300%;
+        object-fit: cover;
+        background-color: #f8f9fa;
+    }
+
+    /* Reduce gap specifically for foyer images gallery */
+    .gallery-grid:has(.research-image-small[alt*="Foyer presentation"]) {
+        gap: 10px;
+    }
+
+    .gallery-grid .research-image-small:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 1024px) {
+        .gallery-grid:has(img:nth-child(5):last-child) {
+            grid-template-columns: repeat(3, 1fr);
+        }
+        
+        .gallery-grid:has(img:nth-child(3):last-child) {
+            grid-template-columns: repeat(2, 1fr);
+        }
+    }
+
+    @media (max-width: 768px) {
+        .gallery-grid {
+            grid-template-columns: repeat(2, 1fr) !important;
+            gap: 15px;
+        }
+        
+        .gallery-grid .research-image-small {
+            height: 200px;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .gallery-grid {
+            grid-template-columns: 1fr !important;
+            gap: 15px;
+        }
+        
+        .gallery-grid .research-image-small {
+            height: 250px;
+        }
+    }
+
+    /* Mobile responsive for foyer images */
+    @media (max-width: 768px) {
+        .foyer-images-container {
+            flex-direction: column !important;
+            align-items: center !important;
+        }
+        
+        .foyer-images-container img {
+            width: 90% !important;
+            max-width: 400px !important;
+        }
+        
+        /* Make dear data image larger on mobile */
+        .reflection-content .gallery-grid .research-image-small[alt*="Dear Data"] {
+            max-width: 90% !important;
+        }
+        
+        /* Smaller Spline click-to-load UI on mobile */
+        #splineePlaceholder {
+            padding: 10px !important;
+        }
+        
+        #splineePlaceholder div {
+            font-size: 30px !important;
+        }
+        
+        #splineePlaceholder h3 {
+            font-size: 1rem !important;
+            margin-bottom: 5px !important;
+        }
+        
+        #splineePlaceholder p {
+            font-size: 0.8rem !important;
+            margin-bottom: 10px !important;
+        }
+        
+        #splineePlaceholder div:last-child {
+            font-size: 0.75rem !important;
+            padding: 6px 12px !important;
+        }
+    }
     </style>
 
     <div class="container">
@@ -104,16 +294,117 @@
                     </div>
                 </div>
             </div>
+
+            <!-- Video Section (moved up) -->
+            <section class="project-section" style="margin-top: 40px; padding: 0 20px;">
+                <div style="width: 100%; max-width: 1200px; aspect-ratio: 16/9; margin: 0 auto; border-radius: 12px; overflow: hidden; box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);">
+                    <video controls style="width: 100%; height: 100%; border-radius: 12px;">
+                        <source src="../assets/weather-moodwheel/spline-recording-weather-mood-wheel.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+                <p style="text-align: center; margin-top: 20px; color: #8B7355; font-style: italic;">Recording of the interactive 3D weather mood wheel in action</p>
+            </section>
+
+            <!-- Project Content -->
+            <section class="project-section">
+                <h2>How does a sunny day feel?</h2>
+                <div class="insight-content">
+                    <div class="insight-visual">
+                        <img src="../assets/weather-moodwheel/weather-shift.png" alt="Weather shift visualization" class="insight-photo clickable-image" onclick="openImageModal(this)">
+                    </div>
+                    <div class="insight-text" style="text-align: left;">
+                        <p>Weathers shift and along with it, our emotions. Weather Moodwheel is a 3D data visualization project that gives physical form to the emotional shifts we experience with changing weather.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="project-section">
+                <h2>The Challenge</h2>
+                <p>How can we visualize an internal, subjective experience? The goal was to create a data-driven representation of my classmates' emotional states across four different weather conditions: sunny, rainy, cloudy, and winter.</p>
+                
+                <div style="text-align: center; margin: 40px 0;">
+                    <div style="margin-bottom: 20px;">
+                        <h3 style="margin-bottom: 15px;">Weathers</h3>
+                        <p style="font-size: 1.2rem;">☀️ Sunny | 🌧️ Rainy | ☁️ Cloudy | ❄️ Winter</p>
+                    </div>
+                    <div>
+                        <h3 style="margin-bottom: 15px;">Emotions</h3>
+                        <p style="font-size: 1.2rem;">😊 Happy | 😐 Calm | 😢 Sad | 😠 Angry</p>
+                    </div>
+                </div>
+
+                <div class="research-image-container" style="margin: 30px 0;">
+                    <img src="../assets/weather-moodwheel/weather-mood-data.png" alt="Weather mood data collection" class="research-image clickable-image" onclick="openImageModal(this)">
+                </div>
+            </section>
+
+            <section class="project-section">
+                <h2>From Concept to Form</h2>
+                <p>Initial explorations on paper, brainstorming how to map abstract emotions onto the tangible qualities of shape and structure for each weather type. Developing a design for data visualisation: What form does 'happy' visually take? How to show shifting weather?</p>
+                
+                <div class="gallery-grid" style="margin-top: 30px;">
+                    <img src="../assets/weather-moodwheel/weather-concept-sketch-1.jpeg" alt="Concept sketch 1" class="research-image-small clickable-image" onclick="openImageModal(this)">
+                    <img src="../assets/weather-moodwheel/weather-concept-sketch-2.jpeg" alt="Concept sketch 2" class="research-image-small clickable-image" onclick="openImageModal(this)">
+                    <img src="../assets/weather-moodwheel/weather-concept-sketch-3.jpeg" alt="Concept sketch 3" class="research-image-small clickable-image" onclick="openImageModal(this)">
+                    <img src="../assets/weather-moodwheel/weather-concept-sketch-4.png" alt="Concept sketch 4" class="research-image-small clickable-image" onclick="openImageModal(this)">
+                    <img src="../assets/weather-moodwheel/weather-concept-sketch-5.png" alt="Concept sketch 5" class="research-image-small clickable-image" onclick="openImageModal(this)">
+                </div>
+            </section>
+
+            <section class="project-section">
+                <h2>The final 3D models</h2>
+                <p>Each piece is a data point, a specific emotional weather. Their 3D forms were built on Spline, an online 3D tool.</p>
+                
+                <div class="gallery-grid" style="margin-top: 30px;">
+                    <img src="../assets/weather-moodwheel/weather-spline-1.png" alt="3D model 1" class="research-image-small clickable-image" onclick="openImageModal(this)">
+                    <img src="../assets/weather-moodwheel/weather-spline-2.png" alt="3D model 2" class="research-image-small clickable-image" onclick="openImageModal(this)">
+                    <img src="../assets/weather-moodwheel/weather-spline-3.png" alt="3D model 3" class="research-image-small clickable-image" onclick="openImageModal(this)">
+                </div>
+
+                <!-- Interactive Spline 3D Model Section (moved down) -->
+                <div class="spline-container" style="width: 100%; max-width: 1200px; aspect-ratio: 16/9; margin: 40px auto; border-radius: 12px; overflow: hidden; box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1); position: relative;">
+                    <!-- Placeholder image that loads the Spline viewer on click -->
+                    <div id="splineePlaceholder" style="width: 100%; height: 100%; background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%); display: flex; align-items: center; justify-content: center; cursor: pointer; position: relative;">
+                        <div style="text-align: center; color: #666;">
+                            <div style="font-size: 60px; margin-bottom: 20px;">🌦️</div>
+                            <h3 style="margin-bottom: 10px; color: #333;">Interactive 3D Weather Mood Wheel</h3>
+                            <p style="color: #666; margin-bottom: 20px;">Click to load the interactive 3D visualization</p>
+                            <div style="background: rgba(139, 115, 85, 0.1); border: 2px solid #8B7355; border-radius: 25px; padding: 12px 24px; display: inline-block; color: #8B7355; font-weight: 500;">
+                                ▶ Load 3D Model
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Spline viewer (initially hidden) -->
+                    <div id="splineViewer" style="display: none; width: 100%; height: 100%;">
+                        <spline-viewer 
+                            url="https://prod.spline.design/TRR0xjOkjjWUWkGp/scene.splinecode"
+                            loading="lazy"
+                            camera-controls
+                            auto-rotate="false"
+                            interaction-prompt="none">
+                        </spline-viewer>
+                    </div>
+                </div>
+                <p style="text-align: center; margin-top: 20px; color: #8B7355; font-style: italic;">Click any of the weather icon to see how our moods vary depending on the season</p>
+
+                <div class="foyer-images-container" style="margin-top: 50px; display: flex; gap: 10px; justify-content: center; overflow-x: auto;">
+                    <img src="../assets/weather-moodwheel/weather-foyer-presentation-1.jpeg" alt="Foyer presentation 1" class="clickable-image" onclick="openImageModal(this)" style="height: 300px !important; width: 500px !important; object-fit: cover !important; background-color: #f8f9fa !important; flex-shrink: 0 !important; border-radius: 8px !important; cursor: pointer !important; transition: transform 0.3s ease !important;">
+                    <img src="../assets/weather-moodwheel/weather-foyer-presentation-2.jpeg" alt="Foyer presentation 2" class="clickable-image" onclick="openImageModal(this)" style="height: 300px !important; width: 500px !important; object-fit: cover !important; background-color: #f8f9fa !important; flex-shrink: 0 !important; border-radius: 8px !important; cursor: pointer !important; transition: transform 0.3s ease !important;">
+                </div>
+
+                <div class="reflection-content" style="margin-top: 50px;">
+                    <blockquote class="reflection-quote">
+                        This project was inspired by the philosophy of Giorgia Lupi and Stefanie Posavec, who masterfully found ways to 'make the invisible visible' through hand-drawn data.
+                        <div class="gallery-grid" style="margin-top: 30px;">
+                            <img src="../assets/weather-moodwheel/dear-data-book.jpg" alt="Dear Data inspiration" class="research-image-small clickable-image" onclick="openImageModal(this)">
+                        </div>
+                    </blockquote>
+                </div>
+            </section>
         </main>
     </div>
 
-    <!-- Spline 3D Model Section -->
-    <section class="project-section" style="margin-top: 40px; padding: 0 20px;">
-        <div class="spline-container" style="width: 100%; max-width: 1200px; aspect-ratio: 16/9; margin: 0 auto; border-radius: 12px; overflow: hidden; box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);">
-            <spline-viewer url="https://prod.spline.design/TRR0xjOkjjWUWkGp/scene.splinecode"></spline-viewer>
-        </div>
-        <p style="text-align: center; margin-top: 20px; color: #8B7355; font-style: italic;">Click any of the weather icon to see how our moods vary depending on the season</p>
-    </section>
     </div>
 
     <script>
@@ -136,7 +427,58 @@ if (shellLabel) {
         lastScrollTop = scrollTop <= 0 ? 0 : scrollTop; // For Mobile or negative scrolling
     });
 }
+
+// Click-to-load Spline viewer for better performance
+document.addEventListener('DOMContentLoaded', function() {
+    const placeholder = document.getElementById('splineePlaceholder');
+    const splineViewer = document.getElementById('splineViewer');
+    
+    if (placeholder && splineViewer) {
+        placeholder.addEventListener('click', function() {
+            // Show loading state
+            placeholder.innerHTML = '<div style="display: flex; align-items: center; justify-content: center; height: 100%; color: #8B7355;"><div style="text-align: center;"><div style="font-size: 40px; margin-bottom: 10px;">⏳</div><p>Loading 3D model...</p></div></div>';
+            
+            // Show the Spline viewer container
+            splineViewer.style.display = 'block';
+            
+            // Hide placeholder after a short delay to allow Spline to start loading
+            setTimeout(() => {
+                placeholder.style.display = 'none';
+            }, 1000);
+        });
+    }
+});
+
+    // Image modal functions
+    function openImageModal(imgElement) {
+        const modal = document.getElementById('imageModal');
+        const modalImg = document.getElementById('modalImage');
+        modal.style.display = 'flex';
+        modalImg.src = imgElement.src;
+        modalImg.alt = imgElement.alt;
+        document.body.style.overflow = 'hidden'; // Prevent background scrolling
+    }
+
+    function closeImageModal() {
+        const modal = document.getElementById('imageModal');
+        modal.style.display = 'none';
+        document.body.style.overflow = 'auto'; // Restore scrolling
+    }
+
+    // Close modal when pressing Escape key
+    document.addEventListener('keydown', function(event) {
+        if (event.key === 'Escape') {
+            closeImageModal();
+        }
+    });
 </script>
+
+    <!-- Image Modal -->
+    <div id="imageModal" class="image-modal" onclick="closeImageModal()">
+        <span class="modal-close" onclick="closeImageModal()">&times;</span>
+        <img id="modalImage" class="modal-image" src="" alt="">
+    </div>
+
     <script src="../script.js"></script>
 </body>
 </html>

@@ -2286,9 +2286,4 @@ p {
         bottom: 5px;
         right: 10px;
     }
-    
-    /* Project pages mobile margin - match about page */
-    .container {
-        padding: 80px 15px 15px !important;
-    }
 }
