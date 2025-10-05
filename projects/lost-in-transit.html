@@ -34,6 +34,18 @@
             font-size: 2.5rem !important;
             line-height: 1.1 !important;
         }
+        /* Mobile PDF adjustments */
+        .pdf-header {
+            flex-direction: column !important;
+            align-items: flex-start !important;
+            gap: 10px !important;
+        }
+        .pdf-header > div {
+            width: 100% !important;
+        }
+        .pdf-header > div:last-child {
+            justify-content: flex-start !important;
+        }
     }
     @media (max-width: 480px) {
         .mobile-spacer {
@@ -43,6 +55,92 @@
         header h1, .container header h1 {
             font-size: 2rem !important;
             line-height: 1.1 !important;
+        }
+        /* Mobile PDF container height fix */
+        .pdf-display {
+            height: 400px !important;
+        }
+        .pdf-container .pdf-display {
+            padding: 10px !important;
+        }
+    }
+    
+    /* Image Modal Styles */
+    .modal {
+        display: none !important;
+        position: fixed;
+        z-index: 1000;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.9);
+        justify-content: center;
+        align-items: center;
+    }
+
+    .modal-content {
+        max-width: 90%;
+        max-height: 90%;
+        object-fit: contain;
+        border-radius: 8px;
+        animation: zoom 0.3s ease;
+    }
+
+    @keyframes zoom {
+        from {transform: scale(0)}
+        to {transform: scale(1)}
+    }
+
+    .close {
+        position: absolute;
+        top: 20px;
+        right: 35px;
+        color: #fff;
+        font-size: 40px;
+        font-weight: bold;
+        cursor: pointer;
+        transition: color 0.3s ease;
+    }
+
+    .close:hover,
+    .close:focus {
+        color: #ccc;
+        text-decoration: none;
+    }
+
+    /* Timeline step styles */
+    .timeline-step {
+        margin: 50px 0;
+        padding: 40px;
+        background: rgba(139, 115, 85, 0.05);
+        border-radius: 12px;
+        border-left: 4px solid #8B7355;
+    }
+    
+    .step-number {
+        display: inline-block;
+        background: #8B7355;
+        color: white;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        text-align: center;
+        line-height: 40px;
+        font-weight: bold;
+        margin-bottom: 20px;
+    }
+    
+    .step-images {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 20px;
+        margin: 30px 0;
+    }
+    
+    @media (max-width: 768px) {
+        .step-images {
+            grid-template-columns: 1fr;
         }
     }
     </style>
@@ -97,15 +195,195 @@
                         </div>
                     </div>
                 </div>
+            </div>
+
+            <!-- Hero Video Section -->
+            <section class="project-section" style="margin-top: 40px; padding: 0 20px;">
+                <div style="width: 100%; max-width: 1200px; aspect-ratio: 16/9; margin: 0 auto; border-radius: 12px; overflow: hidden; box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);">
+                    <video controls style="width: 100%; height: 100%; border-radius: 12px;">
+                        <source src="../assets/lost-in-transit/lost-transit-video.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+                <p style="text-align: center; margin-top: 20px; color: #8B7355; font-style: italic;">The complete Lost in Transit shadow play performance</p>
+            </section>
+
+            <!-- Project Introduction -->
+            <section class="project-section">
+                <h2>An Exercise in Building Narratives</h2>
+                <p style="font-size: 1.1rem; line-height: 1.7; color: #303030; margin-bottom: 30px;">A collaborative project exploring how meditation, personal objects, and simple silhouettes can build powerful, immersive stories.</p>
+            </section>
+
+            <!-- From Memory to Performance Section -->
+            <section class="project-section">
+                <h2>From Memory to Performance</h2>
+                
+                <!-- Step 1: Memorabilia & Meditation -->
+                <div class="timeline-step">
+                    <div class="step-number">1</div>
+                    <h3 style="color: #8B7355; margin-bottom: 20px;">Memorabilia & Meditation</h3>
+                    <div style="text-align: center; margin: 30px 0;">
+                        <img src="../assets/lost-in-transit/lost-transit-memorablia.png" alt="Personal objects and memorabilia meditation session" style="width: 100%; max-width: 400px; border-radius: 8px; box-shadow: 0 4px 20px rgba(0,0,0,0.1); cursor: pointer;" class="clickable-image" onclick="openImageModal(this);">
+                    </div>
+                    <p style="line-height: 1.6;">We began by selecting a personal object, and then meditating to distill our day into a few significant words.</p>
+                </div>
+
+                <!-- Step 2: Collaborative Scriptwriting -->
+                <div class="timeline-step">
+                    <div class="step-number">2</div>
+                    <h3 style="color: #8B7355; margin-bottom: 20px;">Collaborative Scriptwriting</h3>
+                    
+                    <!-- PDF Script Viewer -->
+                    <div class="pdf-container" style="background: rgba(139, 115, 85, 0.08); border-radius: 12px; padding: 30px; margin: 30px 0;">
+                        <div class="pdf-header" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; flex-wrap: wrap; gap: 15px;">
+                            <div class="pdf-title">
+                                <h4 style="color: #8B7355; margin: 0; font-size: 1.1rem;">Lost in Transit Script</h4>
+                                <p style="color: #8B7355; margin: 5px 0 0 0; font-size: 0.9rem;">Complete collaborative narrative</p>
+                            </div>
+                            <div style="display: flex; gap: 10px; align-items: center;">
+                                <a href="../assets/lost-in-transit/lost-transit-script.pdf" download class="download-btn" style="background: rgba(139, 115, 85, 0.2); color: #8B7355; border: 1px solid #8B7355; padding: 8px 12px; border-radius: 6px; text-decoration: none; display: flex; align-items: center; gap: 5px; font-size: 0.9rem;">
+                                    <span class="material-icons" style="font-size: 16px;">download</span>
+                                    Download PDF
+                                </a>
+                            </div>
+                        </div>
+                        
+                        <!-- PDF Display -->
+                        <div class="pdf-display" style="border-radius: 8px; padding: 20px; text-align: center;">
+                            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; flex-wrap: wrap; gap: 10px;">
+                                <div style="display: flex; align-items: center; gap: 10px;">
+                                    <button onclick="adjustZoom(-10)" style="background: rgba(139, 115, 85, 0.2); border: 1px solid #8B7355; color: #8B7355; padding: 5px 10px; border-radius: 4px; cursor: pointer;">−</button>
+                                    <span id="zoomLevel" style="color: #8B7355; font-size: 0.9rem;">75%</span>
+                                    <button onclick="adjustZoom(10)" style="background: rgba(139, 115, 85, 0.2); border: 1px solid #8B7355; color: #8B7355; padding: 5px 10px; border-radius: 4px; cursor: pointer;">+</button>
+                                </div>
+                            </div>
+                            <iframe id="pdfViewer" src="../assets/lost-in-transit/lost-transit-script.pdf#view=FitH&zoom=75" style="width: 100%; height: 700px; border: none; border-radius: 4px;" title="Lost in Transit Script"></iframe>
+                        </div>
+                    </div>
+                    
+                    <p style="line-height: 1.6;">Individual words were woven together into a collective narrative, building a story with a clear beginning, middle, and end.</p>
+                </div>
+
+                <!-- Step 3: Shadow Play Performance -->
+                <div class="timeline-step">
+                    <div class="step-number">3</div>
+                    <h3 style="color: #8B7355; margin-bottom: 20px;">Shadow Play Performance</h3>
+                    
+                    <div class="step-images">
+                        <div style="text-align: center;">
+                            <img src="../assets/lost-in-transit/lost-transit-storyboard-page1.jpg" alt="Performance storyboard page 1" style="width: 100%; border-radius: 8px; box-shadow: 0 4px 20px rgba(0,0,0,0.1); cursor: pointer;" class="clickable-image" onclick="openImageModal(this);">
+                            <p style="margin-top: 15px; color: #8B7355; font-size: 0.9rem;">Storyboard Page 1</p>
+                        </div>
+                        <div style="text-align: center;">
+                            <img src="../assets/lost-in-transit/lost-transit-storyboard-page2.jpg" alt="Performance storyboard page 2" style="width: 100%; border-radius: 8px; box-shadow: 0 4px 20px rgba(0,0,0,0.1); cursor: pointer;" class="clickable-image" onclick="openImageModal(this);">
+                            <p style="margin-top: 15px; color: #8B7355; font-size: 0.9rem;">Storyboard Page 2</p>
+                        </div>
+                        <div style="text-align: center;">
+                            <img src="../assets/lost-in-transit/lost-transit-process1.png" alt="Shadow play process 1" style="width: 100%; border-radius: 8px; box-shadow: 0 4px 20px rgba(0,0,0,0.1); cursor: pointer;" class="clickable-image" onclick="openImageModal(this);">
+                            <p style="margin-top: 15px; color: #8B7355; font-size: 0.9rem;">Behind the Scenes</p>
+                        </div>
+                        <div style="text-align: center;">
+                            <img src="../assets/lost-in-transit/lost-transit-process2.png" alt="Shadow play process 2" style="width: 100%; border-radius: 8px; box-shadow: 0 4px 20px rgba(0,0,0,0.1); cursor: pointer;" class="clickable-image" onclick="openImageModal(this);">
+                            <p style="margin-top: 15px; color: #8B7355; font-size: 0.9rem;">Performance Setup</p>
+                        </div>
+                        <div style="text-align: center;">
+                            <img src="../assets/lost-in-transit/lost-transit-poster.png" alt="Lost in Transit promotional poster" style="width: 100%; border-radius: 8px; box-shadow: 0 4px 20px rgba(0,0,0,0.1); cursor: pointer;" class="clickable-image" onclick="openImageModal(this);">
+                            <p style="margin-top: 15px; color: #8B7355; font-size: 0.9rem;">Event Poster</p>
+                        </div>
+                    </div>
+                    
+                    <p style="line-height: 1.6;">The script was brought to life through the raw, expressive medium of shadow play, using light, silhouettes, and motion.</p>
+                </div>
+            </section>
+
+            <!-- Core Principles of Storytelling -->
+            <section class="project-section">
+                <h2>Core Principles of Storytelling</h2>
+                
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); gap: 30px; margin: 30px 0;">
+                    <div style="background: rgba(139, 115, 85, 0.08); padding: 30px; border-radius: 12px;">
+                        <h3 style="color: #8B7355; margin-bottom: 20px;">Learning 1: Structure is Key</h3>
+                        <p style="color: #303030; margin: 0; line-height: 1.6;">A clear narrative arc (Beginning, Middle, End) is fundamental for driving engagement and giving the audience a sense of purpose and direction.</p>
+                    </div>
+                    <div style="background: rgba(139, 115, 85, 0.08); padding: 30px; border-radius: 12px;">
+                        <h3 style="color: #8B7355; margin-bottom: 20px;">Learning 2: Pacing Over Blankness</h3>
+                        <p style="color: #303030; margin: 0; line-height: 1.6;">I learned that prolonged emptiness, intended as pause, can disengage the audience. Every moment needs intention, supported by visual or audio cues to maintain immersion.</p>
                     </div>
                 </div>
-                    </div>
+            </section>
+
+            <!-- The Foundation of Immersion -->
+            <section class="project-section">
+                <h2>The Foundation of Immersion</h2>
+                <div class="reflection-content" style="margin-top: 30px;">
+                    <blockquote class="reflection-quote">
+                        <p style="margin: 0;">This project was a foundational lesson in the power of simplicity. It proved that advanced technology isn't a prerequisite for immersion; a compelling story, told with intention and collaboration, can be profoundly powerful on its own.</p>
+                    </blockquote>
                 </div>
-                </div>
+            </section>
         </main>
     </div>
 
+    <!-- Image Modal -->
+    <div id="imageModal" style="display: none; position: fixed; z-index: 10000; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.9); justify-content: center; align-items: center;" onclick="closeImageModal()">
+        <span style="position: absolute; top: 20px; right: 30px; color: white; font-size: 40px; font-weight: bold; cursor: pointer; z-index: 10001;" onclick="closeImageModal()">&times;</span>
+        <img id="modalImage" src="" alt="" style="max-width: 90%; max-height: 90%; object-fit: contain;">
+    </div>
+
     <script>
+// Image Modal functionality
+function openImageModal(imgElement) {
+    const modal = document.getElementById('imageModal');
+    const modalImage = document.getElementById('modalImage');
+    
+    modal.style.display = 'flex';
+    modalImage.src = imgElement.src;
+    modalImage.alt = imgElement.alt;
+    
+    // Prevent body scroll when modal is open
+    document.body.style.overflow = 'hidden';
+}
+
+function closeImageModal() {
+    const modal = document.getElementById('imageModal');
+    modal.style.display = 'none';
+    
+    // Restore body scroll
+    document.body.style.overflow = 'auto';
+}
+
+// Close modal with Escape key
+document.addEventListener('keydown', function(event) {
+    if (event.key === 'Escape') {
+        closeImageModal();
+    }
+});
+
+// Prevent modal from closing when clicking on the image
+document.getElementById('modalImage').addEventListener('click', function(event) {
+    event.stopPropagation();
+});
+
+// PDF Zoom functionality
+let currentZoom = 75;
+
+function adjustZoom(change) {
+    currentZoom += change;
+    if (currentZoom < 25) currentZoom = 25;
+    if (currentZoom > 200) currentZoom = 200;
+    updatePDFZoom();
+}
+
+function updatePDFZoom() {
+    const pdfViewer = document.getElementById('pdfViewer');
+    const zoomLevel = document.getElementById('zoomLevel');
+    
+    if (pdfViewer && zoomLevel) {
+        pdfViewer.src = `../assets/lost-in-transit/lost-transit-script.pdf#view=FitH&zoom=${currentZoom}`;
+        zoomLevel.textContent = `${currentZoom}%`;
+    }
+}
+
 // Hide shell label when scrolling
 let lastScrollTop = 0;
 const shellLabel = document.querySelector('.shell-label');
