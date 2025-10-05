@@ -34,6 +34,43 @@
             font-size: 2.5rem !important;
             line-height: 1.1 !important;
         }
+        /* Mobile PDF adjustments */
+        .pdf-header {
+            flex-direction: column !important;
+            align-items: flex-start !important;
+            gap: 20px !important;
+        }
+        .pdf-header > div {
+            width: 100% !important;
+        }
+        .pdf-header > div:last-child {
+            display: flex !important;
+            justify-content: center !important;
+        }
+        iframe {
+            height: 350px !important;
+        }
+        .download-btn {
+            font-size: 0.8rem !important;
+            padding: 6px 10px !important;
+        }
+        /* Show zoom controls on mobile */
+        .mobile-zoom-controls {
+            display: flex !important;
+        }
+        /* Mobile grid adjustments */
+        div[style*="grid-template-columns: repeat(auto-fit, minmax(250px, 1fr))"] {
+            grid-template-columns: 1fr !important;
+            gap: 20px !important;
+        }
+        div[style*="grid-template-columns: repeat(auto-fit, minmax(200px, 1fr))"] {
+            grid-template-columns: 1fr !important;
+            gap: 20px !important;
+        }
+        div[style*="grid-template-columns: repeat(auto-fit, minmax(300px, 1fr))"] {
+            grid-template-columns: 1fr !important;
+            gap: 20px !important;
+        }
     }
     @media (max-width: 480px) {
         .mobile-spacer {
@@ -43,6 +80,9 @@
         header h1, .container header h1 {
             font-size: 2rem !important;
             line-height: 1.1 !important;
+        }
+        iframe {
+            height: 300px !important;
         }
     }
     </style>
@@ -67,7 +107,7 @@
                 <div class="project-subtitle">Jan, 2025 · 2 Weeks</div>
             </div>
             
-                                                <!-- Container 3: Team card (white overlay bg) -->
+            <!-- Container 3: Team card (white overlay bg) -->
             <div class="metadata-team-container">
                 <div class="team-card">
                     <div style="text-align: left !important;">
@@ -87,15 +127,209 @@
                         </div>
                     </div>
                 </div>
+            </div>
+
+            <!-- PDF Section -->
+            <section class="project-section">
+                <!-- PDF Container -->
+                <div class="pdf-container" style="background: rgba(139, 115, 85, 0.08); border-radius: 12px; padding: 30px; margin: 30px 0;">
+                    <div class="pdf-header" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; flex-wrap: wrap; gap: 15px;">
+                        <div class="pdf-title">
+                            <h3 style="color: #8B7355; margin: 0;">Brand Strategy Presentation</h3>
+                            <p style="margin: 5px 0 0 0; color: #303030; font-size: 0.9rem;">Complete brand guidelines</p>
+                        </div>
+                        <div style="display: flex; gap: 10px; align-items: center;">
+                            <a href="../assets/hunar-hive/hunar-slideshow.pdf" download class="download-btn" style="background: rgba(139, 115, 85, 0.2); color: #8B7355; border: 1px solid #8B7355; padding: 8px 12px; border-radius: 6px; text-decoration: none; display: flex; align-items: center; gap: 5px; font-size: 0.9rem;">
+                                <span class="material-icons" style="font-size: 18px;">download</span>
+                                Download PDF
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <!-- PDF Display -->
+                    <div class="pdf-display" style="border-radius: 8px; padding: 20px; text-align: center;">
+                        <!-- Mobile Zoom Controls -->
+                        <div class="mobile-zoom-controls" style="display: none; margin-bottom: 15px; gap: 10px; justify-content: center; align-items: center;">
+                            <button onclick="zoomOut()" style="background: #8B7355; color: white; border: none; padding: 6px 10px; border-radius: 4px; cursor: pointer; font-size: 0.8rem;">
+                                <span class="material-icons" style="font-size: 16px;">zoom_out</span>
+                            </button>
+                            <span id="zoomLevel" style="color: #8B7355; font-size: 0.8rem; min-width: 50px; text-align: center;">75%</span>
+                            <button onclick="zoomIn()" style="background: #8B7355; color: white; border: none; padding: 6px 10px; border-radius: 4px; cursor: pointer; font-size: 0.8rem;">
+                                <span class="material-icons" style="font-size: 16px;">zoom_in</span>
+                            </button>
+                            <button onclick="resetZoom()" style="background: rgba(139, 115, 85, 0.2); color: #8B7355; border: 1px solid #8B7355; padding: 6px 10px; border-radius: 4px; cursor: pointer; font-size: 0.8rem;">
+                                Reset
+                            </button>
+                        </div>
+                        <iframe id="pdfViewer" src="../assets/hunar-hive/hunar-slideshow.pdf#view=FitH&zoom=75" style="width: 100%; height: 700px; border: none; border-radius: 4px;" title="Hunar Hive Brand Strategy Presentation"></iframe>
                     </div>
                 </div>
+                
+                <p style="text-align: center; margin-top: 20px; color: #8B7355; font-style: italic;">An imagined brand and platform designed to empower MIT ID students by turning their creative projects into self-sustaining businesses.</p>
+            </section>
+
+            <!-- More Than a Marketplace Section -->
+            <section class="project-section">
+                <h2>More Than a Marketplace</h2>
+                <p>Hunar Hive was conceived to bridge the gap between classroom learning and real-world entrepreneurship. It provides a dedicated space for students to showcase, sell, and scale their creations, transforming talent into tangible success.</p>
+                
+                <!-- Brand Tagline Callout -->
+                <div style="text-align: center; margin: 40px 0; padding: 30px; background: rgba(139, 115, 85, 0.08); border-radius: 12px;">
+                    <h3 style="color: #8B7355; font-size: 1.8rem; margin: 0; font-weight: bold;">✨ Create. Sell. Inspire. ✨</h3>
+                </div>
+            </section>
+
+            <!-- The Brand Ecosystem Section -->
+            <section class="project-section">
+                <h2>The Brand Ecosystem</h2>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 25px; margin-top: 30px;">
+                    <div style="background: rgba(139, 115, 85, 0.08); padding: 25px; border-radius: 12px; text-align: center;">
+                        <span style="font-size: 3rem; display: block; margin-bottom: 15px;">🎨</span>
+                        <h4 style="color: #8B7355; margin-bottom: 10px;">Showcase</h4>
+                        <p style="color: #303030; margin: 0; font-size: 0.9rem;">Students display their creations to the public.</p>
+                    </div>
+                    <div style="background: rgba(139, 115, 85, 0.08); padding: 25px; border-radius: 12px; text-align: center;">
+                        <span style="font-size: 3rem; display: block; margin-bottom: 15px;">📚</span>
+                        <h4 style="color: #8B7355; margin-bottom: 10px;">Learn</h4>
+                        <p style="color: #303030; margin: 0; font-size: 0.9rem;">Creators gain real-world business and marketing experience.</p>
+                    </div>
+                    <div style="background: rgba(139, 115, 85, 0.08); padding: 25px; border-radius: 12px; text-align: center;">
+                        <span style="font-size: 3rem; display: block; margin-bottom: 15px;">⚙️</span>
+                        <h4 style="color: #8B7355; margin-bottom: 10px;">Implement</h4>
+                        <p style="color: #303030; margin: 0; font-size: 0.9rem;">Students apply branding and pricing strategies.</p>
+                    </div>
+                    <div style="background: rgba(139, 115, 85, 0.08); padding: 25px; border-radius: 12px; text-align: center;">
+                        <span style="font-size: 3rem; display: block; margin-bottom: 15px;">💰</span>
+                        <h4 style="color: #8B7355; margin-bottom: 10px;">Profit</h4>
+                        <p style="color: #303030; margin: 0; font-size: 0.9rem;">Young entrepreneurs earn income from their sales.</p>
                     </div>
                 </div>
+            </section>
+
+            <!-- The Spirit of Hunar Hive Section -->
+            <section class="project-section">
+                <h2>The Spirit of Hunar Hive</h2>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin-top: 30px;">
+                    <div style="background: rgba(139, 115, 85, 0.08); padding: 30px; border-radius: 12px;">
+                        <h4 style="color: #8B7355; margin-bottom: 15px; font-size: 1.2rem;">The Visionary</h4>
+                        <p style="color: #303030; margin: 0; line-height: 1.6;">Imaginative, expressive, and boundary-pushing. Hunar Hive encourages students to experiment and innovate without limits.</p>
+                    </div>
+                    <div style="background: rgba(139, 115, 85, 0.08); padding: 30px; border-radius: 12px;">
+                        <h4 style="color: #8B7355; margin-bottom: 15px; font-size: 1.2rem;">The Disruptor</h4>
+                        <p style="color: #303030; margin: 0; line-height: 1.6;">Bold, independent, and rule-breaking. It challenges traditional commerce, giving creators full control over their craft and success.</p>
+                    </div>
                 </div>
+            </section>
+
+            <!-- Built For Section -->
+            <section class="project-section">
+                <h2>Built For</h2>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 25px; margin-top: 30px;">
+                    <div style="background: rgba(139, 115, 85, 0.08); padding: 25px; border-radius: 12px; text-align: center;">
+                        <span style="font-size: 3rem; display: block; margin-bottom: 15px;">🎓</span>
+                        <h4 style="color: #8B7355; margin-bottom: 10px;">MIT ID Creators</h4>
+                        <p style="color: #303030; margin: 0; font-size: 0.9rem;">Artists, Designers, Innovators</p>
+                    </div>
+                    <div style="background: rgba(139, 115, 85, 0.08); padding: 25px; border-radius: 12px; text-align: center;">
+                        <span style="font-size: 3rem; display: block; margin-bottom: 15px;">❤️</span>
+                        <h4 style="color: #8B7355; margin-bottom: 10px;">Conscious Buyers</h4>
+                        <p style="color: #303030; margin: 0; font-size: 0.9rem;">Those who value unique, student-made products</p>
+                    </div>
+                    <div style="background: rgba(139, 115, 85, 0.08); padding: 25px; border-radius: 12px; text-align: center;">
+                        <span style="font-size: 3rem; display: block; margin-bottom: 15px;">🤝</span>
+                        <h4 style="color: #8B7355; margin-bottom: 10px;">Talent Supporters</h4>
+                        <p style="color: #303030; margin: 0; font-size: 0.9rem;">Brands and individuals investing in the future of design</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Bringing the Brand to Life Section -->
+            <section class="project-section">
+                <h2>Bringing the Brand to Life</h2>
+                
+                <!-- Hashtag Bar -->
+                <div style="text-align: center; margin: 30px 0; padding: 20px; background: rgba(139, 115, 85, 0.08); border-radius: 12px;">
+                    <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 15px; font-weight: 500; color: #8B7355;">
+                        <span>#HunarHive</span>
+                        <span>#ByStudentsForEveryone</span>
+                        <span>#EmpoweringCreativity</span>
+                    </div>
+                </div>
+                
+                <p style="margin-bottom: 30px;">The visual identity blends the energy of a creator's studio with the boldness of a disruptive startup, fostering a sense of community and entrepreneurial empowerment.</p>
+                
+                <!-- Brand Board -->
+                <div style="text-align: center; margin: 40px 0;">
+                    <img src="../assets/hunar-hive/hunar-brand-board.png" alt="Hunar Hive Brand Board" style="width: 100%; max-width: 1000px; border-radius: 8px; box-shadow: 0 4px 20px rgba(0,0,0,0.1);">
+                </div>
+            </section>
+
+            <!-- Reflection Section -->
+            <section class="project-section">
+                <h2>Beyond the Brand</h2>
+                <div class="reflection-content" style="margin-top: 30px;">
+                    <blockquote class="reflection-quote">
+                        <p style="margin: 0;">Designing Hunar Hive reinforced that a marketplace's true value isn't in transactions, but in the community it fosters. My key takeaway was learning to architect a brand from scratch and that the most powerful brands are built on a clear, actionable mission.</p>
+                    </blockquote>
+                </div>
+            </section>
         </main>
     </div>
 
     <script>
+// PDF Zoom functionality
+let currentZoom = 100; // Start with 100% zoom for mobile
+const minZoom = 50;
+const maxZoom = 150;
+const zoomStep = 25;
+
+function updatePDFZoom() {
+    const pdfViewer = document.getElementById('pdfViewer');
+    const zoomLevel = document.getElementById('zoomLevel');
+    const pdfContainer = pdfViewer.parentElement;
+    
+    // Update zoom level display
+    zoomLevel.textContent = `${currentZoom}%`;
+    
+    // Apply CSS transform for reliable scaling
+    const scale = currentZoom / 100;
+    pdfViewer.style.transform = `scale(${scale})`;
+    pdfViewer.style.transformOrigin = 'top center';
+    
+    // Adjust container to prevent overflow
+    const originalHeight = 700;
+    const scaledHeight = originalHeight * scale;
+    pdfContainer.style.height = `${scaledHeight + 40}px`; // +40 for padding
+    
+    // Update the PDF src to force reload with fit parameter
+    const baseUrl = '../assets/hunar-hive/hunar-slideshow.pdf';
+    pdfViewer.src = `${baseUrl}#view=FitH&page=1`;
+}
+
+function zoomIn() {
+    if (currentZoom < maxZoom) {
+        currentZoom += zoomStep;
+        updatePDFZoom();
+    }
+}
+
+function zoomOut() {
+    if (currentZoom > minZoom) {
+        currentZoom -= zoomStep;
+        updatePDFZoom();
+    }
+}
+
+function resetZoom() {
+    currentZoom = 75;
+    updatePDFZoom();
+}
+
+// Initialize zoom on page load
+document.addEventListener('DOMContentLoaded', function() {
+    updatePDFZoom();
+});
+
 // Hide shell label when scrolling
 let lastScrollTop = 0;
 const shellLabel = document.querySelector('.shell-label');
