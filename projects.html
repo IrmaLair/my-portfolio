@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Projects - Nidhi's Portfolio</title>
+    <link rel="icon" type="image/svg+xml" href="assets/Logo.svg">
     <link rel="stylesheet" href="styles.css?v=fix-1003191112643">
 </head>
 <body>
@@ -617,6 +618,36 @@
 
     <p class="copyright" style="color: #303030 !important; font-weight: 100 !important; font-family: inherit !important;">&copy; 2025 Nidhi Surekha. All rights reserved.</p>
 
+    <script>
+        // Hide project cards that use generic placeholder images
+        document.addEventListener('DOMContentLoaded', function() {
+            const projectCards = document.querySelectorAll('.project-card');
+            const genericImages = [
+                'assets/project1.svg',
+                'assets/project2.svg', 
+                'assets/project3.svg',
+                'assets/project4.svg',
+                'assets/project5.svg'
+            ];
+            
+            projectCards.forEach(card => {
+                const img = card.querySelector('.project-image img');
+                if (img && genericImages.includes(img.src.split('/').slice(-2).join('/'))) {
+                    card.style.display = 'none';
+                    console.log('Hidden project card with generic image:', img.src);
+                }
+            });
+            
+            // Re-trigger filter functionality after hiding cards
+            if (window.filterProjects) {
+                const activeFilter = document.querySelector('.filter-chip.active');
+                if (activeFilter) {
+                    window.filterProjects(activeFilter.dataset.category);
+                }
+            }
+        });
+    </script>
+    
     <script src="script.js"></script>
 </body>
 </html>
