@@ -9,6 +9,11 @@
 body {
     font-family: 'Poppins', sans-serif;
     background-color: #e6d7c2;
+    background-image: url('./assets/sand-texture-overlay.png');
+    background-blend-mode: overlay;
+    background-attachment: fixed;
+    background-size: cover;
+    background-repeat: repeat;
     color: #303030;
     text-align: center;
     min-height: 100vh;
@@ -109,33 +114,16 @@ body.homepage {
     background-position: center;
     background-repeat: repeat;
     mix-blend-mode: overlay;
-    /* Fallback for browsers that don't support mix-blend-mode */
-    opacity: 0.3;
+    opacity: 0;
     z-index: 2;
     pointer-events: none;
     transition: opacity 1s ease-in-out;
-    display: block;
-    visibility: visible;
-}
-
-/* Enhanced support for mix-blend-mode */
-@supports (mix-blend-mode: overlay) {
-    .sand-overlay {
-        opacity: 1;
-        mix-blend-mode: overlay;
-    }
-}
-
-/* Fallback for older browsers */
-@supports not (mix-blend-mode: overlay) {
-    .sand-overlay {
-        opacity: 0.15;
-        mix-blend-mode: normal;
-    }
+    display: none !important;
+    visibility: hidden;
 }
 
 .sand-overlay.show {
-    display: block;
+    display: block !important;
     visibility: visible;
     opacity: 1;
 }
