@@ -35,9 +35,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 sandTextureLoaded = true;
                 console.log('Sand texture preloaded successfully');
                 
-                // Force apply the background to ensure it's rendered
-                document.body.style.backgroundImage = `url('${assetPath}sand-texture-overlay.png')`;
-                
                 // Small delay to ensure rendering, then check if we can hide splash
                 setTimeout(() => {
                     if (otherAssetsLoaded) {

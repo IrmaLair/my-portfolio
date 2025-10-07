@@ -9,11 +9,6 @@
 body {
     font-family: 'Poppins', sans-serif;
     background-color: #e6d7c2;
-    background-image: url('./assets/sand-texture-overlay.png');
-    background-blend-mode: overlay;
-    background-attachment: fixed;
-    background-size: cover;
-    background-repeat: repeat;
     color: #303030;
     text-align: center;
     min-height: 100vh;
