@@ -1177,7 +1177,7 @@ p {
     }
     
     .photo-container {
-        width: min(85vw, 300px); /* Slightly wider on mobile */
+        width: min(70vw, 250px); /* Smaller width for mobile */
     }
     
     .about-right h1 {
@@ -1189,8 +1189,8 @@ p {
     }
     
     .gallery-scroll .gallery-item {
-        width: 150px;
-        height: 150px;
+        width: 220px; /* Increased from 180px to 220px */
+        height: 220px; /* Increased from 180px to 220px */
     }
 }
 
