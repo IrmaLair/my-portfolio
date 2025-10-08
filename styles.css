@@ -1002,10 +1002,12 @@ p {
     position: relative;
     display: inline-block;
     transform: rotate(-6deg);
+    width: min(80vw, 400px); /* Responsive width with max of 400px */
+    max-width: 100%;
 }
 
 .about-photo {
-    width: 400px;
+    width: 100%;
     height: auto;
     border-radius: 15px;
     box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
@@ -1174,8 +1176,8 @@ p {
         order: -1;
     }
     
-    .about-photo {
-        width: 300px;
+    .photo-container {
+        width: min(85vw, 300px); /* Slightly wider on mobile */
     }
     
     .about-right h1 {

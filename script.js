@@ -3,29 +3,12 @@ document.addEventListener('DOMContentLoaded', function() {
     const splash = document.getElementById('splash');
     const sandOverlay = document.getElementById('sand-overlay');
     
-    // Sand overlay logic - ensure it's hidden by default
+    // Sand overlay logic - show for all visitors including first-time
     if (sandOverlay) {
-        // Force hide initially
-        sandOverlay.style.display = 'none';
-        sandOverlay.classList.remove('show');
-        
-        // Check if this is truly a first visit (not just first in session)
-        const hasEverVisited = localStorage.getItem('hasVisitedHomepage');
-        
-        // Ensure homepage body background is clean for first visit
-        if (!hasEverVisited) {
-            // Force clean background for first visit
-            document.body.style.backgroundImage = 'none';
-            document.body.style.backgroundBlendMode = 'normal';
-        }
-        
-        // Only show sand overlay if user has visited before
-        if (hasEverVisited) {
-            // Small delay to ensure proper loading
-            setTimeout(() => {
-                sandOverlay.classList.add('show');
-            }, 100);
-        }
+        // Always show sand overlay (remove restriction for first-time visitors)
+        setTimeout(() => {
+            sandOverlay.classList.add('show');
+        }, 100);
     }
     
     if (splash) {
