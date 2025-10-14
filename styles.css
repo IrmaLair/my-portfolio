@@ -128,6 +128,23 @@ body.homepage {
     opacity: 1;
 }
 
+/* Sand Texture Background (CSS-based) for project pages */
+.sand-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #D4B896;
+    background-image: url('../assets/sand-texture-bg.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    z-index: -1;
+    pointer-events: none;
+    opacity: 0.8;
+}
+
 /* Resume Button */
 .resume-button-container {
     position: fixed;
