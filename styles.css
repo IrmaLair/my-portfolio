@@ -8,9 +8,9 @@
 
 body {
     font-family: 'Poppins', sans-serif;
-    background-color: #e6d7c2;
-    background-image: url('./assets/sand-texture-overlay.png');
-    background-blend-mode: overlay;
+    background-color: #ceb187;
+    background-image: url('./assets/sand-texture-bg.png');
+    background-blend-mode: normal;
     background-attachment: fixed;
     background-size: cover;
     background-repeat: repeat;
@@ -322,7 +322,7 @@ p {
     left: 0;
     width: 100vw;
     height: 100vh;
-    background-color: #e6d7c2;
+    background-color: #ceb187;
     display: flex;
     justify-content: center;
     align-items: center;
