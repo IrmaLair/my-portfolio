@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Florelia - Nidhi's Portfolio</title>
+    <link rel="icon" type="image/svg+xml" href="../assets/Logo.svg">
+    <link rel="stylesheet" href="../styles.css?v=mobile-title-1003182043489">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+<body>
+        <!-- Splash Screen -->
+    <div class="splash-screen" id="splash">
+        <img src="../assets/Logo.svg" alt="Logo" class="splash-logo">
+    </div>
+
+<!-- Shell Navigation Button -->
+    <div class="shell-nav">
+        <a href="../projects.html" class="shell-nav-btn" aria-label="Back to Projects">
+            <img src="../assets/shell-clam.svg" alt="Back to Projects" width="60" height="60">
+            <span class="shell-label">Projects</span>
+        </a>
+    </div>
+
+        <!-- Mobile spacer to prevent overlap -->
+    <div class="mobile-spacer" style="height: 65px; width: 100%; display: none;"></div>
+    
+    <style>
+    @media (max-width: 768px) {
+        .mobile-spacer {
+            display: block !important;
+        }
+        /* Mobile title sizing */
+        header h1, .container header h1 {
+            font-size: 2.5rem !important;
+            line-height: 1.1 !important;
+        }
+    }
+    @media (max-width: 480px) {
+        .mobile-spacer {
+            height: 55px !important;
+        }
+        /* Smaller mobile title sizing */
+        header h1, .container header h1 {
+            font-size: 2rem !important;
+            line-height: 1.1 !important;
+        }
+    }
+    
+    /* Image Modal Styles */
+    .image-modal {
+        display: none;
+        position: fixed;
+        z-index: 10000;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.9);
+        justify-content: center;
+        align-items: center;
+    }
+
+    .modal-close {
+        position: absolute;
+        top: 20px;
+        right: 30px;
+        color: white;
+        font-size: 40px;
+        font-weight: bold;
+        cursor: pointer;
+        z-index: 10001;
+    }
+
+    .modal-close:hover {
+        opacity: 0.7;
+    }
+
+    .modal-image {
+        max-width: 90%;
+        max-height: 90%;
+        object-fit: contain;
+        border-radius: 8px;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+        .modal-image {
+            max-width: 95%;
+            max-height: 95%;
+        }
+        
+        .modal-close {
+            top: 15px;
+            right: 20px;
+            font-size: 30px;
+        }
+        
+        /* Two-column layout becomes single column on mobile */
+        .project-section > div[style*="grid-template-columns"] {
+            grid-template-columns: 1fr !important;
+            gap: 30px !important;
+        }
+        
+        /* Three-column journey steps become single column on mobile */
+        .project-section > div[style*="repeat(3, 1fr)"] {
+            grid-template-columns: 1fr !important;
+            gap: 40px !important;
+        }
+        
+        /* Research images stack on mobile */
+        .research-images {
+            flex-direction: column !important;
+            align-items: center !important;
+        }
+        
+        .research-images img {
+            width: 100% !important;
+            max-width: 300px !important;
+        }
+        
+        /* Mobile PDF adjustments */
+        .pdf-header {
+            flex-direction: column !important;
+            align-items: flex-start !important;
+            gap: 20px !important;
+        }
+        .pdf-header > div {
+            width: 100% !important;
+        }
+        .pdf-header > div:last-child {
+            display: flex !important;
+            justify-content: center !important;
+        }
+    }
+    </style>
+
+    <div class="container">
+                <!-- Project Metadata -->
+                <!-- Container 1: Skills chips (no bg) - ABOVE TITLE -->
+        <div class="metadata-skills-container" style="margin-top: 20px !important;">
+            <div class="skill-tags">
+                <span class="skill-tag">MR Productivity tool</span>
+                <span class="skill-tag">Unity</span>
+                <span class="skill-tag">XR Prototyping</span>
+            </div>
+        </div>
+        
+        <header>
+            <h1>Florelia</h1>
+        </header>
+
+        <main>
+            <!-- Container 2: Timeline · Duration (no bg) -->
+            <div class="metadata-title-container">
+                <div class="project-subtitle">Sep, 2025 · 5 Weeks</div>
+            </div>
+            
+            <!-- Container 3: Team card (white overlay bg) -->
+            <div class="metadata-team-container">
+                <div class="team-card">
+                    <div class="individual-project">
+                        <span class="material-icons">person</span>
+                        <span>Solo Project</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Hero Video Section -->
+            <section class="project-section">
+                <div class="video-section">
+                    <div class="video-container">
+                        <iframe width="100%" height="600" src="https://www.youtube.com/embed/wSvJ7BTXdcU" title="Florelia MR App" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen style="border-radius: 8px; max-width: 1200px; margin: 0 auto; display: block;"></iframe>
+                    </div>
+                </div>
+                <p style="text-align: center; margin-top: 20px; color: #8B7355; font-style: italic;">Mixed Reality Floral Design Tool for Event Planners</p>
+            </section>
+
+            <!-- PDF Section -->
+            <section class="project-section">
+                <!-- PDF Container -->
+                <div class="pdf-container" style="background: rgba(139, 115, 85, 0.08); border-radius: 12px; padding: 30px; margin: 30px 0;">
+                    <div class="pdf-header" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; flex-wrap: wrap; gap: 15px;">
+                        <div class="pdf-title">
+                            <h3 style="color: #8B7355; margin: 0;">Florelia MR Project Documentation</h3>
+                            <p style="margin: 5px 0 0 0; color: #666; font-size: 0.9rem;">Complete project overview and technical details</p>
+                        </div>
+                        <div>
+                            <a href="../assets/florelia/FloreliaMR.pdf" download class="download-btn" style="background: rgba(139, 115, 85, 0.2); color: #8B7355; border: 1px solid #8B7355; padding: 8px 12px; border-radius: 6px; text-decoration: none; display: flex; align-items: center; gap: 5px; font-size: 0.9rem;">
+                                <span class="material-icons" style="font-size: 16px;">download</span>
+                                Download PDF
+                            </a>
+                        </div>
+                    </div>
+                    <!-- PDF Display -->
+                    <div class="pdf-display" style="border-radius: 8px; padding: 20px; text-align: center;">
+                        <iframe id="pdfViewer" src="../assets/florelia/FloreliaMR.pdf#view=FitH&zoom=75" style="width: 100%; height: 700px; border: none; border-radius: 4px;" title="Florelia MR Project Documentation"></iframe>
+                    </div>
+                </div>
+            </section>
+
+            <!-- User Flow Viewer -->
+            <section class="project-section">
+                <h2>User Flow</h2>
+                <div style="background: rgba(139, 115, 85, 0.08); border-radius: 12px; padding: 30px; margin: 30px 0;">
+                    <iframe src="https://www.figma.com/embed?embed_host=share&url=https://www.figma.com/board/4KgMpebBCufrYzyUz6YjrB/Florelia-MR" width="100%" height="600" allowfullscreen></iframe>
+                </div>
+            </section>
+
+            <!-- Design System & UI Viewer -->
+            <section class="project-section">
+                <h2>Design System & UI</h2>
+                <div style="background: rgba(139, 115, 85, 0.08); border-radius: 12px; padding: 30px; margin: 30px 0;">
+                    <iframe src="https://www.figma.com/embed?embed_host=share&url=https://www.figma.com/design/7z7KM5ryewxl6OHLEcngC8/Florelia-MR-UI" width="100%" height="600" allowfullscreen></iframe>
+                </div>
+            </section>
+
+            <!-- What This Project Taught Me Section -->
+            <section class="project-section">
+                <h2>What This Project Taught Me</h2>
+                <div class="reflection-content" style="margin-top: 30px;">
+                    <blockquote class="reflection-quote">
+                        <p>How to design readable, comfortable interfaces for XR, think spatially for MR environments, prototype effectively in Unity, iterate rapidly, and balance visual fidelity with real-time performance constraints.</p>
+                    </blockquote>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Image Modal -->
+    <div id="imageModal" class="image-modal" onclick="closeImageModal()">
+        <span class="modal-close" onclick="closeImageModal()">&times;</span>
+        <img id="modalImage" class="modal-image" src="" alt="">
+    </div>
+
+    <script>
+function openImageModal(imgElement) {
+    const modal = document.getElementById('imageModal');
+    const modalImg = document.getElementById('modalImage');
+    modal.style.display = 'flex';
+    modalImg.src = imgElement.src;
+    modalImg.alt = imgElement.alt;
+    document.body.style.overflow = 'hidden';
+}
+
+function closeImageModal() {
+    const modal = document.getElementById('imageModal');
+    modal.style.display = 'none';
+    document.body.style.overflow = 'auto';
+}
+
+// Close modal when pressing Escape key
+document.addEventListener('keydown', function(event) {
+    if (event.key === 'Escape') {
+        closeImageModal();
+    }
+});
+
+// Hide shell label when scrolling
+let lastScrollTop = 0;
+const shellLabel = document.querySelector('.shell-label');
+
+if (shellLabel) {
+    window.addEventListener('scroll', function() {
+        const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+        
+        if (scrollTop > 50) {
+            shellLabel.style.opacity = '0';
+            shellLabel.style.transform = 'translateY(-10px)';
+        } else {
+            shellLabel.style.opacity = '1';
+            shellLabel.style.transform = 'translateY(0)';
+        }
+        
+        lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
+    });
+}
+</script>
+    <script src="../script.js"></script>
+</body>
+</html>
