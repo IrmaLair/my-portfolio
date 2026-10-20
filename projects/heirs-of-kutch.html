@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Heirs of Kutch - Nidhi's Portfolio</title>
+    <link rel="icon" type="image/svg+xml" href="../assets/Logo.svg">
+    <link rel="stylesheet" href="../styles.css?v=mobile-title-1003182043489">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+<body>
+        <!-- Splash Screen -->
+    <div class="splash-screen" id="splash">
+        <img src="../assets/Logo.svg" alt="Logo" class="splash-logo">
+    </div>
+
+<!-- Shell Navigation Button -->
+    <div class="shell-nav">
+        <a href="../projects.html" class="shell-nav-btn" aria-label="Back to Projects">
+            <img src="../assets/shell-clam.svg" alt="Back to Projects" width="60" height="60">
+            <span class="shell-label">Projects</span>
+        </a>
+    </div>
+
+        <!-- Mobile spacer to prevent overlap -->
+    <div class="mobile-spacer" style="height: 65px; width: 100%; display: none;"></div>
+
+    <style>
+    @media (max-width: 768px) {
+        .mobile-spacer {
+            display: block !important;
+        }
+        header h1, .container header h1 {
+            font-size: 2.5rem !important;
+            line-height: 1.1 !important;
+        }
+        div[style*="grid-template-columns: repeat(auto-fit, minmax(250px, 1fr))"],
+        div[style*="grid-template-columns: repeat(auto-fit, minmax(220px, 1fr))"] {
+            grid-template-columns: 1fr !important;
+            gap: 20px !important;
+        }
+        iframe {
+            height: 250px !important;
+        }
+    }
+    @media (max-width: 480px) {
+        .mobile-spacer {
+            height: 55px !important;
+        }
+        header h1, .container header h1 {
+            font-size: 2rem !important;
+            line-height: 1.1 !important;
+        }
+    }
+
+    .modal {
+        display: none;
+        position: fixed;
+        z-index: 1000;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.9);
+        justify-content: center;
+        align-items: center;
+    }
+
+    .modal-content {
+        max-width: 90%;
+        max-height: 90%;
+        object-fit: contain;
+        border-radius: 8px;
+    }
+
+    .close {
+        position: absolute;
+        top: 20px;
+        right: 35px;
+        color: #fff;
+        font-size: 40px;
+        font-weight: bold;
+        cursor: pointer;
+    }
+
+    .clickable-image {
+        cursor: pointer;
+        transition: transform 0.3s ease;
+    }
+
+    .clickable-image:hover {
+        transform: scale(1.02);
+    }
+    </style>
+
+    <div class="container">
+        <!-- Project Metadata -->
+        <div class="metadata-skills-container" style="margin-top: 20px !important;">
+            <div class="skill-tags">
+                <span class="skill-tag">VR Experience</span>
+                <span class="skill-tag">Immersive Storytelling</span>
+                <span class="skill-tag">Documentary XR</span>
+            </div>
+        </div>
+
+        <header>
+            <h1>Heirs of Kutch</h1>
+        </header>
+
+        <main>
+            <div class="metadata-title-container">
+                <div class="project-subtitle">Nov, 2025 · 1 Month</div>
+            </div>
+
+            <div class="metadata-team-container">
+                <div class="team-card">
+                    <div style="text-align: left !important;">
+                        <div class="team-project" style="display: flex !important; align-items: flex-start !important; gap: 8px !important; text-align: center !important; margin-bottom: 6px !important; justify-content: center !important;">
+                            <span class="material-icons" style="font-size: 20px !important; color: #8B7355 !important; flex-shrink: 0 !important; margin-top: 2px !important;">groups</span>
+                            <span style="font-weight: 600 !important; color: #303030 !important; text-align: left !important;">Team of 5</span>
+                        </div>
+                        <div class="collaborators-list" style="text-align: left !important; line-height: 1.3 !important;">
+                            <div style="margin-bottom: 2px !important; text-align: left !important; font-size: 0.9rem !important;">
+                                <span style="font-weight: 500 !important; color: #303030 !important;">Janice Carvalho</span>
+                                <span style="font-weight: 400 !important; color: #8B7355 !important; font-style: normal !important; font-size: 0.8rem !important;">(Concept & World Building)</span>
+                            </div>
+                            <div style="margin-bottom: 2px !important; text-align: left !important; font-size: 0.9rem !important;">
+                                <span style="font-weight: 500 !important; color: #303030 !important;">Nidhi Surekha</span>
+                                <span style="font-weight: 400 !important; color: #8B7355 !important; font-style: normal !important; font-size: 0.8rem !important;">(Live Link & Programming)</span>
+                            </div>
+                            <div style="margin-bottom: 2px !important; text-align: left !important; font-size: 0.9rem !important;">
+                                <span style="font-weight: 500 !important; color: #303030 !important;">Sagun Chatla</span>
+                                <span style="font-weight: 400 !important; color: #8B7355 !important; font-style: normal !important; font-size: 0.8rem !important;">(Concept & Programming)</span>
+                            </div>
+                            <div style="margin-bottom: 2px !important; text-align: left !important; font-size: 0.9rem !important;">
+                                <span style="font-weight: 500 !important; color: #303030 !important;">Soumya Unhelkar</span>
+                                <span style="font-weight: 400 !important; color: #8B7355 !important; font-style: normal !important; font-size: 0.8rem !important;">(UI Design)</span>
+                            </div>
+                            <div style="margin-bottom: 2px !important; text-align: left !important; font-size: 0.9rem !important;">
+                                <span style="font-weight: 500 !important; color: #303030 !important;">Praful Mishra</span>
+                                <span style="font-weight: 400 !important; color: #8B7355 !important; font-style: normal !important; font-size: 0.8rem !important;">(Programming)</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Hero Video: Final Output -->
+            <section class="project-section">
+                <div class="video-section">
+                    <div class="video-container">
+                        <iframe width="100%" height="600" src="https://www.youtube.com/embed/HRqnsfoJdC8" title="Heirs of Kutch - Trailer" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen style="border-radius: 8px; max-width: 1200px; margin: 0 auto; display: block;"></iframe>
+                    </div>
+                </div>
+                <p style="text-align: center; margin-top: 20px; color: #8B7355; font-style: italic;">A VR documentary experience preserving the story of Kutch's last Rogan Art family.</p>
+                <div style="text-align: center; margin-top: 20px;">
+                    <a href="https://youtu.be/TZXJsVMaV7o?si=PMlPQOUxe508fXdl" target="_blank" style="background: #8B7355; color: white; padding: 12px 24px; border-radius: 8px; text-decoration: none; display: inline-flex; align-items: center; gap: 8px; font-weight: 500;">
+                        <span class="material-icons" style="font-size: 20px;">play_circle</span>
+                        Watch the Full Experience Recording
+                    </a>
+                </div>
+                <div style="text-align: center; margin-top: 15px;">
+                    <span style="background: rgba(139, 115, 85, 0.15); color: #8B7355; padding: 6px 14px; border-radius: 20px; font-size: 0.85rem; font-weight: 600; margin-right: 8px;">🏆 XRCC Finalist</span>
+                    <span style="background: rgba(139, 115, 85, 0.15); color: #8B7355; padding: 6px 14px; border-radius: 20px; font-size: 0.85rem; font-weight: 600;">🥇 Community Voting Winner</span>
+                </div>
+            </section>
+
+            <!-- Full Presentation (right after video links) -->
+            <section class="project-section">
+                <h2>Project Presentation</h2>
+                <div style="text-align: center; margin: 30px 0;">
+                    <img src="../assets/heirs-of-kutch/presentation.png" alt="Heirs of Kutch full presentation" style="width: 100%; max-width: 900px; border-radius: 8px; box-shadow: 0 4px 20px rgba(0,0,0,0.1);">
+                </div>
+            </section>
+
+            <!-- About -->
+            <section class="project-section">
+                <h2>The Last Threads of Rogan Art</h2>
+                <p style="line-height: 1.7;">Heirs of Kutch is an immersive VR documentary experience that preserves the story of the Khatri family of Nirona, Kutch, the sole remaining practitioners of Rogan Art, a 400-year-old textile painting craft passed down through generations. Built for XRCC (XR Creators Competition) Online, organized by Immersive Insiders and sponsored by Meta and ShapesXR, the experience lets viewers step into the family's world and witness a vanishing art form in the process of being kept alive.</p>
+            </section>
+
+            <!-- Gallery -->
+            <section class="project-section">
+                <h2>Behind the Experience</h2>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; margin-top: 30px;">
+                    <div style="text-align: center;">
+                        <img src="../assets/heirs-of-kutch/rogan making process.png" alt="The Rogan Art making process" class="clickable-image" onclick="openImageModal(this)" style="width: 100%; border-radius: 8px; box-shadow: 0 4px 20px rgba(0,0,0,0.1);">
+                        <p style="margin-top: 10px; color: #8B7355; font-size: 0.85rem; font-style: italic;">The Rogan Art making process</p>
+                    </div>
+                    <div style="text-align: center;">
+                        <img src="../assets/heirs-of-kutch/winner-announcement-community-voting.png" alt="Community Voting Winner announcement" class="clickable-image" onclick="openImageModal(this)" style="width: 100%; border-radius: 8px; box-shadow: 0 4px 20px rgba(0,0,0,0.1);">
+                        <p style="margin-top: 10px; color: #8B7355; font-size: 0.85rem; font-style: italic;">Community Voting Winner announcement</p>
+                    </div>
+                    <div style="text-align: center;">
+                        <img src="../assets/heirs-of-kutch/Finalist Certificate.png" alt="XRCC Finalist Certificate" class="clickable-image" onclick="openImageModal(this)" style="width: 100%; border-radius: 8px; box-shadow: 0 4px 20px rgba(0,0,0,0.1);">
+                        <p style="margin-top: 10px; color: #8B7355; font-size: 0.85rem; font-style: italic;">XRCC Finalist Certificate</p>
+                    </div>
+                    <div style="text-align: center;">
+                        <img src="../assets/heirs-of-kutch/XRCC-winner-badge-nidhi.jpg" alt="XRCC winner badge" class="clickable-image" onclick="openImageModal(this)" style="width: 100%; border-radius: 8px; box-shadow: 0 4px 20px rgba(0,0,0,0.1);">
+                        <p style="margin-top: 10px; color: #8B7355; font-size: 0.85rem; font-style: italic;">XRCC winner badge</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Community Vote Winner Video -->
+            <section class="project-section">
+                <h2>Community Vote Winner</h2>
+                <div style="text-align: center; margin: 30px 0;">
+                    <video controls preload="metadata" style="width: 100%; max-width: 900px; border-radius: 8px; box-shadow: 0 4px 20px rgba(0,0,0,0.1);">
+                        <source src="../assets/heirs-of-kutch/Community Vote Winner.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+            </section>
+
+            <!-- Reflection -->
+            <section class="project-section">
+                <h2>Reflection</h2>
+                <div class="reflection-content" style="margin-top: 30px;">
+                    <blockquote class="reflection-quote">
+                        <p style="margin: 0;">Heirs of Kutch pushed us to treat a real family's living heritage with care. The challenge wasn't just technical, it was earning the right to tell someone else's story faithfully in VR. Seeing it recognized by the XR community, and winning the community vote, was a reminder that craft and technology can amplify each other instead of competing.</p>
+                    </blockquote>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Image Modal -->
+    <div id="imageModal" class="modal" onclick="closeImageModal()">
+        <span class="close" onclick="closeImageModal()">&times;</span>
+        <img id="modalImage" class="modal-content" src="" alt="">
+    </div>
+
+    <script>
+function openImageModal(imgElement) {
+    const modal = document.getElementById('imageModal');
+    const modalImage = document.getElementById('modalImage');
+    modal.style.display = 'flex';
+    modalImage.src = imgElement.src;
+    modalImage.alt = imgElement.alt;
+    document.body.style.overflow = 'hidden';
+}
+
+function closeImageModal() {
+    document.getElementById('imageModal').style.display = 'none';
+    document.body.style.overflow = 'auto';
+}
+
+document.addEventListener('keydown', function(event) {
+    if (event.key === 'Escape') {
+        closeImageModal();
+    }
+});
+
+document.getElementById('modalImage').addEventListener('click', function(event) {
+    event.stopPropagation();
+});
+
+let lastScrollTop = 0;
+const shellLabel = document.querySelector('.shell-label');
+if (shellLabel) {
+    window.addEventListener('scroll', function() {
+        const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+        if (scrollTop > 50) {
+            shellLabel.style.opacity = '0';
+            shellLabel.style.transform = 'translateY(-10px)';
+        } else {
+            shellLabel.style.opacity = '1';
+            shellLabel.style.transform = 'translateY(0)';
+        }
+        lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
+    });
+}
+</script>
+    <script src="../script.js"></script>
+</body>
+</html>

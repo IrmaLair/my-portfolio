@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ponseti Clubfoot Treatment - Nidhi's Portfolio</title>
+    <link rel="icon" type="image/svg+xml" href="../assets/Logo.svg">
+    <link rel="stylesheet" href="../styles.css?v=mobile-title-1003182043489">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+<body>
+        <!-- Splash Screen -->
+    <div class="splash-screen" id="splash">
+        <img src="../assets/Logo.svg" alt="Logo" class="splash-logo">
+    </div>
+
+<!-- Shell Navigation Button -->
+    <div class="shell-nav">
+        <a href="../projects.html" class="shell-nav-btn" aria-label="Back to Projects">
+            <img src="../assets/shell-clam.svg" alt="Back to Projects" width="60" height="60">
+            <span class="shell-label">Projects</span>
+        </a>
+    </div>
+
+        <!-- Mobile spacer to prevent overlap -->
+    <div class="mobile-spacer" style="height: 65px; width: 100%; display: none;"></div>
+
+    <style>
+    @media (max-width: 768px) {
+        .mobile-spacer {
+            display: block !important;
+        }
+        header h1, .container header h1 {
+            font-size: 2.5rem !important;
+            line-height: 1.1 !important;
+        }
+        .pdf-header {
+            flex-direction: column !important;
+            align-items: flex-start !important;
+            gap: 20px !important;
+        }
+        .pdf-header > div {
+            width: 100% !important;
+        }
+        .pdf-header > div:last-child {
+            display: flex !important;
+            justify-content: center !important;
+        }
+        iframe {
+            height: 350px !important;
+        }
+        div[style*="grid-template-columns: repeat(auto-fit, minmax(250px, 1fr))"],
+        div[style*="grid-template-columns: repeat(auto-fit, minmax(220px, 1fr))"],
+        div[style*="grid-template-columns: repeat(auto-fit, minmax(200px, 1fr))"] {
+            grid-template-columns: 1fr !important;
+            gap: 20px !important;
+        }
+        .shorts-row {
+            flex-direction: column !important;
+            align-items: center !important;
+        }
+    }
+    @media (max-width: 480px) {
+        .mobile-spacer {
+            height: 55px !important;
+        }
+        header h1, .container header h1 {
+            font-size: 2rem !important;
+            line-height: 1.1 !important;
+        }
+        iframe {
+            height: 300px !important;
+        }
+    }
+
+    .modal {
+        display: none;
+        position: fixed;
+        z-index: 1000;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.9);
+        justify-content: center;
+        align-items: center;
+    }
+
+    .modal-content {
+        max-width: 90%;
+        max-height: 90%;
+        object-fit: contain;
+        border-radius: 8px;
+    }
+
+    .close {
+        position: absolute;
+        top: 20px;
+        right: 35px;
+        color: #fff;
+        font-size: 40px;
+        font-weight: bold;
+        cursor: pointer;
+    }
+
+    .clickable-image {
+        cursor: pointer;
+        transition: transform 0.3s ease;
+    }
+
+    .clickable-image:hover {
+        transform: scale(1.02);
+    }
+
+    .shorts-row {
+        display: flex;
+        justify-content: center;
+        gap: 25px;
+        flex-wrap: wrap;
+        margin-top: 30px;
+    }
+
+    .shorts-row iframe {
+        border-radius: 12px;
+    }
+    </style>
+
+    <div class="container">
+        <!-- Project Metadata -->
+        <div class="metadata-skills-container" style="margin-top: 20px !important;">
+            <div class="skill-tags">
+                <span class="skill-tag">VR Design</span>
+                <span class="skill-tag">UX Research</span>
+                <span class="skill-tag">XR Development</span>
+                <span class="skill-tag">UI Design</span>
+            </div>
+        </div>
+
+        <header>
+            <h1>Ponseti Clubfoot Treatment</h1>
+        </header>
+
+        <main>
+            <div class="metadata-title-container">
+                <div class="project-subtitle">Jan, 2026 · 6 Months</div>
+            </div>
+
+            <div class="metadata-team-container">
+                <div class="team-card">
+                    <div style="text-align: left !important;">
+                        <div class="team-project" style="display: flex !important; align-items: flex-start !important; gap: 8px !important; text-align: center !important; margin-bottom: 6px !important; justify-content: center !important;">
+                            <span class="material-icons" style="font-size: 20px !important; color: #8B7355 !important; flex-shrink: 0 !important; margin-top: 2px !important;">groups</span>
+                            <span style="font-weight: 600 !important; color: #303030 !important; text-align: left !important;">Team of 3</span>
+                        </div>
+                        <div class="collaborators-list" style="text-align: left !important; line-height: 1.3 !important;">
+                            <div style="margin-bottom: 2px !important; text-align: left !important; font-size: 0.9rem !important;">
+                                <span style="font-weight: 500 !important; color: #303030 !important;">Janice Carvalho</span>
+                                <span style="font-weight: 400 !important; color: #8B7355 !important; font-style: normal !important; font-size: 0.8rem !important;">(UI/UX & Museum Concept)</span>
+                            </div>
+                            <div style="margin-bottom: 2px !important; text-align: left !important; font-size: 0.9rem !important;">
+                                <span style="font-weight: 500 !important; color: #303030 !important;">Nidhi Surekha</span>
+                                <span style="font-weight: 400 !important; color: #8B7355 !important; font-style: normal !important; font-size: 0.8rem !important;">(UI/UX and Research)</span>
+                            </div>
+                            <div style="margin-bottom: 2px !important; text-align: left !important; font-size: 0.9rem !important;">
+                                <span style="font-weight: 500 !important; color: #303030 !important;">Sagun Chatla</span>
+                                <span style="font-weight: 400 !important; color: #8B7355 !important; font-style: normal !important; font-size: 0.8rem !important;">(Interaction Design)</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Hero: Final Output Video (unchanged) -->
+            <section class="project-section" style="margin-top: 40px;">
+                <div class="video-section">
+                    <div class="video-container">
+                        <iframe width="100%" height="600" src="https://www.youtube.com/embed/kUX_XZSTQsQ" title="Ponseti Clubfoot Treatment Simulation" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen style="border-radius: 8px; max-width: 1200px; margin: 0 auto; display: block;"></iframe>
+                    </div>
+                </div>
+                <p style="text-align: center; margin-top: 20px; color: #8B7355; font-style: italic;">A VR training simulation teaching healthcare professionals the Ponseti Method of clubfoot correction, built for CURE India.</p>
+                <div style="text-align: center; margin-top: 15px;">
+                    <span style="background: rgba(139, 115, 85, 0.15); color: #8B7355; padding: 6px 14px; border-radius: 20px; font-size: 0.85rem; font-weight: 600;">🏆 XRCC Finalist</span>
+                </div>
+            </section>
+
+            <!-- Prototype Walkthrough -->
+            <section class="project-section">
+                <h2>Prototype Walkthrough</h2>
+                <div class="video-section">
+                    <div class="video-container">
+                        <iframe width="100%" height="500" src="https://www.youtube.com/embed/t4B7AAIJcQM" title="Ponseti Prototype Walkthrough" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen style="border-radius: 8px; max-width: 1000px; margin: 0 auto; display: block;"></iframe>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Presentation: Grad Book PDF -->
+            <section class="project-section">
+                <h2>Presentation</h2>
+                <div class="pdf-container" style="background: rgba(139, 115, 85, 0.08); border-radius: 12px; padding: 30px; margin: 30px 0;">
+                    <div class="pdf-header" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; flex-wrap: wrap; gap: 15px;">
+                        <div class="pdf-title">
+                            <h3 style="color: #8B7355; margin: 0;">Internship Grad Book</h3>
+                            <p style="margin: 5px 0 0 0; color: #303030; font-size: 0.9rem;">Complete project documentation, designed for print in Adobe Illustrator</p>
+                        </div>
+                        <div style="display: flex; gap: 10px; align-items: center;">
+                            <a href="../assets/ponseti-clubfoot-treatment/grad book.pdf" download class="download-btn" style="background: rgba(139, 115, 85, 0.2); color: #8B7355; border: 1px solid #8B7355; padding: 8px 12px; border-radius: 6px; text-decoration: none; display: flex; align-items: center; gap: 5px; font-size: 0.9rem;">
+                                <span class="material-icons" style="font-size: 18px;">download</span>
+                                Download PDF
+                            </a>
+                        </div>
+                    </div>
+                    <div class="pdf-display" style="border-radius: 8px; padding: 20px; text-align: center;">
+                        <iframe src="../assets/ponseti-clubfoot-treatment/grad book.pdf#view=FitH" style="width: 100%; height: 700px; border: none; border-radius: 4px;" title="Ponseti Clubfoot Treatment Grad Book"></iframe>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Thesis Project -->
+            <section class="project-section">
+                <h2>Thesis Project</h2>
+                <p style="line-height: 1.7;">The Ponseti Clubfoot Treatment Simulation is an immersive learning platform developed for CURE International India Trust (CIIT) to train healthcare providers in the Ponseti Method for clubfoot correction. Integrating anatomy education, Pirani assessment, procedural training, hand-tracking interactions, and AI-powered learning, it enables interactive, hands-on practice in Virtual Reality. The platform transforms traditional mentor-dependent training into a scalable, standardized, and engaging learning experience, bridging theoretical knowledge and clinical practice while improving accessibility to specialized healthcare education.</p>
+            </section>
+
+            <!-- UX Design Principles -->
+            <section class="project-section">
+                <h2>UX Design Principles</h2>
+                <p style="line-height: 1.7; margin-bottom: 20px;">The interface follows Don Norman's principles of Human-Centred Design, adapting the system to a clinician's mental model, with Shneiderman's Eight Golden Rules informing layout consistency, error tolerance, and feedback across all 9 modules.</p>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 25px; margin-top: 30px;">
+                    <div style="background: rgba(139, 115, 85, 0.08); padding: 25px; border-radius: 12px;">
+                        <h4 style="color: #8B7355; margin-bottom: 10px;">Feedback Loops</h4>
+                        <p style="color: #303030; margin: 0; font-size: 0.9rem; line-height: 1.6;">Every interaction produces an immediate visual or haptic response, aligned with Norman's action evaluation cycle.</p>
+                    </div>
+                    <div style="background: rgba(139, 115, 85, 0.08); padding: 25px; border-radius: 12px;">
+                        <h4 style="color: #8B7355; margin-bottom: 10px;">Consistency</h4>
+                        <p style="color: #303030; margin: 0; font-size: 0.9rem; line-height: 1.6;">UI language, color coding (CAVE stages, Pirani severity), and spatial layout stay uniform across all modules.</p>
+                    </div>
+                    <div style="background: rgba(139, 115, 85, 0.08); padding: 25px; border-radius: 12px;">
+                        <h4 style="color: #8B7355; margin-bottom: 10px;">Error Recovery</h4>
+                        <p style="color: #303030; margin: 0; font-size: 0.9rem; line-height: 1.6;">Learners can retry any module without penalty, supporting Shneiderman's principle of forgiving design.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Human Factors -->
+            <section class="project-section">
+                <h2>Human Factors and Heuristics</h2>
+                <p style="line-height: 1.7; margin-bottom: 20px;">Nielsen's 10 Usability Heuristics were applied in a VR-specific context, supplemented by Fitts' Law for interaction target sizing and Cognitive Load Theory to manage simultaneous clinical decision-making and procedural execution.</p>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 25px; margin-top: 30px;">
+                    <div style="background: rgba(139, 115, 85, 0.08); padding: 25px; border-radius: 12px;">
+                        <h4 style="color: #8B7355; margin-bottom: 10px;">Error Prevention Over Correction</h4>
+                        <p style="color: #303030; margin: 0; font-size: 0.9rem; line-height: 1.6;">Anatomical constraints built into the foot model resist physically implausible manipulation.</p>
+                    </div>
+                    <div style="background: rgba(139, 115, 85, 0.08); padding: 25px; border-radius: 12px;">
+                        <h4 style="color: #8B7355; margin-bottom: 10px;">Recognition Over Recall</h4>
+                        <p style="color: #303030; margin: 0; font-size: 0.9rem; line-height: 1.6;">Pirani scoring is presented as a guided visual checklist rather than a blank recall task.</p>
+                    </div>
+                    <div style="background: rgba(139, 115, 85, 0.08); padding: 25px; border-radius: 12px;">
+                        <h4 style="color: #8B7355; margin-bottom: 10px;">Intrinsic Load Management</h4>
+                        <p style="color: #303030; margin: 0; font-size: 0.9rem; line-height: 1.6;">Each module isolates one clinical stage, preventing split-attention between simultaneous tasks.</p>
+                    </div>
+                </div>
+                <div style="background: rgba(139, 115, 85, 0.05); border-radius: 8px; padding: 20px; border: 1px solid rgba(139, 115, 85, 0.2); margin-top: 20px;">
+                    <h4 style="color: #8B7355; margin: 0 0 8px 0;">Visibility of System Status</h4>
+                    <p style="margin: 0; color: #303030; line-height: 1.6; font-size: 0.9rem;">CAVE angle meters and the Pirani scorecard remain persistently visible in the HUD, positioned to match the natural spatial expectations of a clinician leaning over a patient, reducing the need to interrupt the procedure to check progress.</p>
+                </div>
+            </section>
+
+            <!-- UI Design: Figma Viewer -->
+            <section class="project-section">
+                <h2>UI Design</h2>
+                <div style="background: rgba(139, 115, 85, 0.08); border-radius: 12px; padding: 30px; margin: 30px 0;">
+                    <iframe src="https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Fdesign%2FjDZgww2iz80XbKs0X7eSWb%2FCURE-India-Clubfoot-Treatment-Simulation-VR-UI%3Fnode-id%3D538-715%26t%3DLLMMnksmks8QdXkJ-1" width="100%" height="600" allowfullscreen></iframe>
+                </div>
+            </section>
+
+            <!-- Visual System -->
+            <section class="project-section">
+                <h2>Visual System</h2>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; margin-top: 20px;">
+                    <div style="background: rgba(139, 115, 85, 0.05); border-radius: 8px; padding: 20px; border: 1px solid rgba(139, 115, 85, 0.2);"><h4 style="color: #8B7355; margin: 0 0 8px 0;">🔤 Typography</h4><p style="margin: 0; font-size: 0.85rem; color: #303030;">Plus Jakarta Sans, chosen for on-screen legibility and modernity</p></div>
+                    <div style="background: rgba(139, 115, 85, 0.05); border-radius: 8px; padding: 20px; border: 1px solid rgba(139, 115, 85, 0.2);"><h4 style="color: #8B7355; margin: 0 0 8px 0;">🥽 XR Hardware</h4><p style="margin: 0; font-size: 0.85rem; color: #303030;">Meta Quest 2 and 3</p></div>
+                    <div style="background: rgba(139, 115, 85, 0.05); border-radius: 8px; padding: 20px; border: 1px solid rgba(139, 115, 85, 0.2);"><h4 style="color: #8B7355; margin: 0 0 8px 0;">🎨 Color System</h4><p style="margin: 0; font-size: 0.85rem; color: #303030;">A CURE-branded button palette coding stage, severity, and state</p></div>
+                </div>
+                <div style="display: flex; flex-wrap: wrap; gap: 10px; margin-top: 20px; justify-content: center;">
+                    <span style="background: #DC0268; color: white; padding: 6px 14px; border-radius: 20px; font-size: 0.8rem;">#DC0268</span>
+                    <span style="background: #FEC900; color: #303030; padding: 6px 14px; border-radius: 20px; font-size: 0.8rem;">#FEC900</span>
+                    <span style="background: #007DCE; color: white; padding: 6px 14px; border-radius: 20px; font-size: 0.8rem;">#007DCE</span>
+                    <span style="background: #35912C; color: white; padding: 6px 14px; border-radius: 20px; font-size: 0.8rem;">#35912C</span>
+                    <span style="background: #B8C915; color: #303030; padding: 6px 14px; border-radius: 20px; font-size: 0.8rem;">#B8C915</span>
+                    <span style="background: #22223B; color: white; padding: 6px 14px; border-radius: 20px; font-size: 0.8rem;">#22223B</span>
+                </div>
+            </section>
+
+            <!-- Clubfoot Museum -->
+            <section class="project-section">
+                <h2>The Clubfoot Museum</h2>
+                <p style="line-height: 1.7;">An extension of the training simulation built for investors, stakeholders, and partners. Where the simulation trains clinicians, the Museum is an immersive storytelling space highlighting CURE India's program reach and impact through interactive exhibits, including AI-powered conversational avatars of Dr. Mathew Varghese and Dr. Ignacio Ponseti, built with ConvAI and voice cloning, letting visitors ask questions about the treatment method and its global history in natural dialogue.</p>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px; margin-top: 30px;">
+                    <div style="text-align: center;">
+                        <img src="../assets/ponseti-clubfoot-treatment/Museum Layout.jpg" alt="Clubfoot Museum layout" class="clickable-image" onclick="openImageModal(this)" style="width: 100%; border-radius: 8px; box-shadow: 0 4px 20px rgba(0,0,0,0.1);">
+                        <p style="margin-top: 10px; color: #8B7355; font-size: 0.85rem; font-style: italic;">Museum layout</p>
+                    </div>
+                    <div style="text-align: center;">
+                        <img src="../assets/ponseti-clubfoot-treatment/user flow.jpg" alt="User flow diagram" class="clickable-image" onclick="openImageModal(this)" style="width: 100%; border-radius: 8px; box-shadow: 0 4px 20px rgba(0,0,0,0.1);">
+                        <p style="margin-top: 10px; color: #8B7355; font-size: 0.85rem; font-style: italic;">User flow</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- AI Patient Safety -->
+            <section class="project-section">
+                <h2>AI Patient Safety</h2>
+                <div class="video-section">
+                    <div class="video-container">
+                        <iframe width="100%" height="500" src="https://www.youtube.com/embed/QGUdtvbBhr8" title="AI Patient Safety" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen style="border-radius: 8px; max-width: 1000px; margin: 0 auto; display: block;"></iframe>
+                    </div>
+                </div>
+            </section>
+
+            <!-- VR Realm Stalls -->
+            <section class="project-section">
+                <h2>VR Realm Stalls</h2>
+                <div class="shorts-row">
+                    <iframe width="280" height="498" src="https://www.youtube.com/embed/_DvpLwJRdII" title="VR Realm Stall 1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                    <iframe width="280" height="498" src="https://www.youtube.com/embed/3Z8PhFPjolk" title="VR Realm Stall 2" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                </div>
+            </section>
+
+            <!-- Reflection -->
+            <section class="project-section">
+                <h2>Reflection</h2>
+                <div class="reflection-content" style="margin-top: 30px;">
+                    <blockquote class="reflection-quote">
+                        <p style="margin: 0;">This project connected surprisingly well with my long-standing interest in biology. I genuinely enjoyed diving into medical research and understanding how a treatment method works beyond the textbook level. Professionally, I grew more confident by working in a completely new domain and learning how design skills could create impact in healthcare, and by exploring how AI fits into XR. One of the highlights was becoming a finalist at XRCC and seeing our work recognized by the XR community.</p>
+                    </blockquote>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Image Modal -->
+    <div id="imageModal" class="modal" onclick="closeImageModal()">
+        <span class="close" onclick="closeImageModal()">&times;</span>
+        <img id="modalImage" class="modal-content" src="" alt="">
+    </div>
+
+    <script>
+function openImageModal(imgElement) {
+    const modal = document.getElementById('imageModal');
+    const modalImage = document.getElementById('modalImage');
+    modal.style.display = 'flex';
+    modalImage.src = imgElement.src;
+    modalImage.alt = imgElement.alt;
+    document.body.style.overflow = 'hidden';
+}
+
+function closeImageModal() {
+    document.getElementById('imageModal').style.display = 'none';
+    document.body.style.overflow = 'auto';
+}
+
+document.addEventListener('keydown', function(event) {
+    if (event.key === 'Escape') {
+        closeImageModal();
+    }
+});
+
+document.getElementById('modalImage').addEventListener('click', function(event) {
+    event.stopPropagation();
+});
+
+let lastScrollTop = 0;
+const shellLabel = document.querySelector('.shell-label');
+if (shellLabel) {
+    window.addEventListener('scroll', function() {
+        const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+        if (scrollTop > 50) {
+            shellLabel.style.opacity = '0';
+            shellLabel.style.transform = 'translateY(-10px)';
+        } else {
+            shellLabel.style.opacity = '1';
+            shellLabel.style.transform = 'translateY(0)';
+        }
+        lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
+    });
+}
+</script>
+    <script src="../script.js"></script>
+</body>
+</html>
