@@ -6,6 +6,7 @@
     <title>Nidhi Surekha — Design Portfolio</title>
     <link rel="icon" type="image/svg+xml" href="assets/Logo.svg">
     <link rel="stylesheet" href="styles.css?v=fix-1003191112643">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 <body class="homepage">
     <!-- Animated Waves -->
@@ -58,10 +59,23 @@
     <!-- Main Content -->
     <div class="container" style="width: calc(100vw - 20px) !important; max-width: none !important;">
         <!-- Resume Button -->
-        <div class="resume-button-container" style="position: absolute !important; top: 20px; right: 20px; z-index: 1000; pointer-events: none;">
-            <a href="https://drive.google.com/uc?export=download&id=1mEjM1khl3xcfqquNQ61eOMdPZ7zpwy01" target="_blank" rel="noopener noreferrer" class="resume-btn" aria-label="View Resume">
+        <div class="resume-button-container" style="position: absolute !important; top: 20px; right: 20px; z-index: 1000; pointer-events: none; display: flex !important; align-items: center !important; gap: 14px !important;">
+            <a href="#" onclick="openResume(event)" class="resume-btn" aria-label="View Resume" style="pointer-events: auto;">
                 Get My Resume
             </a>
+            <a href="https://www.linkedin.com/in/nidhi-surekha" target="_blank" rel="noopener noreferrer" class="linkedin-btn" aria-label="LinkedIn">
+                <img src="./assets/Linkedin icon white.svg" alt="LinkedIn">
+            </a>
+        </div>
+
+        <!-- Resume Error Box -->
+        <div id="resumeErrorOverlay" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 2000; align-items: center; justify-content: center;" onclick="closeResumeError(event)">
+            <div style="background: #F6F1EB; border: 2px solid #8B7355; border-radius: 12px; padding: 30px 35px; max-width: 360px; text-align: center; box-shadow: 0 10px 30px rgba(0,0,0,0.3);" onclick="event.stopPropagation()">
+                <span class="material-icons" style="font-size: 40px; color: #8B7355; margin-bottom: 10px; display: block;">description_off</span>
+                <h3 style="color: #8B7355; margin: 0 0 10px 0;">Resume Not Found</h3>
+                <p id="resumeErrorMessage" style="color: #303030; margin: 0 0 20px 0; font-size: 0.95rem;">No file is available in the resume folder right now.</p>
+                <button onclick="closeResumeError(event)" style="background: #8B7355; color: white; border: none; padding: 10px 24px; border-radius: 6px; cursor: pointer; font-family: inherit; font-weight: 600;">Close</button>
+            </div>
         </div>
         
         <main class="hero-content">
@@ -94,6 +108,75 @@
     </div>
 
     <p class="copyright" style="color: #303030 !important; font-weight: 100 !important; font-family: inherit !important;">&copy; 2025 Nidhi Surekha. All rights reserved.</p>
+
+    <script>
+    // Resume folder lookup via Google Drive API v3.
+    // Setup required: 1) Share the folder as "Anyone with the link can view".
+    // 2) In Google Cloud Console, enable the "Google Drive API" and create an API key, then paste it below.
+    const RESUME_FOLDER_ID = '175b1CSzmTurb5GmPRKIGN_KHyu9NSrwe';
+    const RESUME_DRIVE_API_KEY = 'AIzaSyBsZr9EN0OPSgyVVir7SmP_mJbToU2xoVA';
+
+    function driveFileViewUrl(file) {
+        switch (file.mimeType) {
+            case 'application/vnd.google-apps.document':
+                return `https://docs.google.com/document/d/${file.id}/view`;
+            case 'application/vnd.google-apps.spreadsheet':
+                return `https://docs.google.com/spreadsheets/d/${file.id}/view`;
+            case 'application/vnd.google-apps.presentation':
+                return `https://docs.google.com/presentation/d/${file.id}/view`;
+            default:
+                return `https://drive.google.com/file/d/${file.id}/view`;
+        }
+    }
+
+    function showResumeError(message) {
+        document.getElementById('resumeErrorMessage').textContent = message;
+        document.getElementById('resumeErrorOverlay').style.display = 'flex';
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeResumeError(event) {
+        document.getElementById('resumeErrorOverlay').style.display = 'none';
+        document.body.style.overflow = 'auto';
+    }
+
+    async function openResume(event) {
+        event.preventDefault();
+
+        if (!RESUME_DRIVE_API_KEY || RESUME_DRIVE_API_KEY === 'PASTE_YOUR_GOOGLE_DRIVE_API_KEY_HERE') {
+            showResumeError('Resume lookup is not configured yet. Add a Google Drive API key to enable this button.');
+            return;
+        }
+
+        const query = encodeURIComponent(`'${RESUME_FOLDER_ID}' in parents and trashed = false`);
+        const url = `https://www.googleapis.com/drive/v3/files?q=${query}&orderBy=modifiedTime desc&fields=files(id,name,mimeType)&key=${RESUME_DRIVE_API_KEY}`;
+
+        try {
+            const response = await fetch(url);
+            if (!response.ok) {
+                throw new Error(`Drive API request failed (${response.status})`);
+            }
+            const data = await response.json();
+            const files = data.files || [];
+
+            if (files.length === 0) {
+                showResumeError('No file is available in the resume folder right now.');
+                return;
+            }
+
+            window.open(driveFileViewUrl(files[0]), '_blank', 'noopener,noreferrer');
+        } catch (err) {
+            console.error('Resume lookup failed:', err);
+            showResumeError('Could not reach the resume folder right now. Please try again later.');
+        }
+    }
+
+    document.addEventListener('keydown', function(event) {
+        if (event.key === 'Escape') {
+            closeResumeError(event);
+        }
+    });
+    </script>
 
     <script src="script.js"></script>
 </body>
